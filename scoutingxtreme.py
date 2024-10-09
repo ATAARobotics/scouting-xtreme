@@ -12,22 +12,12 @@ requiredmodules = [
     "seaborn"
 ]
 
-while True:
+for module in requiredmodules:
+    os.system(f"pip install {module}")
 
-    try:
-
-        import pandas as pd
-        import matplotlib.pyplot as plt
-        import seaborn as sn
-        
-        time.sleep(1)
-        
-        break
-
-    except:
-                
-        for module in requiredmodules:
-            os.system(f"pip install {module}")
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sn
 
 ############################################################################################################################################################################################################################################################################################
 
