@@ -1,36 +1,37 @@
+############################################################################################################################################################################################################################################################################################
+
+# Importing necessities
+
 import streamlit as st
 import os
-
-title = """\033[1m
---------------------------
-Scouting XTREME System Log
---------------------------
-\033[0m\n\n"""
+import time
 
 requiredmodules = [
     "pandas",
     "matplotlib",
-    "seaborn",
-    "time"
+    "seaborn"
 ]
 
 while True:
 
     try:
+
         import pandas as pd
         import matplotlib.pyplot as plt
         import seaborn as sn
+        
+        time.sleep(1)
+        
         break
 
     except:
+                
         for module in requiredmodules:
             os.system(f"pip install {module}")
 
-os.system("cls")
+############################################################################################################################################################################################################################################################################################
 
-print(title)
-
-import time
+# Program Start
 
 import scoutingsrc as src
 import scoutingbackup as backup
