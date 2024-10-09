@@ -12,8 +12,13 @@ requiredmodules = [
     "seaborn"
 ]
 
+requirements = ""
+
 for module in requiredmodules:
-    os.system(f"pip install {module}")
+    requirements = requirements+f"\n{module}"
+
+with open("requirements.txt", "w") as file:
+    file.write(requirements)
 
 import pandas as pd
 import matplotlib.pyplot as plt
