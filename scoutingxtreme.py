@@ -1,10 +1,34 @@
-# Add inserting questions into specific spots functionality
-
 import streamlit as st
+import os
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sn
+title = """\033[1m
+--------------------------
+Scouting XTREME System Log
+--------------------------
+\033[0m\n\n"""
+
+requiredmodules = [
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "time"
+]
+
+while True:
+
+    try:
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        import seaborn as sn
+        break
+
+    except:
+        for module in requiredmodules:
+            os.system(f"pip install {module}")
+
+os.system("cls")
+
+print(title)
 
 import time
 
