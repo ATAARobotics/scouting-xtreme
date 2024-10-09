@@ -1,3 +1,9 @@
+# To Do:
+#
+# Finish data editing and resetting functions
+# Add inserting questions into specific spots functionality
+# Add data comparison and visual representation functionality
+
 ############################################################################################################################################################################################################################################################################################
 
 # Importing necessities
@@ -172,8 +178,7 @@ matchdata = {st.session_state.matchdata}
     st.download_button("Download Data as .txt File (selected columns)", str(df[[i for i in selectedcols if i != "Extra Notes"]]), datafilename)
     
 elif sect == "Data Comparison":
-
-    pass
+    st.subheader("IN PROGRESS")
 
 elif sect == "Input Data":
 
@@ -211,13 +216,9 @@ elif sect == "Input Data":
 
         if st.sidebar.button("Submit"):
         
-            print(inputs)
-
-            for x, y in zip(st.session_state.pitdata.keys(), inputs):            
+            for x, y in zip(st.session_state.pitdata.keys(), inputs):
                 st.session_state.pitdata[x].append(y)
                 
-            print(st.session_state.pitdata)
-
             write = f"""
 pitdata = {st.session_state.pitdata}
 matchdata = {st.session_state.matchdata}
@@ -269,66 +270,7 @@ matchdata = {st.session_state.matchdata}
                 file.write(write)
 
 elif sect == "Visual Analysis":
-    '''
-    plt.style.use('seaborn-dark-palette')
-
-    opts = st.sidebar.expander("Options")
-    stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
-    numofteams = opts.number_input("How many teams do you want to show?", 1, 4)
-    
-    teams = []
-
-    st.title(f"Shown Statistic: *{stat}*")
-
-    c1, c2 = st.columns(2)
-
-    for t in range(numofteams):
-
-        team = opts.selectbox(f"Team {t+1}:", [i for i in pd.Series(data["Team No."]).unique() if i not in teams])
-        teams.append(team)
-
-        cats = pd.Series(data[stat]).unique()
-        statdata = [data[stat][i] for i in range(len(data[stat])) if data["Team No."][i] == team]
-        piedata = [0 for i in cats]
-        datainc = []
-
-        for x in range(len(cats)):
-
-            for y in statdata:
-                if y == cats[x]:
-                    piedata[x] += 1
-
-            if piedata[x] > 0:
-                datainc.append(cats[x])
-
-        if t % 2 == 0:
-
-            c1.write("---")
-
-            tc1, tc2, tc3 = c1.columns(3)
-
-            tc2.title(f"{team}")
-
-            fig = plt.figure(figsize=(15, 3), frameon=False, edgecolor="white")
-
-            plt.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.05 for i in range(len(datainc))], autopct="%.2f")
-
-            c1.pyplot(fig)
-            
-        else:
-
-            c2.write("---")
-
-            tc1, tc2, tc3 = c2.columns(3)
-
-            tc2.title(f"{team}")
-
-            fig = plt.figure(figsize=(15, 3), frameon=False, edgecolor="white")
-
-            plt.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.05 for i in range(len(datainc))], autopct="%.2f")
-
-            c2.pyplot(fig)
-'''
+    st.subheader("IN PROGRESS")
 
 elif sect == "Edit Items":
 
@@ -417,19 +359,22 @@ elif sect == "Edit Items":
         if qsect == "Pit":
                 
             if len(st.session_state.pitq) == 0:
-                st.header("There are no pit questions yet.")
+                st.header("There are no match questions yet.")
 
             else:
 
-                itemnum = st.number_input("**Enter the number of the item you'd like to remove:**", 1, len(st.session_state.pitq), step=1)-1
+                itemnum = st.number_input("**Enter the number of the item you'd like to remove:**", 1, len(st.session_state.matchq), step=1)-1
                 items = [i for i in st.session_state.pitq]
 
                 if st.sidebar.button("Remove Item"):
-                    del st.session_state.pitq[items[itemnum]]
-                    st.sidebar.subheader("Item Removed Successfully.")
 
-                    if items[itemnum] in st.session_state.pitdata.keys():
+                    if items[itemnum] in st.session_state.pitdata:
                         del st.session_state.pitdata[items[itemnum]]
+
+                    if items[itemnum] in st.session_state.pitq:
+                        del st.session_state.pitq[items[itemnum]]
+                    
+                    st.sidebar.subheader("Item Removed Successfully.")
 
         if qsect == "Match":
             
@@ -442,66 +387,16 @@ elif sect == "Edit Items":
                 items = [i for i in st.session_state.matchq]
 
                 if st.sidebar.button("Remove Item"):
-                    del st.session_state.matchq[items[itemnum]]
-                    st.sidebar.subheader("Item Removed Successfully.")
 
-                    if items[itemnum] in st.session_state.matchdata.keys():
+                    if items[itemnum] in st.session_state.matchdata:
                         del st.session_state.matchdata[items[itemnum]]
 
-    else:
-
-        if qsect == "Match":
-
-            if len(st.session_state.matchq) == 0:
-                st.subheader(f"No {qsect} Items Added Yet.")
-
-            qtypes = ["Header", "Columns Separator", "Columns Item", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
-            
-            if qtype == "Header":
-
-                qname = c2.text_input("**What should the header say?**")
-
-                if st.sidebar.button("Add Item"):
-                    st.session_state.matchq[qname] = {"Type": qtype}
-
-            elif qtype == "Columns Separator":
-                qname = c2.number_input("**How many columns should it separate into?**", 2, 5)
-
-            elif qtype == "Columns Item":
-                qname = c2.text_input("**What should the name of this item be?**")
-
-            else:
-
-                qname = c2.text_input("**What should this question ask?**")
+                    if items[itemnum] in st.session_state.matchq:
+                        del st.session_state.matchq[items[itemnum]]
                     
-                if qtype in "Text Input":
-                    if st.sidebar.button("Add Item"):
-                        st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
+                    st.sidebar.subheader("Item Removed Successfully.")
 
-                elif qtype in "Number Input":
-
-                    qmin = c1.number_input("**Minimum Value**", step=1)
-                    qmax = c2.number_input("**Maximum Value**", step=1)
-
-                    if st.sidebar.button("Add Item"):
-                        st.session_state.matchq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
-
-                else:
-
-                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
-                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
-
-                    qopts = []
-
-                    if qoptsnum > 0:
-                        for q in range(qoptsnum):
-                            qopts.append(st.text_input(f"Option {q+1}:"))
-                
-                    if st.sidebar.button("Add Item"):
-                        st.session_state.matchq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
-
-                st.session_state.pitdata[qname] = ["N/A" for i in range(len(st.session_state.pitdata))].append("N/A")
+    else:
 
         if qsect == "Pit":
             
@@ -551,62 +446,78 @@ elif sect == "Edit Items":
                         for q in range(qoptsnum):
                             qopts.append(st.text_input(f"Option {q+1}:"))
                 
-                    if st.sidebar.button("Add Item"):
-                        st.session_state.pitq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+                if st.sidebar.button("Add Item"):
+                    
+                    newcol = ["N/A" for i in range(len(st.session_state.pitdata))]
 
-                st.session_state.pitdata[qname] = ["N/A" for i in range(len(st.session_state.matchdata))].append("N/A")
+                    newcol.append("N/A")
+
+                    st.session_state.pitq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+                    st.session_state.pitdata[qname] = newcol
+
+        if qsect == "Match":
+
+            if len(st.session_state.matchq) == 0:
+                st.subheader(f"No {qsect} Items Added Yet.")
+
+            qtypes = ["Header", "Columns Separator", "Columns Item", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+            
+            if qtype == "Header":
+
+                qname = c2.text_input("**What should the header say?**")
+
+                if st.sidebar.button("Add Item"):
+                    st.session_state.matchq[qname] = {"Type": qtype}
+
+            elif qtype == "Columns Separator":
+                qname = c2.number_input("**How many columns should it separate into?**", 2, 5)
+
+            elif qtype == "Columns Item":
+                qname = c2.text_input("**What should the name of this item be?**")
+
+            else:
+
+                qname = c2.text_input("**What should this question ask?**")
+                    
+                if qtype in "Text Input":
+                    if st.sidebar.button("Add Item"):
+                        st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
+
+                elif qtype in "Number Input":
+
+                    qmin = c1.number_input("**Minimum Value**", step=1)
+                    qmax = c2.number_input("**Maximum Value**", step=1)
+
+                    if st.sidebar.button("Add Item"):
+                        st.session_state.matchq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
+
+                else:
+
+                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
+                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
+
+                    qopts = []
+
+                    if qoptsnum > 0:
+                        for q in range(qoptsnum):
+                            qopts.append(st.text_input(f"Option {q+1}:"))
+                
+                if st.sidebar.button("Add Item"):
+                    
+                    newcol = ["N/A" for i in range(len(st.session_state.matchdata))]
+
+                    newcol.append("N/A")
+
+                    st.session_state.matchq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+                    st.session_state.matchdata[qname] = newcol
         
     if st.sidebar.button("Save Items"):
 
         open("questions.py", "w").write(f"pitq = {st.session_state.pitq}\nmatchq = {st.session_state.matchq}")
+        open("scoutingsrc.py", "w").write(f"pitdata = {st.session_state.pitdata}\nmatchdata = {st.session_state.matchdata}")
         st.sidebar.subheader("**Items Saved Successfully.**")
         time.sleep(3)
 
 elif sect == "Edit Data":
-    
-    showdata = st.sidebar.checkbox("Show Data", value=True)
-    dataselect = st.sidebar.radio("Which dataset would you like to edit?", ["Pit Data", "Match Data"])
-
-    if dataselect == "Pit Data":
-        data = st.session_state.pitdata
-    if dataselect == "Match Data":
-        data = st.session_state.matchdata
-
-    if len(data) == 0:
-        st.header("This dataset is empty right now.")
-
-    else:
-
-        if showdata:
-            st.header(dataselect)
-            st.dataframe(data, use_container_width=True, hide_index=False)
-            st.write("---")
-            editmode = st.sidebar.radio("Edit Mode:", ["Replace", "Remove"])
-
-        if editmode == "Remove":
-
-            removeselect = st.radio("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
-
-            if removeselect == "Row":
-
-                index = st.number_input("What row would you like to remove?", min_value=0, max_value=len(data))
-                
-                if st.button("Remove Data"):
-                    
-                    for col in data:
-                        data[col].pop(index)
-
-            if st.sidebar.button("Save Data"):
-            
-                if dataselect == "Pit Data":
-                    st.session_state.pitdata = data
-                else:
-                    st.session_state.matchdata = data
-
-                write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-                    """
-
-                with open("scoutingsrc.py", "w") as file:
-                    file.write(write)
+    st.subheader("IN PROGRESS")
