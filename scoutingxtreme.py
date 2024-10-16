@@ -2,6 +2,11 @@
 #
 # Add inserting questions into specific spots functionality
 # Add data comparison and visual representation functionality
+# Import + Export as CSV
+# Dynamic (multiple) backups
+# Add code modularity with easily modifiable functions or objects
+# Implement a working system log
+# Add columns separator, column items and expanders to the Question Editor (columns)
 
 ############################################################################################################################################################################################################################################################################################
 
@@ -42,19 +47,6 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
-    st.session_state.logon = False
-
-    st.session_state.pitq = questions.pitq
-    st.session_state.matchq = questions.matchq
-
-    st.session_state.pitdata = src.pitdata
-    st.session_state.matchdata = src.matchdata
-
-if st.session_state.logon:
-    pass
-
-else:
-    
     os.system("cls")
 
     print("""\033[1m
@@ -63,7 +55,11 @@ Scouting XTREME Log
 -------------------
     \033[0m""")
 
-    st.session_state.logon = True
+    st.session_state.pitq = questions.pitq
+    st.session_state.matchq = questions.matchq
+
+    st.session_state.pitdata = src.pitdata
+    st.session_state.matchdata = src.matchdata
 
 def savequestions():
     
@@ -109,7 +105,7 @@ if st.session_state.matchdata == {}:
     for i in st.session_state.matchq:
         st.session_state.matchdata[i] = []
 
-sect = st.sidebar.radio("Navigation:", ["View Data", "Data Comparison", "Visual Analysis", "Input Data", "Reset Inputs", "Edit Questions", "Edit Data"])
+sect = st.sidebar.radio("Navigation:", ["View Data", "Data Comparison", "Visual Analysis", "Input Data", "Reset Inputs", "Edit Items", "Edit Data"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -241,7 +237,7 @@ matchdata = {st.session_state.matchdata}
         datafilename += ".txt"
 
 
-    st.download_button("Download Data as .txt File (selected columns)", str(df[[i for i in selectedcols if i != "Extra Notes"]]), datafilename)    
+    st.download_button("Download Data as .txt File (selected columns)", str(df[[i for i in selectedcols if i != "Extra Notes"]]), datafilename)
 
 elif sect == "Data Comparison":
     st.header("COMING SOON")
@@ -400,7 +396,7 @@ elif sect == "Visual Analysis":
             c2.pyplot(fig)
 '''
 
-elif sect == "Edit Questions":
+elif sect == "Edit Items":
 
     st.write("**Note: Removing items will remove ALL DATA associated with that item.**")
 
@@ -536,12 +532,6 @@ elif sect == "Edit Questions":
                 if st.sidebar.button("Add Item"):
                     st.session_state.pitq[qname] = {"Type": qtype}
 
-            elif qtype == "Columns Separator":
-                qname = c2.number_input("**How many columns should it separate into?**", 2, 5)
-
-            elif qtype == "Columns Item":
-                qname = c2.text_input("**What should the name of this item be?**")
-
             else:
 
                 qname = c2.text_input("**What should this question ask?**")
@@ -595,12 +585,6 @@ elif sect == "Edit Questions":
 
                 if st.sidebar.button("Add Item"):
                     st.session_state.matchq[qname] = {"Type": qtype}
-
-            elif qtype == "Columns Separator":
-                qname = c2.number_input("**How many columns should it separate into?**", 2, 5)
-
-            elif qtype == "Columns Item":
-                qname = c2.text_input("**What should the name of this item be?**")
 
             else:
 
