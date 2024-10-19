@@ -84,20 +84,20 @@ Finding: Test completed, results as expected.
 Create a header item, “” as text. Expect a blank header item to be added to the bottom of the list.
 
 Finding: The second blank header was inserted in the wrong order.
-//2
+![2.png](../images/2.png)
 
 Test: Switch to Remove Items, remove the blank header.  Expectation: the header will be present to be removed.
 
 Finding: the blank header is not present to be removed.
-//3
+![3.png](../images/3.png)
 
 Test: Add a column separator, fill out the fields “normally”.  Expectation: to be able to see this information reflected somewhere in the app.
 
 Evidence: a test columns separator was added.
-//4
+![4.png](../images/4.png)
 
 Finding: I can’t see the test columns separator in the View Data screen.
-//5
+![5.png](../images/5.png)
 
 # Level set
 
