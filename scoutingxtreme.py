@@ -522,7 +522,7 @@ elif sect == "Edit Items":
             if len(st.session_state.pitq) == 0:
                 st.subheader(f"No {qsect} Items Added Yet.")
 
-            qtypes = ["Header", "Columns Separator", "Columns Item", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
             qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
             
             if qtype == "Header":
@@ -576,7 +576,7 @@ elif sect == "Edit Items":
             if len(st.session_state.matchq) == 0:
                 st.subheader(f"No {qsect} Items Added Yet.")
 
-            qtypes = ["Header", "Columns Separator", "Columns Item", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
             qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
             
             if qtype == "Header":
@@ -628,7 +628,7 @@ elif sect == "Edit Items":
 
     if st.sidebar.button("Force Save Questions"):
         savequestions()
-
+        
 elif sect == "Edit Data":
     
     showdata = st.sidebar.checkbox("Show Data", value=True)
