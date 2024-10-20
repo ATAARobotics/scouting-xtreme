@@ -2,10 +2,8 @@
 #
 # Add inserting questions into specific spots functionality
 # Add data comparison and visual representation functionality
-# Import + Export as CSV
-# Dynamic (multiple) backups
-# Add code modularity with easily modifiable functions or objects
 # Implement a working system log
+# Add code modularity with easily modifiable functions or objects
 # Add columns separator, column items and expanders to the Question Editor (columns)
 
 ############################################################################################################################################################################################################################################################################################
@@ -96,6 +94,9 @@ matchdata = {st.session_state.matchdata}
     except:
         print("Data could not be saved.")
     
+def toCSV(data):
+    return data.to_csv(index=False).encode()
+
 
 if st.session_state.pitdata == {}:
     for i in st.session_state.pitq:
@@ -166,27 +167,9 @@ if sect == "View Data":
         teamnums = data["Team No."]
     
     ex2 = st.sidebar.expander("**DANGER ZONE**")
-    backupdata = ex2.button("Backup Data")
     resetdata = ex2.button("Reset Data")
     restoredata = ex2.button("Restore Data")
-
-    if backupdata:
-
-        writedata = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-    """
-        
-        print(writedata)
-
-        try:
-            with open("scoutingbackup.py", "w") as file:
-                file.write(writedata)
-            print("Data Saved.")
-        
-        except:
-            print("Data could not be backed up.")
-
+    backupdata = ex2.button("Backup Data")
 
     if resetdata:
 
@@ -216,6 +199,23 @@ matchdata = {st.session_state.matchdata}
         with open("scoutingsrc.py", "w") as file:
             file.write(write)
 
+    if backupdata:
+
+        writedata = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+    """
+        
+        print(writedata)
+
+        try:
+            with open("scoutingbackup.py", "w") as file:
+                file.write(writedata)
+            print("Data Saved.")
+        
+        except:
+            print("Data could not be backed up.")
+
     df = pd.DataFrame().from_dict(data)
     rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
@@ -231,13 +231,56 @@ matchdata = {st.session_state.matchdata}
     c2.write(f"**Rounds Scouted:** {len(df)}")
     c3.write(f"**Total Rounds:** 0")
 
-    datafilename = st.text_input("Data File Name:", "scoutingdata.txt")
+    c1, c2 = st.columns(2)
+    ex1, ex2 = c1.expander("Download Data"), c2.expander("Import Data")
     
-    if datafilename[-4:] != ".txt":
-        datafilename += ".txt"
+    datatxt = str(df[selectedcols])
+    datacsv = toCSV(df[selectedcols])
 
 
-    st.download_button("Download Data as .txt File (selected columns)", str(df[[i for i in selectedcols if i != "Extra Notes"]]), datafilename)
+    ex1.subheader("Download Data")
+
+    filename = ex1.text_input("Data File Name (no extension):", "scoutingdata")
+    downloadtxt = ex1.download_button("Download as Text File", datatxt, filename+".txt")
+    downloadcsv = ex1.download_button("Download as CSV File", datacsv, filename+".csv")
+
+
+    ex2.subheader("Import CSV Data")
+    
+    datafiles = []
+
+    for file in os.listdir():
+        if '.csv' in file[-4:]:
+            datafiles.append(file)
+
+    file = ex2.selectbox("Choose a File:", datafiles)
+    dataset = ex2.radio("**Import To:**", ["Pit Data", "Match Data"])
+    newdata = pd.read_csv(file).to_dict()
+
+    for col in newdata:
+        
+        coldata = []
+
+        for row in newdata[col]:
+            coldata.append(str(newdata[col][row]))
+        
+        newdata[col] = coldata
+
+
+    if ex2.button("Import Data"):
+        
+        if dataset == "Pit Data":
+            st.session_state.pitdata = newdata
+
+        if dataset == "Match Data":
+            st.session_state.matchdata = newdata
+
+    if downloadtxt:
+        c1.write(f"**Successfully downloaded data as {filename}.txt**")
+
+    if downloadcsv:
+        c1.write(f"**Successfully downloaded data as {filename}.txt**")
+
 
 elif sect == "Data Comparison":
     st.header("COMING SOON")
@@ -628,7 +671,7 @@ elif sect == "Edit Items":
 
     if st.sidebar.button("Force Save Questions"):
         savequestions()
-        
+
 elif sect == "Edit Data":
     
     showdata = st.sidebar.checkbox("Show Data", value=True)
