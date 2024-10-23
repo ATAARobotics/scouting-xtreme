@@ -917,8 +917,8 @@ elif sect == "Edit Data":
                     for col in data:
                         data[col].pop(index)
 
-    if st.sidebar.button("Save Data"):
-        savedata()
+if st.sidebar.button("Save Data"):
+    savedata()
 
-    if st.sidebar.button("Save Questions"):
-        savequestions()
+if st.sidebar.button("Save Questions"):
+    savequestions()
