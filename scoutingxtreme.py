@@ -2,6 +2,7 @@
 #
 # Add data comparison and visual representation functionality
 # Fix data backup issue - system can't write to GitHub
+# Finish Data Editor
 # Implement a working system log
 # Add code modularity with easily modifiable functions or objects
 # Add columns separator, column items and expanders to the Question Editor (columns)
@@ -882,10 +883,6 @@ elif sect == "Edit Items":
                     newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                     st.session_state.matchdata[qname] = newcol
 
-
-    if st.sidebar.button("Force Save Questions"):
-        savequestions()
-
 elif sect == "Edit Data":
     
     showdata = st.sidebar.checkbox("Show Data", value=True)
@@ -920,5 +917,8 @@ elif sect == "Edit Data":
                     for col in data:
                         data[col].pop(index)
 
-savedata()
-savequestions()
+    if st.sidebar.button("Save Data"):
+        savedata()
+
+    if st.sidebar.button("Save Questions"):
+        savequestions()
