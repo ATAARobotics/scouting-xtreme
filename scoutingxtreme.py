@@ -1,6 +1,5 @@
 # To Do:
 #
-# Add inserting questions into specific spots functionality
 # Add data comparison and visual representation functionality
 # Implement a working system log
 # Add code modularity with easily modifiable functions or objects
@@ -14,6 +13,7 @@ import streamlit as st
 import os
 import time
 
+totalrounds = 0
 requiredmodules = [
     "pandas",
     "matplotlib",
@@ -225,11 +225,12 @@ matchdata = {st.session_state.matchdata}
     
     st.write("---")
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
 
     c1.write(f"**Teams Scouted:** {len(df['Team No.'].unique())}")
-    c2.write(f"**Rounds Scouted:** {len(df)}")
-    c3.write(f"**Total Rounds:** 0")
+    c2.write(f"**Total Entries:** {len(df)}")
+    c3.write(f"**Rounds Scouted:** {len(pd.Series(st.session_state.matchdata['Round No.']).unique())}")
+    c4.write(f"**Total Rounds:** {totalrounds}")
 
     c1, c2 = st.columns(2)
     ex1, ex2 = c1.expander("Download Data"), c2.expander("Import Data")
@@ -280,7 +281,6 @@ matchdata = {st.session_state.matchdata}
 
     if downloadcsv:
         c1.write(f"**Successfully downloaded data as {filename}.txt**")
-
 
 elif sect == "Data Comparison":
     st.header("COMING SOON")
@@ -441,8 +441,6 @@ elif sect == "Visual Analysis":
 
 elif sect == "Edit Items":
 
-    st.write("**Note: Removing items will remove ALL DATA associated with that item.**")
-
     c1, c2 = st.columns(2)
 
     ex1 = c1.expander("Current Pit Items")
@@ -519,9 +517,11 @@ elif sect == "Edit Items":
     ex2.write("---")
 
     qsect = st.sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
-    qedit = st.sidebar.radio("**Would you like to add or remove a question?**", ["Add", "Remove"])
+    qedit = st.sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
 
-    if qedit == "Remove":
+    if qedit == "Remove a question":
+        
+        st.write("**Note: Removing items will remove ALL DATA associated with that item. Also, DO NOT remove *Round No.* or *Team No.* from the data, as this can cause issues with the rest of the program**")
 
         if qsect == "Pit":
                 
@@ -557,6 +557,219 @@ elif sect == "Edit Items":
                     del st.session_state.matchq[items[itemnum]]
                 
                 st.sidebar.subheader("Item Removed Successfully.")
+
+    elif qedit == "Insert a question into a specific position":
+
+        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+
+        pitqnames = [q for q in st.session_state.pitq]
+        matchqnames = [q for q in st.session_state.matchq]
+
+        if qsect == "Pit":
+            
+            if len(st.session_state.pitq) == 0:
+                st.subheader(f"No {qsect} Items Added Yet.")
+
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+
+
+            if qtype == "Header":
+
+                qname = c2.text_input("**What should the header say?**")
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))
+
+                if st.sidebar.button("Add Item"):
+                    newq = {"Type": qtype}
+                    tempq = {}
+                    endq = {}
+
+                    for q in pitqnames[:pos]:
+                        tempq[q] = st.session_state.pitq[q]
+
+                    for q in pitqnames[pos:]:
+                        endq[q] = st.session_state.pitq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.pitq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.pitq[q] = endq[q]
+
+            else:
+
+                qname = c2.text_input("**What should this question ask?**")
+                    
+                additem = st.sidebar.button("Add Item")
+                    
+                if qtype in "Text Input":
+
+                    if additem:
+                        newq = {"Type": qtype, "Character Limit": 200}
+
+                elif qtype in "Number Input":
+
+                    qmin = c1.number_input("**Minimum Value**", step=1)
+                    qmax = c2.number_input("**Maximum Value**", step=1)
+
+                    if additem:
+                        newq = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
+
+                else:
+
+                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
+                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
+
+                    qopts = []
+
+                    if qoptsnum > 0:
+                        for q in range(qoptsnum):
+                            qopts.append(st.text_input(f"Option {q+1}:"))
+                
+                    newq = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))-1
+
+
+                if additem:
+
+                    newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
+                    tempdata = {}
+                    enddata = {}
+
+                    for q in pitcols[:pos]:
+                        tempdata[q] = st.session_state.pitdata[q]
+
+                    for q in pitcols[pos:]:
+                        enddata[q] = st.session_state.pitdata[q]
+
+                    tempdata[qname] = newcol
+
+                    st.session_state.pitdata = tempdata
+
+
+                    for q in enddata.keys():
+                        st.session_state.pitdata[q] = enddata[q]
+
+                    tempq = {}
+                    endq = {}
+
+                    for q in pitqnames[:pos]:
+                        tempq[q] = st.session_state.pitq[q]
+
+                    for q in pitqnames[pos:]:
+                        endq[q] = st.session_state.pitq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.pitq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.pitq[q] = endq[q]
+
+        if qsect == "Match":
+            
+            if len(st.session_state.matchq) == 0:
+                st.subheader(f"No {qsect} Items Added Yet.")
+
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+
+
+            if qtype == "Header":
+
+                qname = c2.text_input("**What should the header say?**")
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.matchq))
+
+                if st.sidebar.button("Add Item"):
+                    newq = {"Type": qtype}
+                    tempq = {}
+                    endq = {}
+
+                    for q in matchqnames[:pos]:
+                        tempq[q] = st.session_state.matchq[q]
+
+                    for q in matchqnames[pos:]:
+                        endq[q] = st.session_state.matchq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.matchq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.matchq[q] = endq[q]
+
+            else:
+
+                qname = c2.text_input("**What should this question ask?**")
+                    
+                additem = st.sidebar.button("Add Item")
+                    
+                if qtype in "Text Input":
+
+                    if additem:
+                        newq = {"Type": qtype, "Character Limit": 200}
+
+                elif qtype in "Number Input":
+
+                    qmin = c1.number_input("**Minimum Value**", step=1)
+                    qmax = c2.number_input("**Maximum Value**", step=1)
+
+                    if additem:
+                        newq = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
+
+                else:
+
+                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
+                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
+
+                    qopts = []
+
+                    if qoptsnum > 0:
+                        for q in range(qoptsnum):
+                            qopts.append(st.text_input(f"Option {q+1}:"))
+                
+                    newq = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.matchq))-1
+
+
+                if additem:
+
+                    newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
+                    tempdata = {}
+                    enddata = {}
+
+                    for q in matchcols[:pos]:
+                        tempdata[q] = st.session_state.matchdata[q]
+
+                    for q in matchcols[pos:]:
+                        enddata[q] = st.session_state.matchdata[q]
+
+                    tempdata[qname] = newcol
+
+                    st.session_state.matchdata = tempdata
+
+
+                    for q in enddata.keys():
+                        st.session_state.matchdata[q] = enddata[q]
+
+                    tempq = {}
+                    endq = {}
+
+                    for q in matchqnames[:pos]:
+                        tempq[q] = st.session_state.matchq[q]
+
+                    for q in matchqnames[pos:]:
+                        endq[q] = st.session_state.matchq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.matchq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.matchq[q] = endq[q]
 
     else:
 
