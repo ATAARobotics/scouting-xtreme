@@ -1,6 +1,7 @@
 # To Do:
 #
 # Add data comparison and visual representation functionality
+# Fix data backup issue - system can't write to GitHub
 # Implement a working system log
 # Add code modularity with easily modifiable functions or objects
 # Add columns separator, column items and expanders to the Question Editor (columns)
