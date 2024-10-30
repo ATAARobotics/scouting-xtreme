@@ -1,7 +1,6 @@
 # To Do:
 #
 # Add data comparison and visual representation functionality
-# Fix data backup issue - system can't write to GitHub
 # Finish Data Editor
 # Implement a working system log
 # Add code modularity with easily modifiable functions or objects
@@ -10,12 +9,14 @@
 ############################################################################################################################################################################################################################################################################################
 
 # Importing necessities
-
 import streamlit as st
 import os
 import time
 
+# Total rounds for the game
 totalrounds = 0
+
+# Modules that need to be installed
 requiredmodules = [
     "pandas",
     "matplotlib",
@@ -917,8 +918,12 @@ elif sect == "Edit Data":
                     for col in data:
                         data[col].pop(index)
 
-if st.sidebar.button("Save Data"):
-    savedata()
+exsave = st.sidebar.expander("**Save...**")
 
-if st.sidebar.button("Save Questions"):
+if exsave.button("Save Data"):
+    savedata()
+    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
+
+if exsave.button("Save Questions"):
     savequestions()
+    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
