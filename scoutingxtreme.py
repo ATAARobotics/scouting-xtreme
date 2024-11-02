@@ -175,10 +175,10 @@ if sect == "View Data":
 
     if resetdata:
 
-        for i in st.session_state.pitq:
+        for i in st.session_state.pitdata:
             st.session_state.pitdata[i] = []
 
-        for i in st.session_state.matchq:
+        for i in st.session_state.matchdata:
             st.session_state.matchdata[i] = []
 
         write = f"""
@@ -190,6 +190,7 @@ matchdata = {st.session_state.matchdata}
             file.write(write)
             
     if restoredata:
+        import scoutingbackup as backup
         st.session_state.pitdata = backup.pitdata
         st.session_state.matchdata = backup.matchdata
 
@@ -321,7 +322,7 @@ elif sect == "Input Data":
         
                 st.subheader("")
 
-        if st.sidebar.button("Submit"):
+        if st.button("Submit"):
         
             for x, y in zip(st.session_state.pitdata.keys(), inputs):
                 st.session_state.pitdata[x].append(y)
@@ -363,7 +364,7 @@ matchdata = {st.session_state.matchdata}
         
                 st.subheader("")
 
-        if st.sidebar.button("Submit"):
+        if st.button("Submit"):
         
             for x, y in zip(st.session_state.matchdata.keys(), inputs):            
                 st.session_state.matchdata[x].append(y)
