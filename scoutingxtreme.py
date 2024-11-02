@@ -21,7 +21,7 @@ requiredmodules = [
     "pandas",
     "matplotlib",
     "seaborn",
-    "gitpython"
+    "io"
 ]
 
 requirements = ""
@@ -35,6 +35,7 @@ with open("requirements.txt", "w") as file:
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
+from io import StringIO
 
 ############################################################################################################################################################################################################################################################################################
 
@@ -250,6 +251,7 @@ matchdata = {st.session_state.matchdata}
 
 
     ex2.subheader("Import CSV Data")
+    ex2.write("**FILE COLUMN NAMES MUST MATCH DATA COLUMN NAMES**")
     
     datafiles = []
 
@@ -257,27 +259,53 @@ matchdata = {st.session_state.matchdata}
         if '.csv' in file[-4:]:
             datafiles.append(file)
 
-    file = ex2.selectbox("Choose a File:", datafiles)
-    dataset = ex2.radio("**Import To:**", ["Pit Data", "Match Data"])
-    newdata = pd.read_csv(file).to_dict()
+    userfile = ex2.file_uploader("")
+    
+    if userfile != None:
 
-    for col in newdata:
-        
-        coldata = []
+        if userfile.name[-4:] != ".csv":
+            st.subheader("This is not a valid .csv data file. Please use a different file.")
 
-        for row in newdata[col]:
-            coldata.append(str(newdata[col][row]))
-        
-        newdata[col] = coldata
+        else:
+
+            strio = StringIO(userfile.getvalue().decode("utf-8"))
+
+            with open(userfile.name, "w") as file:
+                file.write(strio.read())
+
+        dataset = ex2.radio("**Import To:**", ["Pit Data", "Match Data"])
+        mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
+        newdata = pd.read_csv(userfile.name).to_dict()
+
+        for col in newdata:
+            
+            coldata = []
+
+            for row in newdata[col]:
+                coldata.append(str(newdata[col][row]))
+            
+            newdata[col] = coldata
 
 
-    if ex2.button("Import Data"):
-        
-        if dataset == "Pit Data":
-            st.session_state.pitdata = newdata
+        if ex2.button("Import Data"):
+                
+            if mode == "Replace Data":
+            
+                if dataset == "Pit Data":
+                    st.session_state.pitdata = newdata
 
-        if dataset == "Match Data":
-            st.session_state.matchdata = newdata
+                if dataset == "Match Data":
+                    st.session_state.matchdata = newdata
+
+            if mode == "Add Data":
+            
+                if dataset == "Pit Data":
+                    for col in newdata:
+                        st.session_state.pitdata[col] += newdata[col]
+
+                if dataset == "Match Data":
+                    for col in newdata:
+                        st.session_state.matchdata[col] += newdata[col]
 
     if downloadtxt:
         c1.write(f"**Successfully downloaded data as {filename}.txt**")
