@@ -21,7 +21,7 @@ requiredmodules = [
     "pandas",
     "matplotlib",
     "seaborn",
-    "io"
+    "stringio"
 ]
 
 requirements = ""
