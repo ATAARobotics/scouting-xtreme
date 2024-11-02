@@ -63,6 +63,12 @@ Scouting XTREME Log
     st.session_state.pitdata = src.pitdata
     st.session_state.matchdata = src.matchdata
 
+def gitupdate(savemsg: str ="Update GitHub"):
+    os.system("git add .")
+    os.system(f"git commit -m \"{savemsg}\"")
+    os.system("git push")
+    os.system("git pull")
+
 def savequestions():
     
     writequestions = f"""
@@ -924,7 +930,4 @@ savemsg = gitsave.text_input("**Commit Message:**", "Update GitHub", max_chars=1
 
 if gitsave.button("Save"):
     savedata()
-    os.system("git add .")
-    os.system(f"git commit -m \"{savemsg}\"")
-    os.system("git push")
-    os.system("git pull")
+    gitupdate(savemsg)
