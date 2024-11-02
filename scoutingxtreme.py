@@ -47,6 +47,8 @@ import questions
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
+os.system("git pull")
+
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
     os.system("cls")
