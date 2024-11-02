@@ -13,10 +13,6 @@ import streamlit as st
 import os
 import time
 
-if st.sidebar.button("Push"):
-    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
-    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
-
 # Total rounds for the game
 totalrounds = 0
 
@@ -40,8 +36,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
 
-os.system("git pull https://github.com/ATAARobotics/scouting-xtreme.git")
-
 ############################################################################################################################################################################################################################################################################################
 
 # Program Start
@@ -52,6 +46,10 @@ import questions
 
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
+
+if st.sidebar.button("Push"):
+    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
 
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
