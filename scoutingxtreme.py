@@ -12,9 +12,10 @@
 import streamlit as st
 import os
 import time
-import GitPython as gitpy
 
-st.write(gitpy)
+if st.sidebar.button("Push")
+    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
 
 # Total rounds for the game
 totalrounds = 0
