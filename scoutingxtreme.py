@@ -953,7 +953,7 @@ if gitsave.button("Save"):
     gitupdate(savemsg)
 
 if st.sidebar.button("Clear System Log"):
-    os.system("cls")
+    os.system("clear")
     print("""\033[1m
 -------------------
 Scouting XTREME Log
