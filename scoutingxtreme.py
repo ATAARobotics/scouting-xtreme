@@ -47,10 +47,6 @@ import questions
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-if st.sidebar.button("Push"):
-    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
-    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
-
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
     os.system("cls")
@@ -927,8 +923,8 @@ exsave = st.sidebar.expander("**Save...**")
 
 if exsave.button("Save Data"):
     savedata()
-    os.system("git pull https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme/blob/main/scoutingxtreme.py")
 
 if exsave.button("Save Questions"):
     savequestions()
-    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
