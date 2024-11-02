@@ -47,8 +47,6 @@ import questions
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-os.system("git pull")
-
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
     os.system("cls")
@@ -921,14 +919,9 @@ elif sect == "Edit Data":
                     for col in data:
                         data[col].pop(index)
 
-exsave = st.sidebar.expander("**Save...**")
-
-if exsave.button("Save Data"):
+if st.sidebar.button("Save to GitHub"):
     savedata()
     os.system("git add .")
     os.system("git commit -m \"Web App Update\"")
     os.system("git push")
-
-if exsave.button("Save Questions"):
-    savequestions()
-    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git pull")
