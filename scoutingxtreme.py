@@ -919,9 +919,12 @@ elif sect == "Edit Data":
                     for col in data:
                         data[col].pop(index)
 
-if st.sidebar.button("Save to GitHub"):
+gitsave = st.sidebar.expander("**Save to GitHub Repository...**")
+savemsg = gitsave.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
+
+if gitsave.button("Save"):
     savedata()
     os.system("git add .")
-    os.system("git commit -m \"Web App Update\"")
+    os.system(f"git commit -m \"{savemsg}\"")
     os.system("git push")
     os.system("git pull")
