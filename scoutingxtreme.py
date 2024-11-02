@@ -20,8 +20,7 @@ totalrounds = 0
 requiredmodules = [
     "pandas",
     "matplotlib",
-    "seaborn",
-    "stringio"
+    "seaborn"
 ]
 
 requirements = ""
