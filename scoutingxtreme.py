@@ -923,7 +923,9 @@ exsave = st.sidebar.expander("**Save...**")
 
 if exsave.button("Save Data"):
     savedata()
-    os.system("git commit https://github.com/ATAARobotics/scouting-xtreme/blob/main/scoutingxtreme.py")
+    os.system("git add .")
+    os.system("git commit -m \"Web App Update\"")
+    os.system("git push")
 
 if exsave.button("Save Questions"):
     savequestions()
