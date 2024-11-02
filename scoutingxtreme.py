@@ -49,14 +49,6 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
 
-    os.system("cls")
-
-    print("""\033[1m
--------------------
-Scouting XTREME Log
--------------------
-    \033[0m""")
-
     st.session_state.pitq = questions.pitq
     st.session_state.matchq = questions.matchq
 
@@ -931,3 +923,11 @@ savemsg = gitsave.text_input("**Commit Message:**", "Update GitHub", max_chars=1
 if gitsave.button("Save"):
     savedata()
     gitupdate(savemsg)
+
+if st.sidebar.button("Clear System Log"):
+    os.system("cls")
+    print("""\033[1m
+-------------------
+Scouting XTREME Log
+-------------------
+    \033[0m""")
