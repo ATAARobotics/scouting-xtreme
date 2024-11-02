@@ -12,6 +12,9 @@
 import streamlit as st
 import os
 import time
+import GitPython as gitpy
+
+st.write(gitpy)
 
 # Total rounds for the game
 totalrounds = 0
@@ -20,7 +23,8 @@ totalrounds = 0
 requiredmodules = [
     "pandas",
     "matplotlib",
-    "seaborn"
+    "seaborn",
+    "gitpython"
 ]
 
 requirements = ""
@@ -34,6 +38,8 @@ with open("requirements.txt", "w") as file:
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
+
+os.system("git pull https://github.com/ATAARobotics/scouting-xtreme.git")
 
 ############################################################################################################################################################################################################################################################################################
 
@@ -922,7 +928,7 @@ exsave = st.sidebar.expander("**Save...**")
 
 if exsave.button("Save Data"):
     savedata()
-    os.system("git push https://github.com/ATAARobotics/scouting-xtreme.git")
+    os.system("git pull https://github.com/ATAARobotics/scouting-xtreme.git")
 
 if exsave.button("Save Questions"):
     savequestions()
