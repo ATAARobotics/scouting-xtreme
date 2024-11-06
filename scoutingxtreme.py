@@ -343,7 +343,7 @@ elif sect == "Input Data":
                     uin = st.radio(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
 
                 elif st.session_state.pitq[q]["Type"] == "Selection Box":
-                    uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"])
+                    uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
 
                 inputs.append(uin)
         
@@ -385,7 +385,7 @@ matchdata = {st.session_state.matchdata}
                     uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
 
                 elif st.session_state.matchq[q]["Type"] == "Selection Box":
-                    uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"])
+                    uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
 
                 inputs.append(uin)
         
@@ -953,7 +953,7 @@ if gitsave.button("Save"):
     gitupdate(savemsg)
 
 if st.sidebar.button("Clear System Log"):
-    os.system("clear")
+    os.system("cls")
     print("""\033[1m
 -------------------
 Scouting XTREME Log
