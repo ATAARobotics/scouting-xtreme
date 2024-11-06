@@ -1,3 +1,3 @@
 
-pitdata = {'Team No.': ['Swerve Drive', 'Swerve Drive'], 'Drive Method:': ['1', '1'], 'Notes:': ['', 'nan']}
+pitdata = {'Team No.': [], 'Drive Method:': [], 'Notes:': []}
 matchdata = {'Round No.': [], 'Team No.': [], 'Present:': [], 'Drive Method': []}
