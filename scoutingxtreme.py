@@ -108,7 +108,7 @@ if st.session_state.matchdata == {}:
     for i in st.session_state.matchq:
         st.session_state.matchdata[i] = []
 
-sect = st.sidebar.radio("Navigation:", ["View Data", "Data Comparison", "Visual Analysis", "Input Data", "Reset Inputs", "Edit Items", "Edit Data"])
+sect = st.sidebar.radio("Navigation:", ["Add a Data Entry", "Reset Inputs", "View Data", "Data Comparison", "Visual Analysis", "Edit Items", "Edit Data"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -127,7 +127,96 @@ else:
     st.write("---")
 
 
-if sect == "View Data":
+if sect == "Add a Data Entry":
+
+    datasect = st.radio("Which data would you like to add to?", ["Pit Data", "Match Data"])
+    inputs = []
+
+    if datasect == "Pit Data":
+
+        for q in st.session_state.pitq:
+                
+            if st.session_state.pitq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
+
+                if st.session_state.pitq[q]["Type"] == "Header":
+                    st.write("---")
+                    st.header(q)
+                    st.write("---")
+
+            else:
+
+                if st.session_state.pitq[q]["Type"] == "Number Input":
+                    uin = str(st.number_input(f"**{q}**", st.session_state.pitq[q]["Minimum"], st.session_state.pitq[q]["Maximum"], step=1))
+
+                elif st.session_state.pitq[q]["Type"] == "Text Input":
+                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.pitq[q]["Character Limit"])
+
+                elif st.session_state.pitq[q]["Type"] == "Multiple Choice":
+                    uin = st.radio(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
+
+                elif st.session_state.pitq[q]["Type"] == "Selection Box":
+                    uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
+
+                inputs.append(uin)
+        
+                st.subheader("")
+
+        if st.button("Submit"):
+        
+            for x, y in zip(st.session_state.pitdata.keys(), inputs):
+                st.session_state.pitdata[x].append(y)
+                
+            write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+                """
+
+            with open("scoutingsrc.py", "w") as file:
+                file.write(write)
+
+    else:
+
+        for q in st.session_state.matchq:
+                
+            if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
+
+                if st.session_state.matchq[q]["Type"] == "Header":
+                    st.write("---")
+                    st.header(q)
+                    st.write("---")
+
+            else:
+
+                if st.session_state.matchq[q]["Type"] == "Number Input":
+                    uin = str(st.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
+
+                elif st.session_state.matchq[q]["Type"] == "Text Input":
+                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
+
+                elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
+                    uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                elif st.session_state.matchq[q]["Type"] == "Selection Box":
+                    uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                inputs.append(uin)
+        
+                st.subheader("")
+
+        if st.button("Submit"):
+        
+            for x, y in zip(st.session_state.matchdata.keys(), inputs):            
+                st.session_state.matchdata[x].append(y)
+                
+            write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+                """
+
+            with open("scoutingsrc.py", "w") as file:
+                file.write(write)
+
+elif sect == "View Data":
 
     viewdata = st.sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
 
@@ -314,95 +403,6 @@ matchdata = {st.session_state.matchdata}
 
 elif sect == "Data Comparison":
     st.header("COMING SOON")
-
-elif sect == "Input Data":
-
-    datasect = st.radio("Which data would you like to add to?", ["Pit Data", "Match Data"])
-    inputs = []
-
-    if datasect == "Pit Data":
-
-        for q in st.session_state.pitq:
-                
-            if st.session_state.pitq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
-
-                if st.session_state.pitq[q]["Type"] == "Header":
-                    st.write("---")
-                    st.header(q)
-                    st.write("---")
-
-            else:
-
-                if st.session_state.pitq[q]["Type"] == "Number Input":
-                    uin = str(st.number_input(f"**{q}**", st.session_state.pitq[q]["Minimum"], st.session_state.pitq[q]["Maximum"], step=1))
-
-                elif st.session_state.pitq[q]["Type"] == "Text Input":
-                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.pitq[q]["Character Limit"])
-
-                elif st.session_state.pitq[q]["Type"] == "Multiple Choice":
-                    uin = st.radio(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
-
-                elif st.session_state.pitq[q]["Type"] == "Selection Box":
-                    uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
-
-                inputs.append(uin)
-        
-                st.subheader("")
-
-        if st.button("Submit"):
-        
-            for x, y in zip(st.session_state.pitdata.keys(), inputs):
-                st.session_state.pitdata[x].append(y)
-                
-            write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-                """
-
-            with open("scoutingsrc.py", "w") as file:
-                file.write(write)
-
-    else:
-
-        for q in st.session_state.matchq:
-                
-            if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
-
-                if st.session_state.matchq[q]["Type"] == "Header":
-                    st.write("---")
-                    st.header(q)
-                    st.write("---")
-
-            else:
-
-                if st.session_state.matchq[q]["Type"] == "Number Input":
-                    uin = str(st.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
-
-                elif st.session_state.matchq[q]["Type"] == "Text Input":
-                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
-
-                elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
-                    uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
-
-                elif st.session_state.matchq[q]["Type"] == "Selection Box":
-                    uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
-
-                inputs.append(uin)
-        
-                st.subheader("")
-
-        if st.button("Submit"):
-        
-            for x, y in zip(st.session_state.matchdata.keys(), inputs):            
-                st.session_state.matchdata[x].append(y)
-                
-            write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-                """
-
-            with open("scoutingsrc.py", "w") as file:
-                file.write(write)
 
 elif sect == "Visual Analysis":
 
