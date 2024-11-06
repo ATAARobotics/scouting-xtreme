@@ -108,7 +108,10 @@ if st.session_state.matchdata == {}:
     for i in st.session_state.matchq:
         st.session_state.matchdata[i] = []
 
-sect = st.sidebar.radio("Navigation:", ["Add a Data Entry", "Reset Inputs", "View Data", "Data Comparison", "Visual Analysis", "Edit Items", "Edit Data"])
+hometext = {
+}
+
+sect = st.sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**Reset Inputs**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -122,10 +125,16 @@ for i in st.session_state.matchdata.keys():
 if sect == "Reset Inputs":
     st.subheader("Inputs have been reset successfully.")
 
+elif sect == ":red[**Home**]":
+    
+    st.title(":blue[Scouting]:red[XTREME]")
+    st.subheader("**Use the sidebar on the left to navigate the site.**")
+    st.write("---")
+
+
 else:
     st.title(sect)
     st.write("---")
-
 
 if sect == "Add a Data Entry":
 
