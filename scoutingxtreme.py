@@ -136,7 +136,7 @@ else:
     st.title(sect)
     st.write("---")
 
-if sect == "Add a Data Entry":
+if sect == "**Add a Data Entry**":
 
     datasect = st.radio("Which data would you like to add to?", ["Pit Data", "Match Data"])
     inputs = []
@@ -225,7 +225,7 @@ matchdata = {st.session_state.matchdata}
             with open("scoutingsrc.py", "w") as file:
                 file.write(write)
 
-elif sect == "View Data":
+elif sect == "**View Data**":
 
     viewdata = st.sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
 
@@ -410,10 +410,10 @@ matchdata = {st.session_state.matchdata}
     if downloadcsv:
         c1.write(f"**Successfully downloaded data as {filename}.txt**")
 
-elif sect == "Data Comparison":
+elif sect == "**Data Comparison**":
     st.header("COMING SOON")
 
-elif sect == "Visual Analysis":
+elif sect == "**Visual Analysis**":
 
     st.header("COMING SOON")
 
@@ -478,7 +478,7 @@ elif sect == "Visual Analysis":
             c2.pyplot(fig)
 '''
 
-elif sect == "Edit Items":
+elif sect == "**Edit Items**":
 
     c1, c2 = st.columns(2)
 
@@ -920,7 +920,7 @@ elif sect == "Edit Items":
                     newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                     st.session_state.matchdata[qname] = newcol
 
-elif sect == "Edit Data":
+elif sect == "**Edit Data**":
     
     showdata = st.sidebar.checkbox("Show Data", value=True)
     dataselect = st.sidebar.radio("Which dataset would you like to edit?", ["Pit Data", "Match Data"])
