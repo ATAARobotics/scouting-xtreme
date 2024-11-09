@@ -55,7 +55,14 @@ if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
     st.session_state.pitdata = src.pitdata
     st.session_state.matchdata = src.matchdata
 
-def gitupdate(savemsg: str ="Update GitHub"):
+def gitpull(repo: str = None):
+    
+    if repo:
+        os.system(f"git pull {repo}")
+    else:
+        os.system("git pull")
+
+def gitpush(savemsg: str ="Update GitHub"):
     os.system("git add .")
     os.system(f"git commit -m \"{savemsg}\"")
     os.system("git push")
@@ -111,7 +118,7 @@ if st.session_state.matchdata == {}:
 hometext = {
 }
 
-sect = st.sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**Reset Inputs**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
+sect = st.sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -122,15 +129,11 @@ for i in st.session_state.matchdata.keys():
     matchcols.append(i)
     
 
-if sect == "Reset Inputs":
-    st.subheader("Inputs have been reset successfully.")
-
-elif sect == ":red[**Home**]":
+if sect == ":red[**Home**]":
     
     st.title(":blue[Scouting]:red[XTREME]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
     st.write("---")
-
 
 else:
     st.title(sect)
@@ -954,12 +957,19 @@ elif sect == "**Edit Data**":
                     for col in data:
                         data[col].pop(index)
 
-gitsave = st.sidebar.expander("**Save to GitHub Repository...**")
-savemsg = gitsave.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
+exgitpush = st.sidebar.expander("**Push To GitHub Repository...**")
+savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
-if gitsave.button("Save"):
+if exgitpush.button("Push to GitHub"):
     savedata()
-    gitupdate(savemsg)
+    gitpush(savemsg)
+
+exgitpull = st.sidebar.expander("**Pull From GitHub Repository...**")
+
+if exgitpull.button("Pull From GitHub"):
+    savedata()
+    gitpull()
+    savedata()
 
 if st.sidebar.button("Clear System Log"):
     os.system("cls")
