@@ -130,6 +130,8 @@ matchcols = []
 for i in st.session_state.matchdata.keys():
     matchcols.append(i)
     
+if st.sidebar.button("Refresh Page"):
+    pass
 
 if sect == ":red[**Home**]":
     
@@ -271,57 +273,6 @@ elif sect == "**View Data**":
     else:
         teamnums = data["Team No."]
     
-    ex2 = st.sidebar.expander("**DANGER ZONE**")
-    resetdata = ex2.button("Reset Data")
-    restoredata = ex2.button("Restore Data")
-    backupdata = ex2.button("Backup Data")
-
-    if resetdata:
-
-        for i in st.session_state.pitdata:
-            st.session_state.pitdata[i] = []
-
-        for i in st.session_state.matchdata:
-            st.session_state.matchdata[i] = []
-
-        write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-"""
-
-        with open("scoutingsrc.py", "w") as file:
-            file.write(write)
-            
-    if restoredata:
-        import scoutingbackup as backup
-        st.session_state.pitdata = backup.pitdata
-        st.session_state.matchdata = backup.matchdata
-
-        write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-"""
-
-        with open("scoutingsrc.py", "w") as file:
-            file.write(write)
-
-    if backupdata:
-
-        writedata = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-    """
-        
-        print(writedata)
-
-        try:
-            with open("scoutingbackup.py", "w") as file:
-                file.write(writedata)
-            print("Data Saved.")
-        
-        except:
-            print("Data could not be backed up.")
-
     df = pd.DataFrame().from_dict(data)
     rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
@@ -1070,7 +1021,13 @@ if exgitpull.button("Pull From GitHub"):
     savedata()
 
 
-if st.sidebar.button("Clear System Log"):
+ex2 = st.sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
+clearlog = ex2.button("Clear System Log")
+resetdata = ex2.button("Reset Data")
+restoredata = ex2.button("Restore Data")
+backupdata = ex2.button("Backup Data")
+
+if clearlog:
     os.system("cls")
     print("""\033[1m
 -------------------
@@ -1078,5 +1035,48 @@ Scouting XTREME Log
 -------------------
     \033[0m""")
 
-if st.sidebar.button("Refresh Page"):
-    pass
+if resetdata:
+
+    for i in st.session_state.pitdata:
+        st.session_state.pitdata[i] = []
+
+    for i in st.session_state.matchdata:
+        st.session_state.matchdata[i] = []
+
+    write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+"""
+
+    with open("scoutingsrc.py", "w") as file:
+        file.write(write)
+        
+if restoredata:
+    import scoutingbackup as backup
+    st.session_state.pitdata = backup.pitdata
+    st.session_state.matchdata = backup.matchdata
+
+    write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+"""
+
+    with open("scoutingsrc.py", "w") as file:
+        file.write(write)
+
+if backupdata:
+
+    writedata = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+"""
+    
+    print(writedata)
+
+    try:
+        with open("scoutingbackup.py", "w") as file:
+            file.write(writedata)
+        print("Data Saved.")
+    
+    except:
+        print("Data could not be backed up.")
