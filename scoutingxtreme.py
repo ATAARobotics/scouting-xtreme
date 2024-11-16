@@ -660,7 +660,7 @@ elif sect == "**Edit Items**":
 
                 else:
 
-                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
+                    qoptsnum = c1.number_input("**How many options should this question have?**", min_value=2, step=1)
                     qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
 
                     qopts = []
@@ -924,16 +924,16 @@ elif sect == "**Edit Items**":
                     st.session_state.matchdata[qname] = newcol
 
 elif sect == "**Edit Data**":
-    
+
     showdata = st.sidebar.checkbox("Show Data", value=True)
-    dataselect = st.sidebar.radio("Which dataset would you like to edit?", ["Pit Data", "Match Data"])
+    dataselect = st.sidebar.radio("**Which dataset would you like to edit?**", ["Pit Data", "Match Data"])
 
     if dataselect == "Pit Data":
         data = st.session_state.pitdata
     if dataselect == "Match Data":
         data = st.session_state.matchdata
 
-    if len(data) == 0:
+    if len(data[list(data.keys())[0]]) == 0:
         st.header("This dataset is empty right now.")
 
     else:
@@ -942,29 +942,101 @@ elif sect == "**Edit Data**":
             st.header(dataselect)
             st.dataframe(data, use_container_width=True, hide_index=False)
             st.write("---")
-            editmode = st.sidebar.radio("Edit Mode:", ["Replace", "Remove"])
+            editmode = st.sidebar.radio("**Edit Mode:**", ["Replace", "Remove"])
 
+        if editmode == "Replace":
+
+            replaceselect = st.radio("Would you like to replace a row or a specific data entry?", ["Row", "Data Entry"])
+
+            if replaceselect == "Row":
+
+                newdata = {col: [] for col in data.keys()}
+
+                index = st.number_input("What row would you like to replace?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
+
+                st.subheader("New Data:")
+
+                c1, c2 = st.columns(2)
+
+                for col in data.keys():
+
+                    valtype = c1.radio(f"New `{col}` Value Type:", ["Text", "Integer", "Decimal"])
+
+                    if valtype == "Text":
+                        newval = c2.text_input(f"New `{col}` Value:")
+                    elif valtype == "Integer":
+                        newval = c2.number_input(f"New `{col}` Value:", step=1)
+                    else:
+                        newval = c2.number_input(f"New `{col}` Value:")
+
+                    c2.write("\n")
+                    c2.write("\n")
+
+                    newdata[col] = newval
+
+                st.subheader("Data Replacement Summary:")
+                for col in data.keys():
+                    if type(data[col][index]) == str:
+                        st.write(f"`{col}`: `\"{data[col][index]}\" --> {newdata[col]}`")
+                    else:
+                        st.write(f"`{col}`: `{data[col][index]} --> {newdata[col]}`")
+
+                if st.button("Replace Row"):
+                    
+                    for col in data:
+                        data[col][index] = newdata[col]
+
+            if replaceselect == "Data Entry":
+
+                c1, c2 = st.columns(2)
+
+                col = c1.selectbox("What column do you want to replace data from?", data.keys())
+                index = c2.number_input("What row would you like to replace?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
+                
+                valtype = st.radio("What type of value do you want to replace the current value with?", ["Text", "Integer", "Decimal"])
+
+                if valtype == "Text":
+                    newdata = st.text_input("New Value:")
+                elif valtype == "Integer":
+                    newdata = st.number_input("New Value:", step=1)
+                else:
+                    newdata = st.number_input("New Value:")
+
+                if st.button("Replace Data"):
+                    data[col][index] = newdata
+        
         if editmode == "Remove":
 
             removeselect = st.radio("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
 
             if removeselect == "Row":
 
-                index = st.number_input("What row would you like to remove?", min_value=0, max_value=len(data))
+                index = st.number_input("What row would you like to remove?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
                 
-                if st.button("Remove Data"):
+                if st.button("Remove Row"):
                     
                     for col in data:
                         data[col].pop(index)
 
-exgitpush = st.sidebar.expander("**Push To GitHub Repository...**")
+            if removeselect == "Data Entry":
+
+                c1, c2 = st.columns(2)
+
+                col = c1.selectbox("What column do you want to remove data from?", data.keys())
+                index = c2.number_input("What row would you like to remove?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
+
+                if st.button("Remove Data"):
+                    data[col][index] = "N/A"
+
+
+exgitpush = st.sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
 if exgitpush.button("Push to GitHub"):
     savedata()
     gitpush(savemsg)
 
-exgitpull = st.sidebar.expander("**Pull From GitHub Repository...**")
+exgitpull = st.sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 
 if exgitpull.button("Pull From GitHub"):
     savedata()
@@ -978,3 +1050,6 @@ if st.sidebar.button("Clear System Log"):
 Scouting XTREME Log
 -------------------
     \033[0m""")
+
+if st.sidebar.button("Refresh Page"):
+    pass
