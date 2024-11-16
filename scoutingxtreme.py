@@ -1031,7 +1031,7 @@ elif sect == "**Edit Data**":
                     data[col][index] = "N/A"
 
 
-exminpush = st.sidebar.expander("**Save Data to MinIO**\n\n**(:red[OFFLINE ONLY])**")
+exminpush = st.sidebar.expander("**Save Data to MinIO**")
 
 if exminpush.button("Save to MinIO"):
     data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
