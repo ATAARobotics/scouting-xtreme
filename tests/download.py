@@ -1,5 +1,6 @@
 from io import BytesIO
 from minio import Minio
+from minio.error import ResponseError
 
 def load_csv():
     client = Minio("minio.101100.ca",
