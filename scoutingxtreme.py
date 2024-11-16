@@ -44,6 +44,7 @@ from io import StringIO
 import scoutingsrc as src
 import scoutingbackup as backup
 import questions
+import cloudSave
 
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -1030,6 +1031,30 @@ elif sect == "**Edit Data**":
                     data[col][index] = "N/A"
 
 
+exminpush = st.sidebar.expander("**Save Data to MinIO**\n\n**(:red[OFFLINE ONLY])**")
+
+if exminpush.button("Save to MinIO"):
+    data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
+    cloudSave.save_csv("pitdata.csv", data)
+    data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
+    cloudSave.save_csv("matchdata.csv", data)
+
+exminpull = st.sidebar.expander("**Load Data From MinIO**\n\n**(:red[OFFLINE ONLY])**")
+
+if exminpull.button("Load From MinIO"):
+
+    with open("tempfile.csv", "w") as file:
+        file.write(cloudSave.load_csv("pitdata.csv"))
+    st.session_state.pitdata = pd.read_csv("tempfile.csv").to_dict()
+    del st.session_state.pitdata["Unnamed: 0"]
+    
+    with open("tempfile.csv", "w") as file:
+        file.write(cloudSave.load_csv("matchdata.csv"))
+    st.session_state.matchdata = pd.read_csv("tempfile.csv").to_dict()
+    del st.session_state.matchdata["Unnamed: 0"]
+
+    st.write(st.session_state.pitdata)
+
 exgitpush = st.sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
@@ -1043,6 +1068,7 @@ if exgitpull.button("Pull From GitHub"):
     savedata()
     gitpull()
     savedata()
+
 
 if st.sidebar.button("Clear System Log"):
     os.system("cls")
