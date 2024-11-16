@@ -2,14 +2,14 @@ from io import BytesIO
 from minio import Minio
 from minio.error import ResponseError
 
-def load_csv():
+def load_csv(filename):
     client = Minio("minio.101100.ca",
         access_key="uyBquJD1wBqebVcMhIgq",
         secret_key="ZGa6YUerybM1Jd0NPYugZhTnPhbtb48cZLiFuKYo",
     )
 
     try:
-        response = client.get_object("scouting-xtreme", "data.csv")
+        response = client.get_object("scouting-xtreme", filename)
 
         return response.data.decode("utf-8")
     except ResponseError as err:
@@ -19,6 +19,17 @@ def load_csv():
         response.release_conn()
 
 
-loaded_csv = load_csv()
+def save_csv(filename, csv_string):
+    client = Minio("minio.101100.ca",
+        access_key="uyBquJD1wBqebVcMhIgq",
+        secret_key="ZGa6YUerybM1Jd0NPYugZhTnPhbtb48cZLiFuKYo",
+    )
 
-print("Got CSV:", loaded_csv)
+    csv_bytes = csv_string.encode('utf-8')
+    try:
+        result = client.put_object(
+            "scouting-xtreme", filename, BytesIO(csv_bytes), len(csv_bytes),
+            content_type="application/csv",
+        )
+    except ResponseError as err:
+        print("Failed to upload with error:", err)
