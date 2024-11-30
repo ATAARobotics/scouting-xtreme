@@ -49,13 +49,16 @@ import cloudSave
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-if ["pitq", "matchq", "pitdata", "matchdata"] not in st.session_state:
+if ["pitq", "matchq", "pitdata", "matchdata", "admin", "accessmode"] not in st.session_state:
 
     st.session_state.pitq = questions.pitq
     st.session_state.matchq = questions.matchq
 
     st.session_state.pitdata = src.pitdata
     st.session_state.matchdata = src.matchdata
+    
+    st.session_state.admin = False
+    st.session_state.accessmode = 0
 
 def gitpull(repo: str = None):
     
@@ -138,6 +141,19 @@ if sect == ":red[**Home**]":
     st.title(":blue[Scouting]:red[XTREME]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
     st.write("---")
+
+    c1, c2 = st.columns(2)
+
+    access = c1.radio("**Access Level:**", ["User", "Admin"], st.session_state.accessmode)
+
+    if access == "Admin":
+    
+        password = c1.text_input("**Enter Admin Password:**", placeholder="Enter Password")
+
+        if st.button("Enter") and password == "12345":
+            st.session_state.admin = True
+            st.session_state.accessmode = 1
+    
 
 else:
     st.title(sect)
@@ -990,7 +1006,7 @@ if exminpush.button("Save to MinIO"):
     data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
     cloudSave.save_csv("matchdata.csv", data)
 
-exminpull = st.sidebar.expander("**Load Data From MinIO**\n\n**(:red[OFFLINE ONLY])**")
+exminpull = st.sidebar.expander("**Load Data From MinIO**")
 
 if exminpull.button("Load From MinIO"):
 
@@ -1110,3 +1126,5 @@ with open("scoutingsrc.py", "w") as file:
     file.write(writedata)
 
 print(writedata)
+print(f"Admin Mode: {st.session_state.admin}")
+print(f"Access Mode: {st.session_state.accessmode}")
