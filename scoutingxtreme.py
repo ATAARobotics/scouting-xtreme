@@ -124,7 +124,20 @@ if st.session_state.matchdata == {}:
 hometext = {
 }
 
-sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
+access = sidebar.expander("**:red[Login as Admin...]**")
+accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
+
+if accesslvl == "Admin":
+
+    password = access.text_input("**Enter Admin Password:**", placeholder="Enter Password")
+
+    if password == st.secrets.adminpassword:
+        st.session_state.admin = True
+
+if st.session_state.admin:
+    sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
+else:
+    sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -986,125 +999,125 @@ elif sect == "**Edit Data**":
                 if st.button("Remove Data"):
                     data[col][index] = "N/A"
 
-
-exminpush = sidebar.expander("**Save Data to MinIO**")
-
-if exminpush.button("Save to MinIO"):
-    data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
-    cloudSave.save_csv("pitdata.csv", data)
-    data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
-    cloudSave.save_csv("matchdata.csv", data)
-
-exminpull = sidebar.expander("**Load Data From MinIO**")
-
-if exminpull.button("Load From MinIO"):
-
-    with open("tempfile.csv", "w") as file:
-        file.write(cloudSave.load_csv("pitdata.csv"))
-    data = pd.read_csv("tempfile.csv").to_dict()
-    del data["Unnamed: 0"]
+if st.session_state.admin:
     
-    for col in data:
+    exminpush = sidebar.expander("**Save Data to MinIO**")
 
-        vals = []
+    if exminpush.button("Save to MinIO"):
+        data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
+        cloudSave.save_csv("pitdata.csv", data)
+        data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
+        cloudSave.save_csv("matchdata.csv", data)
 
-        for val in data[col].values():
-            vals.append(str(val))
+    exminpull = sidebar.expander("**Load Data From MinIO**")
+
+    if exminpull.button("Load From MinIO"):
+
+        with open("tempfile.csv", "w") as file:
+            file.write(cloudSave.load_csv("pitdata.csv"))
+        data = pd.read_csv("tempfile.csv").to_dict()
+        del data["Unnamed: 0"]
         
-        data[col] = vals
+        for col in data:
 
-    st.session_state.pitdata = data
-    
-    with open("tempfile.csv", "w") as file:
-        file.write(cloudSave.load_csv("matchdata.csv"))
-    data = pd.read_csv("tempfile.csv").to_dict()
-    del data["Unnamed: 0"]
-    
-    for col in data:
+            vals = []
 
-        vals = []
+            for val in data[col].values():
+                vals.append(str(val))
+            
+            data[col] = vals
 
-        for val in data[col].values():
-            vals.append(str(val))
+        st.session_state.pitdata = data
         
-        data[col] = vals
-
-    st.session_state.matchdata = data
-    
-exgitpush = sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
-savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
-
-if exgitpush.button("Push to GitHub"):
-    savedata()
-    gitpush(savemsg)
-
-exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
-
-if exgitpull.button("Pull From GitHub"):
-    savedata()
-    gitpull()
-    savedata()
-
-
-ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
-clearlog = ex2.button("Clear System Log")
-resetdata = ex2.button("Reset Data")
-restoredata = ex2.button("Restore Data")
-backupdata = ex2.button("Backup Data")
-
-if clearlog:
-    os.system("cls")
-    print("""\033[1m
--------------------
-Scouting XTREME Log
--------------------
-    \033[0m""")
-
-if resetdata:
-
-    for i in st.session_state.pitdata:
-        st.session_state.pitdata[i] = []
-
-    for i in st.session_state.matchdata:
-        st.session_state.matchdata[i] = []
-
-    write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-"""
-
-    with open("scoutingsrc.py", "w") as file:
-        file.write(write)
+        with open("tempfile.csv", "w") as file:
+            file.write(cloudSave.load_csv("matchdata.csv"))
+        data = pd.read_csv("tempfile.csv").to_dict()
+        del data["Unnamed: 0"]
         
-if restoredata:
-    import scoutingbackup as backup
-    st.session_state.pitdata = backup.pitdata
-    st.session_state.matchdata = backup.matchdata
+        for col in data:
 
-    write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-"""
+            vals = []
 
-    with open("scoutingsrc.py", "w") as file:
-        file.write(write)
+            for val in data[col].values():
+                vals.append(str(val))
+            
+            data[col] = vals
 
-if backupdata:
+        st.session_state.matchdata = data
+        
+    exgitpush = sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+    savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
-    writedata = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-"""
-    
-    print(writedata)
+    if exgitpush.button("Push to GitHub"):
+        savedata()
+        gitpush(savemsg)
 
-    try:
-        with open("scoutingbackup.py", "w") as file:
-            file.write(writedata)
-        print("Data Saved.")
-    
-    except:
-        print("Data could not be backed up.")
+    exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+
+    if exgitpull.button("Pull From GitHub"):
+        savedata()
+        gitpull()
+        savedata()
+
+    ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
+    clearlog = ex2.button("Clear System Log")
+    resetdata = ex2.button("Reset Data")
+    restoredata = ex2.button("Restore Data")
+    backupdata = ex2.button("Backup Data")
+
+    if clearlog:
+        os.system("cls")
+        print("""\033[1m
+    -------------------
+    Scouting XTREME Log
+    -------------------
+        \033[0m""")
+
+    if resetdata:
+
+        for i in st.session_state.pitdata:
+            st.session_state.pitdata[i] = []
+
+        for i in st.session_state.matchdata:
+            st.session_state.matchdata[i] = []
+
+        write = f"""
+    pitdata = {st.session_state.pitdata}
+    matchdata = {st.session_state.matchdata}
+    """
+
+        with open("scoutingsrc.py", "w") as file:
+            file.write(write)
+            
+    if restoredata:
+        import scoutingbackup as backup
+        st.session_state.pitdata = backup.pitdata
+        st.session_state.matchdata = backup.matchdata
+
+        write = f"""
+    pitdata = {st.session_state.pitdata}
+    matchdata = {st.session_state.matchdata}
+    """
+
+        with open("scoutingsrc.py", "w") as file:
+            file.write(write)
+
+    if backupdata:
+
+        writedata = f"""
+    pitdata = {st.session_state.pitdata}
+    matchdata = {st.session_state.matchdata}
+    """
+        
+        print(writedata)
+
+        try:
+            with open("scoutingbackup.py", "w") as file:
+                file.write(writedata)
+            print("Data Saved.")
+        
+        except:
+            print("Data could not be backed up.")
 
 writedata = f"""
 pitdata = {st.session_state.pitdata}
@@ -1116,13 +1129,4 @@ with open("scoutingsrc.py", "w") as file:
 
 print(writedata)
 
-access = sidebar.radio("**Access Level:**", ["User", "Admin"])
-
-if access == "Admin":
-
-    st.write(st.secrets.adminpassword)
-
-    password = sidebar.expander("**:red[Login as Admin]**").text_input("**Enter Admin Password:**", placeholder="Enter Password")
-
-    if password == st.secrets.adminpassword:
-        st.session_state.admin = True
+print(st.session_state.admin)
