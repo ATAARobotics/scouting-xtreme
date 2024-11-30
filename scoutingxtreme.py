@@ -140,9 +140,9 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['user'])
-else:
     sect = sidebar.radio("Navigation:", pages['admin'])
+else:
+    sect = sidebar.radio("Navigation:", pages['user'])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
