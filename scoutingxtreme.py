@@ -999,15 +999,22 @@ elif sect == "**Edit Data**":
                 if st.button("Remove Data"):
                     data[col][index] = "N/A"
 
+exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+
+if exgitpull.button("Pull From GitHub"):
+    savedata()
+    gitpull()
+    savedata()
+
 if st.session_state.admin:
     
-    exminpush = sidebar.expander("**Save Data to MinIO**")
+    exgitpush = sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+    savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
-    if exminpush.button("Save to MinIO"):
-        data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
-        cloudSave.save_csv("pitdata.csv", data)
-        data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
-        cloudSave.save_csv("matchdata.csv", data)
+    if exgitpush.button("Push to GitHub"):
+        savedata()
+        gitpush(savemsg)
+
 
     exminpull = sidebar.expander("**Load Data From MinIO**")
 
@@ -1044,21 +1051,15 @@ if st.session_state.admin:
             data[col] = vals
 
         st.session_state.matchdata = data
+
+    exminpush = sidebar.expander("**Save Data to MinIO**")
+
+    if exminpush.button("Save to MinIO"):
+        data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
+        cloudSave.save_csv("pitdata.csv", data)
+        data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
+        cloudSave.save_csv("matchdata.csv", data)
         
-    exgitpush = sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
-    savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
-
-    if exgitpush.button("Push to GitHub"):
-        savedata()
-        gitpush(savemsg)
-
-    exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
-
-    if exgitpull.button("Pull From GitHub"):
-        savedata()
-        gitpull()
-        savedata()
-
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
     resetdata = ex2.button("Reset Data")
