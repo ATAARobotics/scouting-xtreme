@@ -127,6 +127,11 @@ hometext = {
 access = sidebar.expander("**:red[Login as Admin...]**")
 accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 
+pages = {
+    "user": [":red[**Home**]", "**Add a Data Entry**", "**View Data**"],
+    "admin": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Edit Items**", "**Edit Data**"],
+    "full": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
+}
 if accesslvl == "Admin":
 
     password = access.text_input("**Enter Admin Password:**", placeholder="Enter Password")
@@ -135,9 +140,9 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
+    sect = sidebar.radio("Navigation:", pages['user'])
 else:
-    sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**"])
+    sect = sidebar.radio("Navigation:", pages['admin'])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
