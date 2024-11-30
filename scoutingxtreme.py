@@ -49,7 +49,9 @@ import cloudSave
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
-if ["pitq", "matchq", "pitdata", "matchdata", "admin", "accessmode"] not in st.session_state:
+sidebar = st.sidebar
+
+if ["pitq", "matchq", "pitdata", "matchdata", "admin"] not in st.session_state:
 
     st.session_state.pitq = questions.pitq
     st.session_state.matchq = questions.matchq
@@ -58,7 +60,6 @@ if ["pitq", "matchq", "pitdata", "matchdata", "admin", "accessmode"] not in st.s
     st.session_state.matchdata = src.matchdata
     
     st.session_state.admin = False
-    st.session_state.accessmode = 0
 
 def gitpull(repo: str = None):
     
@@ -123,7 +124,7 @@ if st.session_state.matchdata == {}:
 hometext = {
 }
 
-sect = st.sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
+sect = sidebar.radio("Navigation:", [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"])
 
 pitcols = []
 for i in st.session_state.pitdata.keys():
@@ -133,7 +134,7 @@ matchcols = []
 for i in st.session_state.matchdata.keys():
     matchcols.append(i)
     
-if st.sidebar.button("Refresh Page"):
+if sidebar.button("Refresh Page"):
     pass
 
 if sect == ":red[**Home**]":
@@ -141,18 +142,6 @@ if sect == ":red[**Home**]":
     st.title(":blue[Scouting]:red[XTREME]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
     st.write("---")
-
-    c1, c2 = st.columns(2)
-
-    access = c1.radio("**Access Level:**", ["User", "Admin"], st.session_state.accessmode)
-
-    if access == "Admin":
-    
-        password = c1.text_input("**Enter Admin Password:**", placeholder="Enter Password")
-
-        if st.button("Enter") and password == "12345":
-            st.session_state.admin = True
-            st.session_state.accessmode = 1
     
 
 else:
@@ -250,7 +239,7 @@ matchdata = {st.session_state.matchdata}
 
 elif sect == "**View Data**":
 
-    viewdata = st.sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
+    viewdata = sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
 
     st.header(viewdata)
 
@@ -266,7 +255,7 @@ elif sect == "**View Data**":
 
 
     team = st.selectbox("Select a Team To View", pd.Series(["All"]+teamnums).unique())
-    ex1 = st.sidebar.expander("Selected Columns:")
+    ex1 = sidebar.expander("Selected Columns:")
 
     st.write("---")
 
@@ -392,7 +381,7 @@ elif sect == "**Visual Analysis**":
     '''
     plt.style.use('seaborn-dark-palette')
 
-    opts = st.sidebar.expander("Options")
+    opts = sidebar.expander("Options")
     stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
     numofteams = opts.number_input("How many teams do you want to show?", 1, 4)
     
@@ -527,8 +516,8 @@ elif sect == "**Edit Items**":
 
     ex2.write("---")
 
-    qsect = st.sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
-    qedit = st.sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
+    qsect = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
+    qedit = sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
 
     if qedit == "Remove a question":
         
@@ -544,7 +533,7 @@ elif sect == "**Edit Items**":
                 itemnum = st.number_input("**Enter the number of the item you'd like to remove:**", 1, len(st.session_state.pitq), step=1)-1
                 items = [i for i in st.session_state.pitq]
 
-                if st.sidebar.button("Remove Item"):
+                if sidebar.button("Remove Item"):
 
                     if items[itemnum] in st.session_state.pitdata:
                         del st.session_state.pitdata[items[itemnum]]
@@ -552,14 +541,14 @@ elif sect == "**Edit Items**":
                     if items[itemnum] in st.session_state.pitq:
                         del st.session_state.pitq[items[itemnum]]
                     
-                    st.sidebar.subheader("Item Removed Successfully.")
+                    sidebar.subheader("Item Removed Successfully.")
 
         if qsect == "Match":
             
             itemnum = st.number_input("**Enter the number of the item you'd like to remove:**", 1, len(st.session_state.matchq), step=1)-1
             items = [i for i in st.session_state.matchq]
 
-            if st.sidebar.button("Remove Item"):
+            if sidebar.button("Remove Item"):
 
                 if items[itemnum] in st.session_state.matchdata:
                     del st.session_state.matchdata[items[itemnum]]
@@ -567,7 +556,7 @@ elif sect == "**Edit Items**":
                 if items[itemnum] in st.session_state.matchq:
                     del st.session_state.matchq[items[itemnum]]
                 
-                st.sidebar.subheader("Item Removed Successfully.")
+                sidebar.subheader("Item Removed Successfully.")
 
     elif qedit == "Insert a question into a specific position":
 
@@ -590,7 +579,7 @@ elif sect == "**Edit Items**":
                 qname = c2.text_input("**What should the header say?**")
                 pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))
 
-                if st.sidebar.button("Add Item"):
+                if sidebar.button("Add Item"):
                     newq = {"Type": qtype}
                     tempq = {}
                     endq = {}
@@ -612,7 +601,7 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should this question ask?**")
                     
-                additem = st.sidebar.button("Add Item")
+                additem = sidebar.button("Add Item")
                     
                 if qtype in "Text Input":
 
@@ -693,7 +682,7 @@ elif sect == "**Edit Items**":
                 qname = c2.text_input("**What should the header say?**")
                 pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.matchq))
 
-                if st.sidebar.button("Add Item"):
+                if sidebar.button("Add Item"):
                     newq = {"Type": qtype}
                     tempq = {}
                     endq = {}
@@ -715,7 +704,7 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should this question ask?**")
                     
-                additem = st.sidebar.button("Add Item")
+                additem = sidebar.button("Add Item")
                     
                 if qtype in "Text Input":
 
@@ -796,14 +785,14 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should the header say?**")
 
-                if st.sidebar.button("Add Item"):
+                if sidebar.button("Add Item"):
                     st.session_state.pitq[qname] = {"Type": qtype}
 
             else:
 
                 qname = c2.text_input("**What should this question ask?**")
                     
-                additem = st.sidebar.button("Add Item")
+                additem = sidebar.button("Add Item")
                     
                 if qtype in "Text Input":
                     if additem:
@@ -850,14 +839,14 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should the header say?**")
 
-                if st.sidebar.button("Add Item"):
+                if sidebar.button("Add Item"):
                     st.session_state.matchq[qname] = {"Type": qtype}
 
             else:
 
                 qname = c2.text_input("**What should this question ask?**")
                     
-                additem = st.sidebar.button("Add Item")
+                additem = sidebar.button("Add Item")
                     
                 if qtype in "Text Input":
                     if additem:
@@ -894,8 +883,8 @@ elif sect == "**Edit Items**":
 
 elif sect == "**Edit Data**":
 
-    showdata = st.sidebar.checkbox("Show Data", value=True)
-    dataselect = st.sidebar.radio("**Which dataset would you like to edit?**", ["Pit Data", "Match Data"])
+    showdata = sidebar.checkbox("Show Data", value=True)
+    dataselect = sidebar.radio("**Which dataset would you like to edit?**", ["Pit Data", "Match Data"])
 
     if dataselect == "Pit Data":
         data = st.session_state.pitdata
@@ -911,7 +900,7 @@ elif sect == "**Edit Data**":
             st.header(dataselect)
             st.dataframe(data, use_container_width=True, hide_index=False)
             st.write("---")
-            editmode = st.sidebar.radio("**Edit Mode:**", ["Replace", "Remove"])
+            editmode = sidebar.radio("**Edit Mode:**", ["Replace", "Remove"])
 
         if editmode == "Replace":
 
@@ -998,7 +987,7 @@ elif sect == "**Edit Data**":
                     data[col][index] = "N/A"
 
 
-exminpush = st.sidebar.expander("**Save Data to MinIO**")
+exminpush = sidebar.expander("**Save Data to MinIO**")
 
 if exminpush.button("Save to MinIO"):
     data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
@@ -1006,7 +995,7 @@ if exminpush.button("Save to MinIO"):
     data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
     cloudSave.save_csv("matchdata.csv", data)
 
-exminpull = st.sidebar.expander("**Load Data From MinIO**")
+exminpull = sidebar.expander("**Load Data From MinIO**")
 
 if exminpull.button("Load From MinIO"):
 
@@ -1042,14 +1031,14 @@ if exminpull.button("Load From MinIO"):
 
     st.session_state.matchdata = data
     
-exgitpush = st.sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+exgitpush = sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
 if exgitpush.button("Push to GitHub"):
     savedata()
     gitpush(savemsg)
 
-exgitpull = st.sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
+exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 
 if exgitpull.button("Pull From GitHub"):
     savedata()
@@ -1057,7 +1046,7 @@ if exgitpull.button("Pull From GitHub"):
     savedata()
 
 
-ex2 = st.sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
+ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
 clearlog = ex2.button("Clear System Log")
 resetdata = ex2.button("Reset Data")
 restoredata = ex2.button("Restore Data")
@@ -1126,5 +1115,14 @@ with open("scoutingsrc.py", "w") as file:
     file.write(writedata)
 
 print(writedata)
-print(f"Admin Mode: {st.session_state.admin}")
-print(f"Access Mode: {st.session_state.accessmode}")
+
+access = sidebar.radio("**Access Level:**", ["User", "Admin"], st.session_state.accessmode)
+
+if access == "Admin":
+
+    st.write(st.secrets.adminpassword)
+
+    password = sidebar.expander("**:red[Login as Admin]**").text_input("**Enter Admin Password:**", placeholder="Enter Password")
+
+    if password == st.secrets.adminpassword:
+        st.session_state.admin = True
