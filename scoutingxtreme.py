@@ -996,16 +996,36 @@ if exminpull.button("Load From MinIO"):
 
     with open("tempfile.csv", "w") as file:
         file.write(cloudSave.load_csv("pitdata.csv"))
-    st.session_state.pitdata = pd.read_csv("tempfile.csv").to_dict()
-    del st.session_state.pitdata["Unnamed: 0"]
+    data = pd.read_csv("tempfile.csv").to_dict()
+    del data["Unnamed: 0"]
+    
+    for col in data:
+
+        vals = []
+
+        for val in data[col].values():
+            vals.append(str(val))
+        
+        data[col] = vals
+
+    st.session_state.pitdata = data
     
     with open("tempfile.csv", "w") as file:
         file.write(cloudSave.load_csv("matchdata.csv"))
-    st.session_state.matchdata = pd.read_csv("tempfile.csv").to_dict()
-    del st.session_state.matchdata["Unnamed: 0"]
+    data = pd.read_csv("tempfile.csv").to_dict()
+    del data["Unnamed: 0"]
+    
+    for col in data:
 
-    st.write(st.session_state.pitdata)
+        vals = []
 
+        for val in data[col].values():
+            vals.append(str(val))
+        
+        data[col] = vals
+
+    st.session_state.matchdata = data
+    
 exgitpush = st.sidebar.expander("**Push To GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 savemsg = exgitpush.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
 
@@ -1080,3 +1100,13 @@ matchdata = {st.session_state.matchdata}
     
     except:
         print("Data could not be backed up.")
+
+writedata = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+"""
+
+with open("scoutingsrc.py", "w") as file:
+    file.write(writedata)
+
+print(writedata)
