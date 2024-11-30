@@ -1116,6 +1116,8 @@ with open("scoutingsrc.py", "w") as file:
 
 print(writedata)
 
+access = sidebar.radio("**Access Level:**", ["User", "Admin"])
+
 if access == "Admin":
 
     st.write(st.secrets.adminpassword)
