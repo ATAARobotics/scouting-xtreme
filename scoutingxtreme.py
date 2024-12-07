@@ -1233,6 +1233,6 @@ matchdata = {st.session_state.matchdata}
 with open("scoutingsrc.py", "w") as file:
     file.write(writedata)
 
-print(writedata)
+print(f"\033[0m{writedata}")
 
-print(st.session_state.admin)
+print(f"Admin Mode: {st.session_state.admin}")
