@@ -77,8 +77,7 @@ These assumptions provide a framework for comprehensive testing of the scouting 
 
 # Test cases definition round 2
 
-Create a header item, “abc” as text. Expect a “abc” header item to be added to the bottom of the list.
-
+Create a header item, “abc” as text. Expect a “abc” header item to be added to the bottom of the list. 
 Finding: Test completed, results as expected.
 
 Create a header item, “” as text. Expect a blank header item to be added to the bottom of the list.
