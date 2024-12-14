@@ -418,6 +418,7 @@ elif sect == "**Data Comparison**":
     
     compareval = criteria.radio("**What data do you want to compare by?**", [col for col in df.columns if "Text Input" != dataq[col]["Type"]])
     viewmode = criteria.radio("**Viewing Mode:**", ["Occurrences", "Percentages"])
+    showavg = criteria.checkbox("Show Averages For Numerical Values", True)
 
     st.subheader(f"Comparison By `{compareval}`")
 
@@ -425,62 +426,80 @@ elif sect == "**Data Comparison**":
 
     val1 = c1.selectbox(f"Value 1", df[compareval].unique())
 
-    for col in [col for col in selectedcols if col != compareval]:
+    for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
 
         write = f"`{col}`: `"
         
-        items = {}
+        if dataq[col]["Type"] == "Number Input" and showavg:
 
-        for val in df[col].unique():
-            items[val] = 0
+            avg = sum([float(val) for val in data[col]])/len(data[col])
+            write += f"{avg} AVG."
 
-        for item in range(len(data[col])):
+            c1.write(write+"`")
 
-            if data[compareval][item] == val1:
-                items[data[col][item]] += 1
-                
-        totalvals = 0
+        else:
 
-        for val in items.values():
-            totalvals += val
+            items = {}
 
-        for item, val in zip(items, items.values()):
-            if viewmode == "Percentages":
-                write += f"{item}: {round(val/totalvals*100, 2)}%, "
-            else:
-                write += f"{item}: {val}, "
+            for val in df[col].unique():
+                items[val] = 0
 
-        c1.write(write[:-2]+"`")
+            for item in range(len(data[col])):
+
+                if data[compareval][item] == val1:
+                    items[data[col][item]] += 1
+                    
+            totalvals = 0
+
+            for val in items.values():
+                totalvals += val
+
+            for item, val in zip(items, items.values()):
+                if viewmode == "Percentages":
+                    write += f"{item}: {round(val/totalvals*100, 2)}%, "
+                else:
+                    write += f"{item}: {val}, "
+
+            c1.write(write[:-2]+"`")
 
 
     val2 = c2.selectbox(f"Value 2", df[compareval].unique())
 
-    for col in [col for col in selectedcols if col != compareval]:
+    for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
 
         write = f"`{col}`: `"
         
-        items = {}
+        if dataq[col]["Type"] == "Number Input" and showavg:
 
-        for val in df[col].unique():
-            items[val] = 0
+            avg = sum([float(val) for val in data[col]])/len(data[col])
+            write += f"{avg} AVG."
 
-        for item in range(len(data[col])):
+            c2.write(write+"`")
 
-            if data[compareval][item] == val2:
-                items[data[col][item]] += 1
-                
-        totalvals = 0
+        else:
 
-        for val in items.values():
-            totalvals += val
+            items = {}
 
-        for item, val in zip(items, items.values()):
-            if viewmode == "Percentages":
-                write += f"{item}: {round(val/totalvals*100, 2)}%, "
-            else:
-                write += f"{item}: {val}, "
+            for val in df[col].unique():
+                items[val] = 0
 
-        c2.write(write[:-2]+"`")
+            for item in range(len(data[col])):
+
+                if data[compareval][item] == val2:
+                    items[data[col][item]] += 1
+                    
+            totalvals = 0
+
+            for val in items.values():
+                totalvals += val
+
+            for item, val in zip(items, items.values()):
+                if viewmode == "Percentages":
+                    write += f"{item}: {round(val/totalvals*100, 2)}%, "
+                else:
+                    write += f"{item}: {val}, "
+
+            c2.write(write[:-2]+"`")
 
 
 elif sect == "**Visual Analysis**":
