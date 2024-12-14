@@ -140,7 +140,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['full'])
+    sect = sidebar.radio("Navigation:", pages['admin'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
