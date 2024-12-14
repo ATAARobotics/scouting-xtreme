@@ -129,7 +129,7 @@ accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 
 pages = {
     "user": [":red[**Home**]", "**Add a Data Entry**", "**View Data**"],
-    "admin": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Edit Items**", "**Edit Data**"],
+    "admin": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items**", "**Edit Data**"],
     "full": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
 }
 if accesslvl == "Admin":
@@ -395,7 +395,7 @@ elif sect == "**Data Comparison**":
     criteria = sidebar.expander("**Data Selection**")
     selectedcols = []
 
-    criteria.write("What data do you want to see?")
+    criteria.write("**What data do you want to see?**")
 
     with st.expander(f"**{viewdata}**"):
 
@@ -403,18 +403,21 @@ elif sect == "**Data Comparison**":
 
         if viewdata == "Pit Data":
             data = st.session_state.pitdata
+            dataq = st.session_state.pitq
         if viewdata == "Match Data":
             data = st.session_state.matchdata
+            dataq = st.session_state.matchq
 
         for col in data:
-            if criteria.checkbox(col, True):
+            if "Text Input" != dataq[col]["Type"] and criteria.checkbox(col, True):
                 selectedcols.append(col)
 
         df = pd.DataFrame().from_dict(data)
 
         st.dataframe(df[selectedcols], use_container_width=True, hide_index=True)
     
-    compareval = criteria.radio("What data do you want to compare by?", df.columns)
+    compareval = criteria.radio("**What data do you want to compare by?**", [col for col in df.columns if "Text Input" != dataq[col]["Type"]])
+    viewmode = criteria.radio("**Viewing Mode:**", ["Occurrences", "Percentages"])
 
     st.subheader(f"Comparison By `{compareval}`")
 
@@ -422,28 +425,62 @@ elif sect == "**Data Comparison**":
 
     val1 = c1.selectbox(f"Value 1", df[compareval].unique())
 
-    for col in selectedcols:
+    for col in [col for col in selectedcols if col != compareval]:
 
         write = f"`{col}`: `"
         
-        for item in range(len(data[col])):
-            if data[compareval][item] == val1:
-                write += f"{data[col][item]}, "
+        items = {}
 
-    c1.write(write[:-1]+"`")
+        for val in df[col].unique():
+            items[val] = 0
+
+        for item in range(len(data[col])):
+
+            if data[compareval][item] == val1:
+                items[data[col][item]] += 1
+                
+        totalvals = 0
+
+        for val in items.values():
+            totalvals += val
+
+        for item, val in zip(items, items.values()):
+            if viewmode == "Percentages":
+                write += f"{item}: {round(val/totalvals*100, 2)}%, "
+            else:
+                write += f"{item}: {val}, "
+
+        c1.write(write[:-2]+"`")
 
 
     val2 = c2.selectbox(f"Value 2", df[compareval].unique())
 
-    for col in selectedcols:
+    for col in [col for col in selectedcols if col != compareval]:
 
         write = f"`{col}`: `"
         
-        for item in range(len(data[col])):
-            if data[compareval][item] == val2:
-                write += f"{data[col][item]}, "
+        items = {}
 
-    c2.write(write[:-1]+"`")
+        for val in df[col].unique():
+            items[val] = 0
+
+        for item in range(len(data[col])):
+
+            if data[compareval][item] == val2:
+                items[data[col][item]] += 1
+                
+        totalvals = 0
+
+        for val in items.values():
+            totalvals += val
+
+        for item, val in zip(items, items.values()):
+            if viewmode == "Percentages":
+                write += f"{item}: {round(val/totalvals*100, 2)}%, "
+            else:
+                write += f"{item}: {val}, "
+
+        c2.write(write[:-2]+"`")
 
 
 elif sect == "**Visual Analysis**":
@@ -903,7 +940,7 @@ elif sect == "**Edit Items**":
                 if qtype in "Text Input":
                     if additem:
                         st.session_state.pitq[qname] = {"Type": qtype, "Character Limit": 200}
-                        newcol = []
+                        newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
                         savedata()
                         savequestions()
@@ -962,8 +999,8 @@ elif sect == "**Edit Items**":
                 if qtype in "Text Input":
                     if additem:
                         st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
-                        newcol = []
-                        st.session_state.matchdata[qname] = newcol
+                        newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
+                        st.session_state.pitdata[qname] = newcol
                         savedata()
                         savequestions()
 
@@ -997,7 +1034,6 @@ elif sect == "**Edit Items**":
                         st.session_state.matchdata[qname] = newcol
                         savedata()
                         savequestions()
-
 
 elif sect == "**Edit Data**":
 
