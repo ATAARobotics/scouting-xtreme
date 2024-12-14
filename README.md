@@ -1,5 +1,5 @@
 # ScoutingXTREME
 
-Work-in-progress scouting app for 2024.
+WIP scouting app for Forge Robotics, starting 2025.
 
 Link: https://scoutingxtreme.streamlit.app
