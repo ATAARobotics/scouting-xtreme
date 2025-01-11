@@ -50,6 +50,13 @@ st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initi
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 sidebar = st.sidebar
+darkmode = """
+[theme]
+base="dark"
+primaryColor="#ff3636"
+backgroundColor="#0e0e0e"
+secondaryBackgroundColor="#1e2029"
+"""
 
 if ["pitq", "matchq", "pitdata", "matchdata", "admin"] not in st.session_state:
 
@@ -140,7 +147,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['admin'])
+    sect = sidebar.radio("Navigation:", pages['full'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -159,8 +166,7 @@ if sect == ":red[**Home**]":
     
     st.title(":blue[Scouting]:red[XTREME]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
-    st.write("---")
-    
+    st.write("---")    
 
 else:
     st.title(sect)
@@ -501,13 +507,12 @@ elif sect == "**Data Comparison**":
 
             c2.write(write[:-2]+"`")
 
-
 elif sect == "**Visual Analysis**":
 
-    st.header("COMING SOON")
-
-    '''
     plt.style.use('seaborn-dark-palette')
+
+    data = st.session_state.pitdata
+    cols = data.keys()
 
     opts = sidebar.expander("Options")
     stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
@@ -565,7 +570,6 @@ elif sect == "**Visual Analysis**":
             plt.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.05 for i in range(len(datainc))], autopct="%.2f")
 
             c2.pyplot(fig)
-'''
 
 elif sect == "**Edit Items**":
 
