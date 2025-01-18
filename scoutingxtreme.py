@@ -135,9 +135,9 @@ access = sidebar.expander("**:red[Login as Admin...]**")
 accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 
 pages = {
-    "user": [":red[**Home**]", "**Add a Data Entry**", "**View Data**"],
-    "admin": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items**", "**Edit Data**"],
-    "full": [":red[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
+    "user": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**"],
+    "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items**", "**Edit Data**"],
+    "full": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
 }
 if accesslvl == "Admin":
 
@@ -147,7 +147,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['admin'])
+    sect = sidebar.radio("Navigation:", pages['full'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -162,7 +162,7 @@ for i in st.session_state.matchdata.keys():
 if sidebar.button("Refresh Page"):
     pass
 
-if sect == ":red[**Home**]":
+if sect == ":blue[**Home**]":
     
     st.title(":blue[Scouting]:red[XTREME]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
@@ -511,17 +511,30 @@ elif sect == "**Visual Analysis**":
 
     plt.style.use('seaborn-dark-palette')
 
-    data = st.session_state.pitdata
-    cols = data.keys()
-
     opts = sidebar.expander("Options")
+    shownull = opts.checkbox("Show percentage of missing data", True)
+    choosedata = opts.radio("What data set do you want to view?", ["Pit Data", "Match Data"])
+    
+    if choosedata == "Match Data":
+        data = st.session_state.pitdata
+
+    else:
+        data = st.session_state.matchdata
+    
+    cols = data.keys()
     stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
     numofteams = opts.number_input("How many teams do you want to show?", 1, 4)
     
     teams = []
 
-    st.title(f"Shown Statistic: *{stat}*")
+    if shownull:
+        nullvals = []
+    else:
+        nullvals = ["N/A", "nan"]
 
+    st.title(f"Shown Statistic: *{stat}*")
+    st.write("---")
+    
     c1, c2 = st.columns(2)
 
     for t in range(numofteams):
@@ -529,7 +542,7 @@ elif sect == "**Visual Analysis**":
         team = opts.selectbox(f"Team {t+1}:", [i for i in pd.Series(data["Team No."]).unique() if i not in teams])
         teams.append(team)
 
-        cats = pd.Series(data[stat]).unique()
+        cats = [cat for cat in pd.Series(data[stat]).unique() if cat not in nullvals]
         statdata = [data[stat][i] for i in range(len(data[stat])) if data["Team No."][i] == team]
         piedata = [0 for i in cats]
         datainc = []
@@ -545,29 +558,37 @@ elif sect == "**Visual Analysis**":
 
         if t % 2 == 0:
 
-            c1.write("---")
-
             tc1, tc2, tc3 = c1.columns(3)
 
             tc2.title(f"{team}")
 
-            fig = plt.figure(figsize=(15, 3), frameon=False, edgecolor="white")
+            fig, ax = plt.subplots(figsize=(15, 3), frameon=False, edgecolor="white")
 
-            plt.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.05 for i in range(len(datainc))], autopct="%.2f")
+            patches, texts, pcts = ax.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.0025 for i in range(len(datainc))], autopct="%.2f", colors=sn.color_palette("dark"), wedgeprops={"linewidth": 2.5, "edgecolor": "white"})
+
+            for i, patch in enumerate(patches):
+                texts[i].set_color(patch.get_facecolor())
+
+            plt.setp(pcts, color="white", fontweight="bold")
+            plt.setp(texts, fontweight=600, fontsize=15)
 
             c1.pyplot(fig)
             
         else:
 
-            c2.write("---")
-
             tc1, tc2, tc3 = c2.columns(3)
 
             tc2.title(f"{team}")
 
-            fig = plt.figure(figsize=(15, 3), frameon=False, edgecolor="white")
+            fig, ax = plt.subplots(figsize=(15, 3), frameon=False, edgecolor="white")
 
-            plt.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.05 for i in range(len(datainc))], autopct="%.2f")
+            patches, texts, pcts = ax.pie([i for i in piedata if i > 0], labels=[i for i in cats if i in datainc], explode=[0.0025 for i in range(len(datainc))], autopct="%.2f", colors=sn.color_palette("dark"), wedgeprops={"linewidth": 2.5, "edgecolor": "white"})
+
+            for i, patch in enumerate(patches):
+                texts[i].set_color(patch.get_facecolor())
+
+            plt.setp(pcts, color="white", fontweight="bold")
+            plt.setp(texts, fontweight=600)
 
             c2.pyplot(fig)
 
@@ -589,7 +610,7 @@ elif sect == "**Edit Items**":
             num = items.index(m)
 
             if st.session_state.pitq[m]["Type"] == "Header":
-                ex1.subheader(f":blue[{num+1}. {m}] - :red[Header]")
+                ex1.subheader(f":blue[{num+1}. {m}] - :blue[Header]")
             else:
                 ex1.subheader(f"{num+1}. {m}")
 
@@ -626,7 +647,7 @@ elif sect == "**Edit Items**":
             num = items.index(m)
 
             if st.session_state.matchq[m]["Type"] == "Header":
-                ex2.subheader(f":blue[{num+1}. {m}] - :red[Header]")
+                ex2.subheader(f":blue[{num+1}. {m}] - :blue[Header]")
             else:
                 ex2.subheader(f"{num+1}. {m}")
 
