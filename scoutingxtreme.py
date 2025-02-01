@@ -50,7 +50,7 @@ st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initi
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 sidebar = st.sidebar
-darkmode = """
+theme = """
 [theme]
 base="dark"
 primaryColor="#ff3636"
@@ -438,7 +438,8 @@ elif sect == "**Data Comparison**":
         
         if dataq[col]["Type"] == "Number Input" and showavg:
 
-            avg = sum([float(val) for val in data[col]])/len(data[col])
+            val1lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val1]
+            avg = sum(val1lst)/len(val1lst)
             write += f"{avg} AVG."
 
             c1.write(write+"`")
@@ -477,7 +478,8 @@ elif sect == "**Data Comparison**":
         
         if dataq[col]["Type"] == "Number Input" and showavg:
 
-            avg = sum([float(val) for val in data[col]])/len(data[col])
+            val2lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val2]
+            avg = sum(val2lst)/len(val2lst)
             write += f"{avg} AVG."
 
             c2.write(write+"`")
