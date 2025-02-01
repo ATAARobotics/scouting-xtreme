@@ -612,7 +612,7 @@ elif sect == "**Edit Items**":
             num = items.index(m)
 
             if st.session_state.pitq[m]["Type"] == "Header":
-                ex1.subheader(f":blue[{num+1}. {m}] - :blue[Header]")
+                ex1.subheader(f":blue[{num+1}. {m}] - :red[Header]")
             else:
                 ex1.subheader(f"{num+1}. {m}")
 
@@ -649,7 +649,7 @@ elif sect == "**Edit Items**":
             num = items.index(m)
 
             if st.session_state.matchq[m]["Type"] == "Header":
-                ex2.subheader(f":blue[{num+1}. {m}] - :blue[Header]")
+                ex2.subheader(f":blue[{num+1}. {m}] - :red[Header]")
             else:
                 ex2.subheader(f"{num+1}. {m}")
 
@@ -734,7 +734,11 @@ elif sect == "**Edit Items**":
 
     elif qedit == "Insert a question into a specific position":
 
-        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+        st.header("CURRENTLY HAS BUGS - DO NOT USE")
+
+#        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+
+        pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))-1
 
         pitqnames = [q for q in st.session_state.pitq]
         matchqnames = [q for q in st.session_state.matchq]
@@ -744,6 +748,8 @@ elif sect == "**Edit Items**":
             if len(st.session_state.pitq) == 0:
                 st.subheader(f"No {qsect} Items Added Yet.")
 
+            c3, c4 = st.columns(2)
+
             qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
             qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
 
@@ -751,7 +757,6 @@ elif sect == "**Edit Items**":
             if qtype == "Header":
 
                 qname = c2.text_input("**What should the header say?**")
-                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))
 
                 if sidebar.button("Add Item"):
                     newq = {"Type": qtype}
@@ -806,47 +811,6 @@ elif sect == "**Edit Items**":
                 
                     newq = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
 
-                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))-1
-
-
-                if additem:
-
-                    newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
-                    tempdata = {}
-                    enddata = {}
-
-                    for q in pitcols[:pos]:
-                        tempdata[q] = st.session_state.pitdata[q]
-
-                    for q in pitcols[pos:]:
-                        enddata[q] = st.session_state.pitdata[q]
-
-                    tempdata[qname] = newcol
-
-                    st.session_state.pitdata = tempdata
-
-
-                    for q in enddata.keys():
-                        st.session_state.pitdata[q] = enddata[q]
-
-                    tempq = {}
-                    endq = {}
-
-                    for q in pitqnames[:pos]:
-                        tempq[q] = st.session_state.pitq[q]
-
-                    for q in pitqnames[pos:]:
-                        endq[q] = st.session_state.pitq[q]
-
-                    tempq[qname] = newq
-
-                    st.session_state.pitq = tempq
-
-                    for q in endq.keys():
-                        st.session_state.pitq[q] = endq[q]
-                    
-                    savedata()
-                    savequestions()
 
         if qsect == "Match":
             
