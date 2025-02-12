@@ -734,9 +734,7 @@ elif sect == "**Edit Items**":
 
     elif qedit == "Insert a question into a specific position":
 
-        st.header("CURRENTLY HAS BUGS - DO NOT USE")
-
-#        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
 
         pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))-1
 

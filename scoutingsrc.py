@@ -1,3 +1,3 @@
 
-pitdata = {'Team No.': ['4421', '1', '1', '1', '1', '1', '1', '1', '1', '4421', '4421', '359', '359', '359'], 'Present:': ['nan', 'nan', 'nan', 'nan', 'No', 'Yes', 'Yes', 'No', 'Yes', 'Yes', 'No', 'Yes', 'Yes', 'Yes'], 'Notes:': ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'asdf', 'asdf', 'nan', 'Test!', 'Test!'], 'Target Points:': ['N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A']}
-matchdata = {'Round No.': ['1', '2', '3', '4', '1'], 'Team No.': ['1', '1', '1', '1', '4334'], 'Present:': ['Yes', 'Yes', 'Yes', 'No', 'No'], 'Points Scored:': ['15', '5', '10', '0', '7']}
+pitdata = {'Team No.': ['4421', '1', '1', '1', '1', '1', '1', '1', '1', '4421', '4421', '359', '359', '359']}
+matchdata = {'Round No.': ['1', '2', '3', '4', '1'], 'Team No.': ['1', '1', '1', '1', '4334']}

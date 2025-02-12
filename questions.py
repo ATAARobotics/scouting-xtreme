@@ -1,3 +1,3 @@
 
-pitq = {'Team Information': {'Type': 'Header'}, 'Team No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 30000}, 'Present:': {'Type': 'Multiple Choice', 'Options': ['No', 'Yes'], 'DefaultIndex': 0}, 'Notes:': {'Type': 'Text Input', 'Character Limit': 200}, 'Target Points:': {'Type': 'Number Input', 'Minimum': 0, 'Maximum': 20}}
-matchq = {'Round No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 100}, 'Team Information': {'Type': 'Header'}, 'Team No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 30000}, 'Present:': {'Type': 'Multiple Choice', 'Options': ['No', 'Yes'], 'DefaultIndex': 0}, 'Points Scored:': {'Type': 'Number Input', 'Minimum': 0, 'Maximum': 20}}
+pitq = {'Team Information': {'Type': 'Header'}, 'Team No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 30000}}
+matchq = {'Round No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 100}, 'Team Information': {'Type': 'Header'}, 'Team No.': {'Type': 'Number Input', 'Minimum': 1, 'Maximum': 30000}}
