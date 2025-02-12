@@ -147,7 +147,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['full'])
+    sect = sidebar.radio("Navigation:", pages['admin'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -1178,13 +1178,69 @@ if st.session_state.admin:
 
         st.session_state.matchdata = data
 
+
+        with open("tempfile.csv", "w") as file:
+            file.write(cloudSave.load_csv("matchdata.csv"))
+        data = pd.read_csv("tempfile.csv").to_dict()
+        del data["Unnamed: 0"]
+        
+        for col in data:
+
+            vals = []
+
+            for val in data[col].values():
+                vals.append(str(val))
+            
+            data[col] = vals
+
+        st.session_state.matchdata = data
+
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
     if exminpush.button("Save to MinIO"):
+
         data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
         cloudSave.save_csv("pitdata.csv", data)
         data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
         cloudSave.save_csv("matchdata.csv", data)
+
+
+        tempdict = {}
+
+        for item in st.session_state.pitq:
+            tempdict[item] = st.session_state.pitq[item]
+
+        data = pd.DataFrame.from_dict(tempdict).to_csv()
+        #cloudSave.save_csv("pitcats.csv", data)
+
+
+        tempdict = {}
+
+        for item in st.session_state.matchq:
+            tempdict[item] = st.session_state.matchq[item]
+
+        data = pd.DataFrame.from_dict(tempdict).to_csv()
+        #cloudSave.save_csv("matchcats.csv", data)
+        
+
+        tempdict = {}
+
+        for item in st.session_state.pitq:
+            tempdict[item] = st.session_state.pitq[item][list(st.session_state.matchq[item].keys())[0]]
+
+        data = pd.DataFrame.from_dict(tempdict).to_csv()
+        #cloudSave.save_csv("pitqdata.csv", data)
+
+
+        tempdict = {}
+
+        for item in st.session_state.matchq:
+            for cat in st.session_state.matchq[item]:
+                tempdict[cat] = st.session_state.matchq[item][list(st.session_state.matchq[item].keys())[0]]
+
+        data = pd.DataFrame.from_dict(tempdict).to_csv()
+        #cloudSave.save_csv("matchqdata.csv", data)
+
         
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
