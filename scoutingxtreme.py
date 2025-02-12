@@ -1269,13 +1269,20 @@ if st.session_state.admin:
         except:
             print("Data could not be backed up.")
 
-writedata = f"""
+with open("scoutingsrc.py", "w") as file:
+    writedata = f"""
 pitdata = {st.session_state.pitdata}
 matchdata = {st.session_state.matchdata}
-"""
-
-with open("scoutingsrc.py", "w") as file:
+    """
     file.write(writedata)
+
+with open("questions.py", "w") as file:
+    writedata = f"""
+pitq = {st.session_state.pitq}
+matchq = {st.session_state.matchq}
+    """
+    file.write(writedata)
+
 
 print(f"\033[0m{writedata}")
 
