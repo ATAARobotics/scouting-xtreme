@@ -1,3 +1,3 @@
 
-pitdata = {'Team No.': [], 'Points Scored:': [], 'sdfas': []}
-matchdata = {'Round No.': [], 'Team No.': []}
+pitdata = {'Team No.': [], 'Points Scored:': []}
+matchdata = {'Round No.': [], 'Team No.': [], 'Did they move off the starting line?': [], 'Highest Reef Level Scored:': [], 'Number of Coral Scored:': [], 'Number of Algae Scored in Processor:': [], 'Number of Algae Scored in The Net:': [], 'How many coral did they score on level 1 (bottom)?': [], 'How many coral did they score on level 2?': [], 'How many coral did they score on level 3?': [], 'How many coral did they score on level 4 (top)?': [], 'How many algae did they score in the processor?': [], 'How many algae did the robot score in the net?': [], 'How many algae did the human score in the net?': [], 'Which cage did they climb on?': []}
