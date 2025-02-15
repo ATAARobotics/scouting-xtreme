@@ -115,7 +115,7 @@ matchdata = {matchdata}
     
     except:
         print("Data could not be saved.")
-
+    
 def toCSV(data):
     return data.to_csv(index=False).encode()
 
@@ -734,171 +734,197 @@ elif sect == "**Edit Items**":
 
     elif qedit == "Insert a question into a specific position":
 
-        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+        st.header("CURRENTLY HAS BUGS - DO NOT USE")
+
+#        st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
+
+        pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.pitq))-1
+
+        pitqnames = [q for q in st.session_state.pitq]
+        matchqnames = [q for q in st.session_state.matchq]
 
         if qsect == "Pit":
+            
+            if len(st.session_state.pitq) == 0:
+                st.subheader(f"No {qsect} Items Added Yet.")
 
-            if len(st.session_state.pitq) > 2:
+            c3, c4 = st.columns(2)
 
-                pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=3, max_value=len(st.session_state.pitq))-1
-                
-                if len(st.session_state.pitq) == 0:
-                    st.subheader(f"No {qsect} Items Added Yet.")
-
-                c3, c4 = st.columns(2)
-
-                qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-                qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
 
 
-                if qtype == "Header":
+            if qtype == "Header":
 
-                    qname = c2.text_input("**What should the header say?**")
+                qname = c2.text_input("**What should the header say?**")
 
-                    if sidebar.button("Insert Item"):
+                if sidebar.button("Add Item"):
+                    newq = {"Type": qtype}
+                    tempq = {}
+                    endq = {}
 
-                        st.session_state.pitq = list(st.session_state.pitq.items())
-                        st.session_state.pitq.insert(pos, (qname, {"Type": "Header"}))
-                        st.session_state.pitq = dict(st.session_state.pitq)
+                    for q in pitqnames[:pos]:
+                        tempq[q] = st.session_state.pitq[q]
 
-                        savedata()
-                        savequestions()
+                    for q in pitqnames[pos:]:
+                        endq[q] = st.session_state.pitq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.pitq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.pitq[q] = endq[q]
+                    
+                    savedata()
+                    savequestions()
+
+            else:
+
+                qname = c2.text_input("**What should this question ask?**")
+                    
+                additem = sidebar.button("Add Item")
+                    
+                if qtype in "Text Input":
+
+                    if additem:
+                        newq = {"Type": qtype, "Character Limit": 200}
+
+                elif qtype in "Number Input":
+
+                    qmin = c1.number_input("**Minimum Value**", step=1)
+                    qmax = c2.number_input("**Maximum Value**", step=1)
+
+                    if additem:
+                        newq = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
 
                 else:
 
-                    qname = c2.text_input("**What should this question ask?**")
-                                                
-                    if qtype in "Text Input":
+                    qoptsnum = c1.number_input("**How many options should this question have?**", min_value=2, step=1)
+                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
 
-                        if sidebar.button("Insert Item"):
+                    qopts = []
 
-                            st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
-                            st.session_state.pitq = dict(st.session_state.pitq)
+                    if qoptsnum > 0:
+                        for q in range(qoptsnum):
+                            qopts.append(st.text_input(f"Option {q+1}:"))
+                
+                    newq = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
 
-                            savedata()
-                            savequestions()
-
-
-                    elif qtype in "Number Input":
-
-                        qmin = c1.number_input("**Minimum Value**", step=1)
-                        qmax = c2.number_input("**Maximum Value**", step=1)
-
-                        if sidebar.button("Insert Item"):
-
-                            st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
-                            st.session_state.pitq = dict(st.session_state.pitq)
-
-                            savedata()
-                            savequestions()
-
-                    else:
-
-                        qoptsnum = c1.number_input("**How many options should this question have?**", min_value=2, step=1)
-                        qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
-
-                        qopts = []
-
-                        if qoptsnum > 0:
-                            for q in range(qoptsnum):
-                                qopts.append(st.text_input(f"Option {q+1}:"))
-                    
-                        if sidebar.button("Insert Item"):
-
-                            st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
-                            st.session_state.pitq = dict(st.session_state.pitq)
-
-                            savedata()
-                            savequestions()
-
-            else:
-                st.write("**You need to add a question before you can insert questions.**")
 
         if qsect == "Match":
             
-            if len(st.session_state.matchq) > 3:
+            if len(st.session_state.matchq) == 0:
+                st.subheader(f"No {qsect} Items Added Yet.")
 
-                pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=4, max_value=len(st.session_state.matchq))-1
-                
-                if len(st.session_state.matchq) == 0:
-                    st.subheader(f"No {qsect} Items Added Yet.")
-
-                c3, c4 = st.columns(2)
-
-                qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-                qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
+            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
 
 
-                if qtype == "Header":
+            if qtype == "Header":
 
-                    qname = c2.text_input("**What should the header say?**")
+                qname = c2.text_input("**What should the header say?**")
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.matchq))
 
-                    if sidebar.button("Insert Item"):
+                if sidebar.button("Add Item"):
+                    
+                    newq = {"Type": qtype}
+                    tempq = {}
+                    endq = {}
 
-                        st.session_state.matchq = list(st.session_state.matchq.items())
-                        st.session_state.matchq.insert(pos, (qname, {"Type": "Header"}))
-                        st.session_state.matchq = dict(st.session_state.matchq)
+                    for q in matchqnames[:pos]:
+                        tempq[q] = st.session_state.matchq[q]
 
-                        savedata()
-                        savequestions()
+                    for q in matchqnames[pos:]:
+                        endq[q] = st.session_state.matchq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.matchq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.matchq[q] = endq[q]
+                    
+                    savedata()
+                    savequestions()
+
+            else:
+
+                qname = c2.text_input("**What should this question ask?**")
+                    
+                additem = sidebar.button("Add Item")
+                    
+                if qtype in "Text Input":
+
+                    if additem:
+                        newq = {"Type": qtype, "Character Limit": 200}
+
+                elif qtype in "Number Input":
+
+                    qmin = c1.number_input("**Minimum Value**", step=1)
+                    qmax = c2.number_input("**Maximum Value**", step=1)
+
+                    if additem:
+                        newq = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
 
                 else:
 
-                    qname = c2.text_input("**What should this question ask?**")
-                                                
-                    if qtype in "Text Input":
+                    qoptsnum = c1.number_input("**How many options should this question have?**", 2, step=1)
+                    qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
 
-                        if sidebar.button("Insert Item"):
+                    qopts = []
 
-                            st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
-                            st.session_state.matchq = dict(st.session_state.matchq)
+                    if qoptsnum > 0:
+                        for q in range(qoptsnum):
+                            qopts.append(st.text_input(f"Option {q+1}:"))
+                
+                    newq = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
 
-                            savedata()
-                            savequestions()
+                pos = st.number_input("What position do you want to insert this at?", step=1, min_value=1, max_value=len(st.session_state.matchq))-1
 
 
-                    elif qtype in "Number Input":
+                if additem:
 
-                        qmin = c1.number_input("**Minimum Value**", step=1)
-                        qmax = c2.number_input("**Maximum Value**", step=1)
+                    newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
+                    tempdata = {}
+                    enddata = {}
 
-                        if sidebar.button("Insert Item"):
+                    for q in matchcols[:pos]:
+                        tempdata[q] = st.session_state.matchdata[q]
 
-                            st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
-                            st.session_state.matchq = dict(st.session_state.matchq)
+                    for q in matchcols[pos:]:
+                        enddata[q] = st.session_state.matchdata[q]
 
-                            savedata()
-                            savequestions()
+                    tempdata[qname] = newcol
 
-                    else:
+                    st.session_state.matchdata = tempdata
 
-                        qoptsnum = c1.number_input("**How many options should this question have?**", min_value=2, step=1)
-                        qdefindex = c2.number_input("**Enter the number of the option that this question should default to:**", min_value=1, max_value=qoptsnum, step=1)-1
 
-                        qopts = []
+                    for q in enddata.keys():
+                        st.session_state.matchdata[q] = enddata[q]
 
-                        if qoptsnum > 0:
-                            for q in range(qoptsnum):
-                                qopts.append(st.text_input(f"Option {q+1}:"))
+                    tempq = {}
+                    endq = {}
+
+                    for q in matchqnames[:pos]:
+                        tempq[q] = st.session_state.matchq[q]
+
+                    for q in matchqnames[pos:]:
+                        endq[q] = st.session_state.matchq[q]
+
+                    tempq[qname] = newq
+
+                    st.session_state.matchq = tempq
+
+                    for q in endq.keys():
+                        st.session_state.matchq[q] = endq[q]
                     
-                        if sidebar.button("Insert Item"):
-
-                            st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
-                            st.session_state.matchq = dict(st.session_state.matchq)
-
-                            savedata()
-                            savequestions()
-
-            else:
-                st.write("**You need to add a question before you can insert questions.**")
+                    savedata()
+                    savequestions()
 
     else:
+
+        additem = sidebar.button("Add Item")
 
         if qsect == "Pit":
             
@@ -912,7 +938,7 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should the header say?**")
 
-                if sidebar.button("Add Item"):
+                if additem:
                     st.session_state.pitq[qname] = {"Type": qtype}
                     savedata()
                     savequestions()
@@ -922,8 +948,7 @@ elif sect == "**Edit Items**":
                 qname = c2.text_input("**What should this question ask?**")
                                         
                 if qtype in "Text Input":
-
-                    if sidebar.button("Add Item"):
+                    if additem:
                         st.session_state.pitq[qname] = {"Type": qtype, "Character Limit": 200}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
@@ -935,7 +960,7 @@ elif sect == "**Edit Items**":
                     qmin = c1.number_input("**Minimum Value**", step=1)
                     qmax = c2.number_input("**Maximum Value**", step=1)
 
-                    if sidebar.button("Add Item"):
+                    if additem:
                         st.session_state.pitq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
@@ -953,7 +978,7 @@ elif sect == "**Edit Items**":
                         for q in range(qoptsnum):
                             qopts.append(st.text_input(f"Option {q+1}:"))
                 
-                    if sidebar.button("Add Item"):
+                    if additem:
                         st.session_state.pitq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
@@ -972,7 +997,7 @@ elif sect == "**Edit Items**":
 
                 qname = c2.text_input("**What should the header say?**")
 
-                if sidebar.button("Add Item"):
+                if additem:
                     st.session_state.matchq[qname] = {"Type": qtype}
                     savedata()
                     savequestions()
@@ -982,7 +1007,7 @@ elif sect == "**Edit Items**":
                 qname = c2.text_input("**What should this question ask?**")
                                         
                 if qtype in "Text Input":
-                    if sidebar.button("Add Item"):
+                    if additem:
                         st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
@@ -994,7 +1019,7 @@ elif sect == "**Edit Items**":
                     qmin = c1.number_input("**Minimum Value**", step=1)
                     qmax = c2.number_input("**Maximum Value**", step=1)
 
-                    if sidebar.button("Add Item"):
+                    if additem:
                         st.session_state.matchq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                         st.session_state.matchdata[qname] = newcol
@@ -1014,7 +1039,7 @@ elif sect == "**Edit Items**":
                 
                     st.session_state.matchq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
 
-                    if sidebar.button("Add Item"):
+                    if additem:
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                         st.session_state.matchdata[qname] = newcol
                         savedata()
@@ -1178,69 +1203,13 @@ if st.session_state.admin:
 
         st.session_state.matchdata = data
 
-
-        with open("tempfile.csv", "w") as file:
-            file.write(cloudSave.load_csv("matchdata.csv"))
-        data = pd.read_csv("tempfile.csv").to_dict()
-        del data["Unnamed: 0"]
-        
-        for col in data:
-
-            vals = []
-
-            for val in data[col].values():
-                vals.append(str(val))
-            
-            data[col] = vals
-
-        st.session_state.matchdata = data
-
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
     if exminpush.button("Save to MinIO"):
-
         data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
         cloudSave.save_csv("pitdata.csv", data)
         data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
         cloudSave.save_csv("matchdata.csv", data)
-
-
-        tempdict = {}
-
-        for item in st.session_state.pitq:
-            tempdict[item] = st.session_state.pitq[item]
-
-        data = pd.DataFrame.from_dict(tempdict).to_csv()
-        #cloudSave.save_csv("pitcats.csv", data)
-
-
-        tempdict = {}
-
-        for item in st.session_state.matchq:
-            tempdict[item] = st.session_state.matchq[item]
-
-        data = pd.DataFrame.from_dict(tempdict).to_csv()
-        #cloudSave.save_csv("matchcats.csv", data)
-        
-
-        tempdict = {}
-
-        for item in st.session_state.pitq:
-            tempdict[item] = st.session_state.pitq[item][list(st.session_state.matchq[item].keys())[0]]
-
-        data = pd.DataFrame.from_dict(tempdict).to_csv()
-        #cloudSave.save_csv("pitqdata.csv", data)
-
-
-        tempdict = {}
-
-        for item in st.session_state.matchq:
-            for cat in st.session_state.matchq[item]:
-                tempdict[cat] = st.session_state.matchq[item][list(st.session_state.matchq[item].keys())[0]]
-
-        data = pd.DataFrame.from_dict(tempdict).to_csv()
-        #cloudSave.save_csv("matchqdata.csv", data)
-
         
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
@@ -1302,20 +1271,13 @@ if st.session_state.admin:
         except:
             print("Data could not be backed up.")
 
-with open("scoutingsrc.py", "w") as file:
-    writedata = f"""
+writedata = f"""
 pitdata = {st.session_state.pitdata}
 matchdata = {st.session_state.matchdata}
-    """
-    file.write(writedata)
+"""
 
-with open("questions.py", "w") as file:
-    writedata = f"""
-pitq = {st.session_state.pitq}
-matchq = {st.session_state.matchq}
-    """
+with open("scoutingsrc.py", "w") as file:
     file.write(writedata)
-
 
 print(f"\033[0m{writedata}")
 
