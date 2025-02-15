@@ -1,8 +1,5 @@
 # To Do:
 #
-# Add data comparison and visual representation functionality
-# Finish Data Editor
-# Implement a working system log
 # Add code modularity with easily modifiable functions or objects
 # Add columns separator, column items and expanders to the Question Editor (columns)
 
@@ -147,7 +144,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['admin'])
+    sect = sidebar.radio("Navigation:", pages['full'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -1206,10 +1203,13 @@ if st.session_state.admin:
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
     if exminpush.button("Save to MinIO"):
+
         data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
         cloudSave.save_csv("pitdata.csv", data)
         data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
         cloudSave.save_csv("matchdata.csv", data)
+
+        
         
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
