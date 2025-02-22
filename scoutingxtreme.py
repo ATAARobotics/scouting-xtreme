@@ -594,83 +594,9 @@ elif sect == "**Visual Analysis**":
 
 elif sect == "**Edit Items**":
 
-    c1, c2 = st.columns(2)
-
-    ex1 = c1.expander("Current Pit Items")
-
-    if len(st.session_state.pitq) == 0:
-        ex1.header("No Pit Items Added Yet.")
-
-    else:
-        ex1.header("Current Pit Items")
-        
-        for m in st.session_state.pitq:
-
-            items = [i for i in st.session_state.pitq.keys()]
-            num = items.index(m)
-
-            if st.session_state.pitq[m]["Type"] == "Header":
-                ex1.subheader(f":blue[{num+1}. {m}] - :red[Header]")
-            else:
-                ex1.subheader(f"{num+1}. {m}")
-
-            for x, y in st.session_state.pitq[m].items():
-
-                if x == "Options":
-                    
-                    msg = f" - **{x}**: "
-
-                    for i in st.session_state.pitq[m][x]:
-                        msg += f"{i}, "
-                    
-                    msg = msg[:-2]
-                    
-                    ex1.write(msg)
-                                
-                elif st.session_state.pitq[m]["Type"] != "Header":
-                    ex1.write(f" - **{x}**: {y}")
-
-    ex1.write("---")
-
-    ex2 = c2.expander("Current Match Items")
-    
-    if len(st.session_state.matchq) == 0:
-        ex2.header("No Match Items Added Yet.")
-    
-    else:
-
-        ex2.header("Current Match Items")
-
-        for m in st.session_state.matchq:
-
-            items = [i for i in st.session_state.matchq.keys()]
-            num = items.index(m)
-
-            if st.session_state.matchq[m]["Type"] == "Header":
-                ex2.subheader(f":blue[{num+1}. {m}] - :red[Header]")
-            else:
-                ex2.subheader(f"{num+1}. {m}")
-
-            for x, y in st.session_state.matchq[m].items():
-
-                if x == "Options":
-                    
-                    msg = f" - **{x}**: "
-
-                    for i in st.session_state.matchq[m][x]:
-                        msg += f"{i}, "
-                    
-                    msg = msg[:-2]
-                    
-                    ex2.write(msg)
-                
-                elif st.session_state.matchq[m]["Type"] != "Header":
-                    ex2.write(f" - **{x}**: {y}")
-
-    ex2.write("---")
-
     qsect = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
     qedit = sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
+    c1, c2 = st.columns(2)
 
     if qedit == "Remove a question":
         
@@ -1017,6 +943,79 @@ elif sect == "**Edit Items**":
                         st.session_state.matchdata[qname] = newcol
                         savedata()
                         savequestions()
+    
+    st.write("---")
+
+    c1, c2 = st.columns(2)
+
+    ex1 = c1.expander("Current Pit Items")
+
+    if len(st.session_state.pitq) == 0:
+        ex1.header("No Pit Items Added Yet.")
+
+    else:
+        ex1.header("Current Pit Items")
+        
+        for m in st.session_state.pitq:
+
+            items = [i for i in st.session_state.pitq.keys()]
+            num = items.index(m)
+
+            if st.session_state.pitq[m]["Type"] == "Header":
+                ex1.subheader(f":blue[{num+1}. {m}] - :red[Header]")
+            else:
+                ex1.subheader(f"{num+1}. {m}")
+
+            for x, y in st.session_state.pitq[m].items():
+
+                if x == "Options":
+                    
+                    msg = f" - **{x}**: "
+
+                    for i in st.session_state.pitq[m][x]:
+                        msg += f"{i}, "
+                    
+                    msg = msg[:-2]
+                    
+                    ex1.write(msg)
+                                
+                elif st.session_state.pitq[m]["Type"] != "Header":
+                    ex1.write(f" - **{x}**: {y}")
+
+    ex2 = c2.expander("Current Match Items")
+    
+    if len(st.session_state.matchq) == 0:
+        ex2.header("No Match Items Added Yet.")
+    
+    else:
+
+        ex2.header("Current Match Items")
+
+        for m in st.session_state.matchq:
+
+            items = [i for i in st.session_state.matchq.keys()]
+            num = items.index(m)
+
+            if st.session_state.matchq[m]["Type"] == "Header":
+                ex2.subheader(f":blue[{num+1}. {m}] - :red[Header]")
+            else:
+                ex2.subheader(f"{num+1}. {m}")
+
+            for x, y in st.session_state.matchq[m].items():
+
+                if x == "Options":
+                    
+                    msg = f" - **{x}**: "
+
+                    for i in st.session_state.matchq[m][x]:
+                        msg += f"{i}, "
+                    
+                    msg = msg[:-2]
+                    
+                    ex2.write(msg)
+                
+                elif st.session_state.matchq[m]["Type"] != "Header":
+                    ex2.write(f" - **{x}**: {y}")
 
 elif sect == "**Edit Data**":
 
