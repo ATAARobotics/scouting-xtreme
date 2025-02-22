@@ -41,9 +41,6 @@ from io import StringIO
 
 # Program Start
 
-import scoutingsrc as src
-import scoutingbackup as backup
-import questions
 import cloudSave
 
 st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
@@ -59,6 +56,9 @@ secondaryBackgroundColor="#1e2029"
 """
 
 if ["pitq", "matchq", "pitdata", "matchdata", "admin"] not in st.session_state:
+    
+    import scoutingsrc as src
+    import questions
 
     st.session_state.pitq = questions.pitq
     st.session_state.matchq = questions.matchq
