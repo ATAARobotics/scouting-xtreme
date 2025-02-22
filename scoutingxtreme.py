@@ -981,6 +981,8 @@ elif sect == "**Edit Items**":
                                 
                 elif st.session_state.pitq[m]["Type"] != "Header":
                     ex1.write(f" - **{x}**: {y}")
+        
+        ex1.write("---")
 
     ex2 = c2.expander("Current Match Items")
     
@@ -1016,6 +1018,8 @@ elif sect == "**Edit Items**":
                 
                 elif st.session_state.matchq[m]["Type"] != "Header":
                     ex2.write(f" - **{x}**: {y}")
+            
+        ex2.write("---")
 
 elif sect == "**Edit Data**":
 
