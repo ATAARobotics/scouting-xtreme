@@ -128,9 +128,6 @@ if st.session_state.matchdata == {}:
     for i in st.session_state.matchq:
         st.session_state.matchdata[i] = []
 
-hometext = {
-}
-
 access = sidebar.expander("**:red[Login as Admin...]**")
 accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 
@@ -139,6 +136,7 @@ pages = {
     "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items**", "**Edit Data**"],
     "full": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
 }
+
 if accesslvl == "Admin":
 
     password = access.text_input("**Enter Admin Password:**", placeholder="Enter Password")
@@ -147,7 +145,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['full'])
+    sect = sidebar.radio("Navigation:", pages['admin'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -1181,11 +1179,210 @@ if st.session_state.admin:
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
     if exminpush.button("Save to MinIO"):
+
         data = pd.DataFrame.from_dict(st.session_state.pitdata).to_csv()
         cloudSave.save_csv("pitdata.csv", data)
         data = pd.DataFrame.from_dict(st.session_state.matchdata).to_csv()
         cloudSave.save_csv("matchdata.csv", data)
-        
+
+        pitqmain = {
+            "Position": [],
+            "Type": [],
+            "Question": []
+        }
+        pitqnr = {
+            "Position": [],
+            "Question": [],
+            "Minimum": [],
+            "Maximum": []
+        }
+        pitqmc = {
+            "Position": [],
+            "Question": [],
+            "Option1": [],
+            "Option1": [],
+            "Option2": [],
+            "Option3": [],
+            "Option4": [],
+            "Option5": [],
+            "Option6": [],
+            "Option7": [],
+            "Option8": [],
+            "Option9": [],
+            "Option10": []
+        }
+        pitqsb = {
+            "Position": [],
+            "Question": [],
+            "Option1": [],
+            "Option1": [],
+            "Option2": [],
+            "Option3": [],
+            "Option4": [],
+            "Option5": [],
+            "Option6": [],
+            "Option7": [],
+            "Option8": [],
+            "Option9": [],
+            "Option10": []
+        }
+
+        qnum = 0
+
+        for question in st.session_state.pitq:
+
+            if st.session_state.pitq[question]["Type"] == "Multiple Choice":
+                
+                pitqmc["Question"].append(question)
+                pitqmc["Position"].append(qnum+1)
+                
+                for i in range(len(st.session_state.pitq[question]["Options"])):
+                    pitqmc[f"Option{i+1}"].append(st.session_state.pitq[question]["Options"][i])
+
+                if len(st.session_state.pitq[question]["Options"]) < 10:
+
+                    for i in range(len(st.session_state.pitq[question]["Options"]), 10):
+                        pitqmc[f"Option{i+1}"].append("N/A")
+
+            elif st.session_state.pitq[question]["Type"] == "Selection Box":
+                
+                pitqsb["Question"].append(question)
+                pitqsb["Position"].append(qnum+1)
+                
+                for i in range(len(st.session_state.pitq[question]["Options"])):
+                    pitqsb[f"Option{i+1}"].append(st.session_state.pitq["Question"]["Options"][i])
+
+                if len(st.session_state.pitq[question]["Options"]) < 10:
+
+                    for i in range(len(st.session_state.pitq[question]["Options"]), 10):
+                        pitqsb[f"Option{i+1}"].append("N/A")
+
+            elif st.session_state.pitq[question]["Type"] == "Number Input":
+                
+                pitqnr["Question"].append(question)
+                pitqnr["Position"].append(qnum+1)
+                pitqnr["Minimum"].append(st.session_state.pitq[question]["Minimum"])
+                pitqnr["Maximum"].append(st.session_state.pitq[question]["Maximum"])
+
+            else:
+                pitqmain["Question"].append(question)
+                pitqmain["Position"].append(qnum+1)
+                pitqmain["Type"].append(st.session_state.pitq[question]["Type"])
+
+            qnum += 1
+
+        qdata = pd.DataFrame.from_dict(pitqmain).to_csv()
+        cloudSave.save_csv("pitqmain.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(pitqmc).to_csv()
+        cloudSave.save_csv("pitqmc.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(pitqsb).to_csv()
+        cloudSave.save_csv("pitqsb.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(pitqnr).to_csv()
+        cloudSave.save_csv("pitqnr.csv", qdata)
+
+
+        matchqmain = {
+            "Position": [],
+            "Type": [],
+            "Question": []
+        }
+        matchqnr = {
+            "Position": [],
+            "Question": [],
+            "Minimum": [],
+            "Maximum": []
+        }
+        matchqmc = {
+            "Position": [],
+            "Question": [],
+            "Option1": [],
+            "Option1": [],
+            "Option2": [],
+            "Option3": [],
+            "Option4": [],
+            "Option5": [],
+            "Option6": [],
+            "Option7": [],
+            "Option8": [],
+            "Option9": [],
+            "Option10": []
+        }
+        matchqsb = {
+            "Position": [],
+            "Question": [],
+            "Option1": [],
+            "Option1": [],
+            "Option2": [],
+            "Option3": [],
+            "Option4": [],
+            "Option5": [],
+            "Option6": [],
+            "Option7": [],
+            "Option8": [],
+            "Option9": [],
+            "Option10": []
+        }
+
+        qnum = 0
+
+        for question in st.session_state.matchq:
+
+            if st.session_state.matchq[question]["Type"] == "Multiple Choice":
+                
+                matchqmc["Question"].append(question)
+                matchqmc["Position"].append(qnum+1)
+                
+                for i in range(len(st.session_state.matchq[question]["Options"])):
+                    matchqmc[f"Option{i+1}"].append(st.session_state.matchq[question]["Options"][i])
+
+                if len(st.session_state.matchq[question]["Options"]) < 10:
+
+                    for i in range(len(st.session_state.matchq[question]["Options"]), 10):
+                        matchqmc[f"Option{i+1}"].append("N/A")
+
+            elif st.session_state.matchq[question]["Type"] == "Selection Box":
+                
+                matchqsb["Question"].append(question)
+                matchqsb["Position"].append(qnum+1)
+                
+                for i in range(len(st.session_state.matchq[question]["Options"])):
+                    matchqsb[f"Option{i+1}"].append(st.session_state.matchq["Question"]["Options"][i])
+
+                if len(st.session_state.matchq[question]["Options"]) < 10:
+
+                    for i in range(len(st.session_state.matchq[question]["Options"]), 10):
+                        matchqsb[f"Option{i+1}"].append("N/A")
+
+            elif st.session_state.matchq[question]["Type"] == "Number Input":
+                
+                matchqnr["Question"].append(question)
+                matchqnr["Position"].append(qnum+1)
+                matchqnr["Minimum"].append(st.session_state.matchq[question]["Minimum"])
+                matchqnr["Maximum"].append(st.session_state.matchq[question]["Maximum"])
+
+            else:
+                matchqmain["Question"].append(question)
+                matchqmain["Position"].append(qnum+1)
+                matchqmain["Type"].append(st.session_state.matchq[question]["Type"])
+
+            qnum += 1
+
+        qdata = pd.DataFrame.from_dict(matchqmain).to_csv()
+        cloudSave.save_csv("matchqmain.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(matchqmc).to_csv()
+        cloudSave.save_csv("matchqmc.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(matchqsb).to_csv()
+        cloudSave.save_csv("matchqsb.csv", qdata)
+
+        qdata = pd.DataFrame.from_dict(matchqnr).to_csv()
+        cloudSave.save_csv("matchqnr.csv", qdata)
+
+
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
     resetdata = ex2.button("Reset Data")
@@ -1228,23 +1425,6 @@ if st.session_state.admin:
 
         with open("scoutingsrc.py", "w") as file:
             file.write(write)
-
-    if backupdata:
-
-        writedata = f"""
-    pitdata = {st.session_state.pitdata}
-    matchdata = {st.session_state.matchdata}
-    """
-        
-        print(writedata)
-
-        try:
-            with open("scoutingbackup.py", "w") as file:
-                file.write(writedata)
-            print("Data Saved.")
-        
-        except:
-            print("Data could not be backed up.")
 
 with open("scoutingsrc.py", "w") as file:
     writedata = f"""
