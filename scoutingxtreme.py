@@ -700,6 +700,10 @@ elif sect == "**Edit Items**":
                             st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
                             st.session_state.pitq = dict(st.session_state.pitq)
 
+                            st.session_state.pitdata = list(st.session_state.pitq.items())
+                            st.session_state.pitdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.pitdata))]))
+                            st.session_state.pitdata = dict(st.session_state.pitdata)
+
                             savedata()
                             savequestions()
 
@@ -714,6 +718,10 @@ elif sect == "**Edit Items**":
                             st.session_state.pitq = list(st.session_state.pitq.items())
                             st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
                             st.session_state.pitq = dict(st.session_state.pitq)
+
+                            st.session_state.pitdata = list(st.session_state.pitq.items())
+                            st.session_state.pitdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.pitdata))]))
+                            st.session_state.pitdata = dict(st.session_state.pitdata)
 
                             savedata()
                             savequestions()
@@ -734,6 +742,10 @@ elif sect == "**Edit Items**":
                             st.session_state.pitq = list(st.session_state.pitq.items())
                             st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
                             st.session_state.pitq = dict(st.session_state.pitq)
+
+                            st.session_state.pitdata = list(st.session_state.pitq.items())
+                            st.session_state.pitdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.pitdata))]))
+                            st.session_state.pitdata = dict(st.session_state.pitdata)
 
                             savedata()
                             savequestions()
@@ -781,6 +793,10 @@ elif sect == "**Edit Items**":
                             st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
                             st.session_state.matchq = dict(st.session_state.matchq)
 
+                            st.session_state.matchdata = list(st.session_state.pitq.items())
+                            st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
+                            st.session_state.matchdata = dict(st.session_state.matchdata)
+
                             savedata()
                             savequestions()
 
@@ -795,6 +811,10 @@ elif sect == "**Edit Items**":
                             st.session_state.matchq = list(st.session_state.matchq.items())
                             st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
                             st.session_state.matchq = dict(st.session_state.matchq)
+
+                            st.session_state.matchdata = list(st.session_state.pitq.items())
+                            st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
+                            st.session_state.matchdata = dict(st.session_state.matchdata)
 
                             savedata()
                             savequestions()
@@ -815,6 +835,10 @@ elif sect == "**Edit Items**":
                             st.session_state.matchq = list(st.session_state.matchq.items())
                             st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
                             st.session_state.matchq = dict(st.session_state.matchq)
+
+                            st.session_state.matchdata = list(st.session_state.pitq.items())
+                            st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
+                            st.session_state.matchdata = dict(st.session_state.matchdata)
 
                             savedata()
                             savequestions()
@@ -981,8 +1005,6 @@ elif sect == "**Edit Items**":
                                 
                 elif st.session_state.pitq[m]["Type"] != "Header":
                     ex1.write(f" - **{x}**: {y}")
-        
-        ex1.write("---")
 
     ex2 = c2.expander("Current Match Items")
     
@@ -1018,8 +1040,6 @@ elif sect == "**Edit Items**":
                 
                 elif st.session_state.matchq[m]["Type"] != "Header":
                     ex2.write(f" - **{x}**: {y}")
-            
-        ex2.write("---")
 
 elif sect == "**Edit Data**":
 

@@ -1,0 +1,11 @@
+,Position,Question,Option1,Option2,Option3,Option4,Option5,Option6,Option7,Option8,Option9,Option10
+0,5,Best (or preferred) reef level in auto:,None,1 (Bottom),2,3,4 (Top),N/A,N/A,N/A,N/A,N/A
+1,9,Can score coral in teleop:,No,Yes,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+2,10,Can score algae in processor in teleop:,No,Yes,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+3,11,Can score algae in net in teleop:,No,Yes,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+4,12,Coral intake from station:,No,"Yes, thin intake","Yes, wide/funnel intake",N/A,N/A,N/A,N/A,N/A,N/A,N/A
+5,13,Coral intake from ground:,No,Yes,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+6,14,Algae reef cleaning:,No,"Yes, drops algae","Yes, intakes algae",N/A,N/A,N/A,N/A,N/A,N/A,N/A
+7,15,Algae intake from ground:,No,Yes,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+8,17,Can climb:,No,Shallow Cage,Deep Cage,Either Cage,N/A,N/A,N/A,N/A,N/A,N/A
+9,19,Drive train type:,Other,Tank,Swerve,N/A,N/A,N/A,N/A,N/A,N/A,N/A

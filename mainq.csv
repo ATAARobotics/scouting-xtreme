@@ -1,0 +1,9 @@
+,Position,Type,Question
+0,1,Header,Team Information
+1,3,Text Input,Scout name:
+2,4,Header,Auto
+3,7,Text Input,"Other auto actions, e.g. algae:"
+4,8,Header,Teleop
+5,16,Header,Endgame
+6,18,Header,Robot
+7,20,Text Input,Other notes:
