@@ -1234,8 +1234,8 @@ if st.session_state.admin:
             st.session_state.matchdata[i] = []
 
         write = f"""
-    pitdata = {st.session_state.pitdata}
-    matchdata = {st.session_state.matchdata}
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
     """
 
         with open("scoutingsrc.py", "w") as file:
