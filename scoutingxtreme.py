@@ -357,6 +357,8 @@ elif sect == "**View Data**":
         mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
         newdata = pd.read_csv(userfile.name).to_dict()
 
+        del newdata["Unnamed: 0"]
+
         for col in newdata:
             
             coldata = []

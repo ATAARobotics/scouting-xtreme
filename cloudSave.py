@@ -33,6 +33,22 @@ def save_csv(filename, csv_string):
     except:
         print("Failed to download")
 
+def save_image(filename, image, ext):
+
+    client = Minio("minio.101100.ca",
+        access_key="uyBquJD1wBqebVcMhIgq",
+        secret_key="ZGa6YUerybM1Jd0NPYugZhTnPhbtb48cZLiFuKYo",
+    )
+
+    try:
+        result = client.put_object(
+            "scouting-xtreme", filename, BytesIO(image), len(image),
+            content_type=f"application/{ext}",
+        )
+    except:
+        print("Failed to download")
+    
+
 def save_questions(questions, dataset="pit"):
     """
     questions: question dictionary from the main file
