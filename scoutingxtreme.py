@@ -172,6 +172,8 @@ else:
 
 if sect == "**Add a Data Entry**":
 
+    st.title("DO NOT USE - WAIT FOR APP UPDATE")
+
     datasect = st.radio("Which data would you like to add to?", ["Pit Data", "Match Data"])
     inputs = []
 
