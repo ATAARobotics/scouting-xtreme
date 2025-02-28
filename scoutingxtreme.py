@@ -209,13 +209,12 @@ if sect == "**Add a Data Entry**":
             for x, y in zip(st.session_state.pitdata.keys(), inputs):
                 st.session_state.pitdata[x].append(y)
                 
-            write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-                """
-
-            with open("scoutingsrc.py", "w") as file:
-                file.write(write)
+            try:
+                st.write("**Submission Saved Successfully.**")
+                time.sleep(3)
+                savedata()
+            except:
+                savedata()            
 
     else:
 
@@ -250,6 +249,13 @@ matchdata = {st.session_state.matchdata}
         
             for x, y in zip(st.session_state.matchdata.keys(), inputs):            
                 st.session_state.matchdata[x].append(y)
+
+            try:
+                st.write("**Submission Saved Successfully.**")
+                time.sleep(3)
+                savedata()
+            except:
+                savedata()            
                 
             write = f"""
 pitdata = {st.session_state.pitdata}
@@ -357,7 +363,10 @@ elif sect == "**View Data**":
         mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
         newdata = pd.read_csv(userfile.name).to_dict()
 
-        del newdata["Unnamed: 0"]
+        try:
+            del newdata["Unnamed: 0"]
+        except:
+            pass
 
         for col in newdata:
             
