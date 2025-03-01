@@ -445,12 +445,6 @@ elif sect == "**View Data**":
     ex2.subheader("Import CSV Data")
     ex2.write("**FILE COLUMN NAMES MUST MATCH DATA COLUMN NAMES**")
     
-    datafiles = []
-
-    for file in os.listdir():
-        if '.csv' in file[-4:]:
-            datafiles.append(file)
-
     userfile = ex2.file_uploader("")
     
     if userfile != None:
@@ -641,7 +635,7 @@ elif sect == "**Visual Analysis**":
         data = st.session_state.matchdata
     
     cols = data.keys()
-    stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
+    stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Notes:"]])
     numofteams = opts.number_input("How many teams do you want to show?", 1, 4)
     
     teams = []
@@ -981,7 +975,6 @@ elif sect == "**Edit Items**":
 
                 if sidebar.button("Add Item"):
                     st.session_state.pitq[qname] = {"Type": qtype}
-                    savedata()
                     savequestions()
 
             else:
@@ -1051,8 +1044,8 @@ elif sect == "**Edit Items**":
                 if qtype in "Text Input":
                     if sidebar.button("Add Item"):
                         st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
-                        newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
-                        st.session_state.pitdata[qname] = newcol
+                        newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
+                        st.session_state.matchdata[qname] = newcol
                         savedata()
                         savequestions()
 
