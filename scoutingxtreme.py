@@ -116,7 +116,6 @@ matchdata = {matchdata}
     except:
         print("Data could not be saved.")
 
-@st.cache_data()
 def toCSV(data):
     return data.to_csv(index=False).encode()
 
@@ -176,97 +175,90 @@ if sect == "**Add a Data Entry**":
     datasect = st.radio("Which data would you like to add to?", ["Pit Data", "Match Data"])
     inputs = []
 
-    resetinputs = st.checkbox("Reset All Inputs")
+    if datasect == "Pit Data":
 
-    if resetinputs:
-        st.subheader("Inputs reset successfully. Uncheck the \"Reset All Inputs\" box to continue.")
+        for q in st.session_state.pitq:
+                
+            if st.session_state.pitq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
+
+                if st.session_state.pitq[q]["Type"] == "Header":
+                    st.write("---")
+                    st.header(q)
+                    st.write("---")
+
+            else:
+
+                if st.session_state.pitq[q]["Type"] == "Number Input":
+                    uin = str(st.number_input(f"**{q}**", st.session_state.pitq[q]["Minimum"], st.session_state.pitq[q]["Maximum"], step=1))
+
+                elif st.session_state.pitq[q]["Type"] == "Text Input":
+                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.pitq[q]["Character Limit"])
+
+                elif st.session_state.pitq[q]["Type"] == "Multiple Choice":
+                    uin = st.radio(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
+
+                elif st.session_state.pitq[q]["Type"] == "Selection Box":
+                    uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
+
+                inputs.append(uin)
+        
+                st.subheader("")
+
+        if st.button("Submit"):
+        
+            for x, y in zip(st.session_state.pitdata.keys(), inputs):
+                st.session_state.pitdata[x].append(y)
+                
+            write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+                """
+
+            with open("scoutingsrc.py", "w") as file:
+                file.write(write)
 
     else:
 
-        if datasect == "Pit Data":
-
-            for q in st.session_state.pitq:
-                    
-                if st.session_state.pitq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
-
-                    if st.session_state.pitq[q]["Type"] == "Header":
-                        st.write("---")
-                        st.header(q)
-                        st.write("---")
-
-                else:
-
-                    if st.session_state.pitq[q]["Type"] == "Number Input":
-                        uin = str(st.number_input(f"**{q}**", st.session_state.pitq[q]["Minimum"], st.session_state.pitq[q]["Maximum"], step=1))
-
-                    elif st.session_state.pitq[q]["Type"] == "Text Input":
-                        uin = st.text_input(f"**{q}**", max_chars=st.session_state.pitq[q]["Character Limit"])
-
-                    elif st.session_state.pitq[q]["Type"] == "Multiple Choice":
-                        uin = st.radio(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
-
-                    elif st.session_state.pitq[q]["Type"] == "Selection Box":
-                        uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
-
-                    inputs.append(uin)
-            
-                    st.subheader("")
-
-            if st.button("Submit"):
-            
-                for x, y in zip(st.session_state.pitdata.keys(), inputs):
-                    st.session_state.pitdata[x].append(y)
-                    
-                try:
-                    st.write("**Submission Saved Successfully.**")
-                    time.sleep(2)
-                    savedata()
-                except:
-                    savedata()            
-
-        else:
-
-            for q in st.session_state.matchq:
-
-                    if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
-
-                        if st.session_state.matchq[q]["Type"] == "Header":
-                            st.write("---")
-                            st.header(q)
-                            st.write("---")
-
-                    else:
-
-                        if st.session_state.matchq[q]["Type"] == "Number Input":
-                            uin = str(st.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
-
-                        elif st.session_state.matchq[q]["Type"] == "Text Input":
-                            uin = st.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
-
-                        elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
-                            uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
-
-                        elif st.session_state.matchq[q]["Type"] == "Selection Box":
-                            uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
-
-                        inputs.append(uin)
+        for q in st.session_state.matchq:
                 
-                        st.subheader("")
+            if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
 
-            if not resetinputs:
+                if st.session_state.matchq[q]["Type"] == "Header":
+                    st.write("---")
+                    st.header(q)
+                    st.write("---")
 
-                if st.button("Submit"):
+            else:
+
+                if st.session_state.matchq[q]["Type"] == "Number Input":
+                    uin = str(st.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
+
+                elif st.session_state.matchq[q]["Type"] == "Text Input":
+                    uin = st.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
+
+                elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
+                    uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                elif st.session_state.matchq[q]["Type"] == "Selection Box":
+                    uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                inputs.append(uin)
+        
+                st.subheader("")
+
+        if st.button("Submit"):
+        
+            for x, y in zip(st.session_state.matchdata.keys(), inputs):            
+                st.session_state.matchdata[x].append(y)
                 
-                    for x, y in zip(st.session_state.matchdata.keys(), inputs):            
-                        st.session_state.matchdata[x].append(y)
+            write = f"""
+pitdata = {st.session_state.pitdata}
+matchdata = {st.session_state.matchdata}
+                """
 
-                    try:
-                        st.write("**Submission Saved Successfully.**")
-                        time.sleep(2)
-                        savedata()
-                    except:
-                        savedata()            
-                
+            with open("scoutingsrc.py", "w") as file:
+                file.write(write)
+
 elif sect == "**View Data**":
 
     viewdata = sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
@@ -295,24 +287,13 @@ elif sect == "**View Data**":
 
     for i in data.keys():
 
-        if i == "Round No." or i == "Team No.":
-            checkbox = True
+        if selectall:
+            checkbox = ex1.checkbox(i, value=True)
         else:
-            checkbox = ex1.checkbox(i, value=selectall)
+            checkbox = ex1.checkbox(i)
 
         if checkbox:
             selectedcols.append(i)
-
-    if viewdata == "Match Data":
-
-        if ex1.checkbox("Points Scored (Teleop)", selectall):
-            selectedcols.append("Points Scored (Teleop)")
-
-        if ex1.checkbox("Points Scored (Auto)", selectall):
-            selectedcols.append("Points Scored (Auto)")
-
-        if ex1.checkbox("Total Points Scored (Excluding Penalties)", selectall):
-            selectedcols.append("Total Points Scored (Excluding Penalties)")
 
     if type(data["Team No."]) == str:
         teamnums = [data["Team No."]]
@@ -320,102 +301,9 @@ elif sect == "**View Data**":
         teamnums = data["Team No."]
     
     df = pd.DataFrame().from_dict(data)
-
-    numcols = []
-
-    for col in df.columns:
-
-        for i in range(len(df[col])):
-                
-            if col != "Team No.":
-
-                try:
-                    df[col][i] = float(df[col][i])
-                    numcols.append(col)
-                    break
-                except:
-                    pass
-
-    for col in numcols:
-
-        for i in range(len(df[col])):
-
-            try:
-                df[col][i] = float(df[col][i])
-            
-            except:
-                
-                try:
-                    df[col][i] = float(df[col][i].split()[0])
-                except:
-                    df[col][i] = 0
-
-    if viewdata == "Match Data": 
-
-        df["Points Scored (Teleop)"] = ["N/A" for i in range(len(df))]
-
-        for i in range(len(df)):
-        
-            df["Points Scored (Teleop)"][i] = df["Coral Scored on Level 1 (bottom):"][i]*2 + df["Coral Scored on Level 2:"][i]*3 + df["Coral Scored on Level 3:"][i]*4 + df["Coral Scored on Level 4 (top):"][i]*5 + df["Algae Scored in The Processor:"][i]*6 + df["Algae Scored in The Net (robot):"][i]*4 + df["Algae Scored in The Net (human)"][i]*2
-
-            if df["Which cage did they climb on?"][i] == "Deep Cage (Low)":
-                df["Points Scored (Teleop)"][i] += 12
-
-            elif df["Which cage did they climb on?"][i] == "Shallow Cage (High)":
-                df["Points Scored (Teleop)"][i] += 6
-
-        df["Points Scored (Auto)"] = ["N/A" for i in range(len(df))]
-
-        for i in range(len(df)):
-        
-            df["Points Scored (Auto)"][i] = df["Number of Algae Scored in Processor:"][i]*6 + df["Number of Algae Scored in The Net:"][i]*4
-
-            if df["Did they move off the starting line?"][i] == "Yes":
-                df["Points Scored (Auto)"][i] += 3
-
-            if df["Which cage did they climb on?"][i] == "Shallow Cage (High)":
-                df["Points Scored (Auto)"][i] += 6
-
-            if df["Highest Reef Level Scored:"][i] == 1 or df["Highest Reef Level Scored:"][i] == 2:
-                df["Points Scored (Auto)"][i] += df["Highest Reef Level Scored:"][i]+2
-
-            if df["Highest Reef Level Scored:"][i] == 3 or df["Highest Reef Level Scored:"][i] == 4:
-                df["Points Scored (Auto)"][i] += df["Highest Reef Level Scored:"][i]+3
-
-            for i in range(len(df)):
-
-                if df["Points Scored (Auto)"][i] == "N/A":
-                    df["Points Scored (Auto)"][i] = 0
-
-                if df["Points Scored (Teleop)"][i] == "N/A":
-                    df["Points Scored (Teleop)"][i] = 0
-
-            df["Total Points Scored (Excluding Penalties)"] = [df["Points Scored (Teleop)"][i]+df["Points Scored (Auto)"][i] for i in range(len(df))]
-
     rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
-    ex2 = sidebar.expander("Sort By...")
-
-    sortcols = []
-
-    enablesort = ex2.checkbox("Sort Items")
-    order = ex2.selectbox("**Order:**", ["Ascending", "Descending"])
-    numsortcols = ex2.slider("**Number of Columns to Sort By (Most to Least Priority):**", 1, 5)
-
-    for i in range(numsortcols):
-        sortcols.append(ex2.selectbox(f"**Sort {i+1}:**", [i for i in selectedcols if i != "Round No." and i not in sortcols]))
-
-    if order == "Ascending":
-        ascending = True
-    else:
-        ascending = False
-
-    df = df[selectedcols].iloc[rows]
-    
-    if enablesort:
-        df = df.sort_values(by=sortcols, ascending=ascending, na_position="last")
-
-    st.dataframe(df, use_container_width=True, hide_index=True)
+    st.dataframe(df[selectedcols].iloc[rows], use_container_width=True, hide_index=True)
 
     st.write("*Note: Double click on a cell to view all of its contents if it is cut off.*")
     
@@ -437,7 +325,7 @@ elif sect == "**View Data**":
 
     ex1.subheader("Download Data")
 
-    filename = ex1.text_input("Data File Name (no extension):", "scoutingdata")    
+    filename = ex1.text_input("Data File Name (no extension):", "scoutingdata")
     downloadtxt = ex1.download_button("Download as Text File", datatxt, filename+".txt")
     downloadcsv = ex1.download_button("Download as CSV File", datacsv, filename+".csv")
 
@@ -469,10 +357,7 @@ elif sect == "**View Data**":
         mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
         newdata = pd.read_csv(userfile.name).to_dict()
 
-        try:
-            del newdata["Unnamed: 0"]
-        except:
-            pass
+        del newdata["Unnamed: 0"]
 
         for col in newdata:
             
@@ -503,8 +388,6 @@ elif sect == "**View Data**":
                 if dataset == "Match Data":
                     for col in newdata:
                         st.session_state.matchdata[col] += newdata[col]
-
-            savedata()
 
     if downloadtxt:
         c1.write(f"**Successfully downloaded data as {filename}.txt**")
@@ -783,7 +666,7 @@ elif sect == "**Edit Items**":
 
             if len(st.session_state.pitq) > 2:
 
-                pos = sidebar.number_input("What position do you want to insert this at?", step=1, min_value=3, max_value=len(st.session_state.pitq))-1
+                pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=3, max_value=len(st.session_state.pitq))-1
                 
                 if len(st.session_state.pitq) == 0:
                     st.subheader(f"No {qsect} Items Added Yet.")
@@ -876,7 +759,7 @@ elif sect == "**Edit Items**":
             
             if len(st.session_state.matchq) > 3:
 
-                pos = sidebar.number_input("What position do you want to insert this at?", step=1, min_value=4, max_value=len(st.session_state.matchq))-1
+                pos = st.sidebar.number_input("What position do you want to insert this at?", step=1, min_value=4, max_value=len(st.session_state.matchq))-1
                 
                 if len(st.session_state.matchq) == 0:
                     st.subheader(f"No {qsect} Items Added Yet.")
@@ -1306,7 +1189,7 @@ if st.session_state.admin:
             file.write(cloudSave.load_csv("matchdata.csv"))
         data = pd.read_csv("tempfile.csv").to_dict()
         del data["Unnamed: 0"]
-       
+        
         for col in data:
 
             vals = []
@@ -1316,17 +1199,8 @@ if st.session_state.admin:
             
             data[col] = vals
 
-        st.session_state.matchdata = {}
+        st.session_state.matchdata = data
 
-        for col in data:
-            
-            st.session_state.matchdata[col] = []
-
-            for row in data[col]:
-                st.session_state.matchdata[col].append(row)
-
-        st.write(st.session_state.matchdata)
-    
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
     if exminpush.button("Save to MinIO"):
@@ -1342,13 +1216,15 @@ if st.session_state.admin:
     ex2 = sidebar.expander("**DANGER ZONE**\n\n**(:red[OFFLINE ONLY])**")
     clearlog = ex2.button("Clear System Log")
     resetdata = ex2.button("Reset Data")
+    restoredata = ex2.button("Restore Data")
+    backupdata = ex2.button("Backup Data")
 
     if clearlog:
         os.system("cls")
         print("""\033[1m
--------------------
-Scouting XTREME Log
--------------------
+    -------------------
+    Scouting XTREME Log
+    -------------------
         \033[0m""")
 
     if resetdata:
@@ -1367,4 +1243,17 @@ matchdata = {st.session_state.matchdata}
         with open("scoutingsrc.py", "w") as file:
             file.write(write)
             
+    if restoredata:
+        import scoutingbackup as backup
+        st.session_state.pitdata = backup.pitdata
+        st.session_state.matchdata = backup.matchdata
+
+        write = f"""
+    pitdata = {st.session_state.pitdata}
+    matchdata = {st.session_state.matchdata}
+    """
+
+        with open("scoutingsrc.py", "w") as file:
+            file.write(write)
+
 print(f"Admin Mode: {st.session_state.admin}")
