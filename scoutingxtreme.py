@@ -319,8 +319,6 @@ elif sect == "**View Data**":
     else:
         teamnums = data["Team No."]
     
-    st.write(data)
-
     df = pd.DataFrame().from_dict(data)
 
     numcols = []
