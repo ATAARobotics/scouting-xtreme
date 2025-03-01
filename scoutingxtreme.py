@@ -300,6 +300,8 @@ elif sect == "**View Data**":
     else:
         teamnums = data["Team No."]
     
+    st.write(data)
+
     df = pd.DataFrame().from_dict(data)
     rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
