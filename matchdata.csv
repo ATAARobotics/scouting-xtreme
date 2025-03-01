@@ -1,65 +1,259 @@
-Team No.,Scout name:,Auto coral best/preferred level:,Auto other information:,Can score coral in teleop:,Can score algae in processor in teleop:,Can score algae in net in teleop:,Coral intake from station:,Coral ground intake:,Algae reef cleaner:,Algae ground intake:,Climb ability:,Drive train,Can read April tags:,Notes:
-6390,Sheldon,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
-359,Hawaiian Kids,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
-6036,Allen,4 (Top),4 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
-5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
-5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
-5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
-5468,Allen ,4 (Top),2 L4 and can clear,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-6364,Allen,4 (Top),L4 1 coral,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
-1,nan,None,nan,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
-1,nan,None,nan,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
-6902,Allen,1 (Bottom),nan,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,No,N/A
-9292,Sheldon,3,Drive,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
-10384,Alleb,None,Leave ,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
-10384,Alleb,None,Leave ,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
-9180,Sheldon,3,1 L3,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
-9180,Sheldon,3,1 L3,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
-9044,Allen,None,Leave,No,No,No,"Yes, thin intake",No,"Yes, clean only",No,None,Swerve,No,N/A
-2438,Dwane Narvaja,4 (Top),Currently one coral but implementing a 3 coral auto,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
-7135,Dwane Narvaja,3,"High precision for coral, no algae",Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
-7135,Dwane Narvaja,3,"High precision for coral, no algae",Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
-9292,Dwane Narvaja,None,Drive only,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
-9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-8339,Allen,4 (Top),1,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Deep cage,Swerve,No,N/A
-7688,Sheldon,3,11 L3,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,Deep cage,Swerve,No,N/A
-846,Vidyut,4 (Top),Prefers any but l1,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
-846,Vidyut,4 (Top),Prefers any but l1,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
-7332,Allen ,None,Leave,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
-7332,Allen ,None,Leave,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
-7796,Sheldon,4 (Top),Only 3-4 1 L 4,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Tank,No,N/A
-8338,Allen,4 (Top),Needs l4,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",Yes,Shallow cage,Swerve,Yes,N/A
-7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
-7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
-7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
-6353,Aadarsh Dhanabalan,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
-10384,Sridhar Srinivasan,None,Can only move forward in auto.,No,Yes,No,No,No,"Yes, can intake",Yes,Shallow cage,Tank,No,N/A
-2122,Darren Cai,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
-6353,Aadarsh Dhanabalan,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
-5468,Vaibhav Shyam ,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-5468,Vaibhav Shyam ,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
-359,Allen,4 (Top),Score 3,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
-10527,Sheldon,1 (Bottom),3 L1,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Deep cage,Tank,No,N/A
-8339,Vidyut,4 (Top),nan,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
-8339,Vidyut,4 (Top),nan,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
-5461,Sridhar Srinivasan,None,Declined scouting due to not being done.,No,No,No,No,No,No,No,None,Other,No,N/A
-5461,Sridhar Srinivasan,None,Declined scouting due to not being done.,No,No,No,No,No,No,No,None,Other,No,N/A
-10427,Sheldon,None,Drive,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
-6902,Darren Cai,1 (Bottom),1 and 2,Yes,Yes,Yes,"Yes, thin intake",No,No,Yes,None,Swerve,Yes,N/A
-8338,Vaibhav Shyam ,None,nan,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
-8338,Vaibhav Shyam ,None,nan,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
-1622,Andre Ruzdijic,3,nan,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,Yes,N/A
-10044,Allen,None,Drive,Yes,Yes,No,"Yes, thin intake",No,No,Yes,None,Tank,No,N/A
-6390,nan,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
-6390,nan,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
-7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
-7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
-9719,Sheldon,3,Drive,Yes,No,No,"Yes, wide/funnel intake",No,No,No,None,Swerve,No,N/A
-7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
-10427,Vaibhav Shyam ,None,Can't do coral,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
-7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
-4237,Edgar,None,nan,No,No,No,No,No,No,No,None,Swerve,No,N/A
-4237,Edgar,None,nan,No,No,No,No,No,No,No,None,Swerve,No,N/A
+Round No.,Team No.,Did they move off the starting line?,Highest Reef Level Scored:,Number of Coral Scored:,Number of Algae Scored in Processor:,Number of Algae Scored in The Net:,Coral Scored on Level 1 (bottom):,Coral Scored on Level 2:,Coral Scored on Level 3:,Coral Scored on Level 4 (top):,Algae Scored in The Processor:,Algae Scored in The Net (robot):,Algae Scored in The Net (human),Which cage did they climb on?,Robot Speed:,Robot Driving Stability:,Robot Functioning Stability:
+1,5516,Yes,4 (Top),4,0,0,0,0,0,4,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,2438,Yes,4 (Top),1,0,0,3,0,3,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,5468,Yes,4 (Top),2,0,0,0,0,0,9,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+1,7332,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+1,4253,Yes,4 (Top),1,0,0,0,0,1,3,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+2,10044,No,None,0,0,0,0,0,0,4,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+2,4421,Yes,4 (Top),1,0,0,0,0,0,5,0,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+2,9180,Yes,None,0,0,0,4,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+2,6036,Yes,4 (Top),3,0,0,0,1,2,3,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+2,4421,Yes,4 (Top),1,0,0,0,0,0,5,0,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+2,10044,No,None,0,0,0,0,0,0,4,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+2,7287,Yes,None,0,0,0,0,0,0,0,2,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+3,9292,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+3,3990,Yes,4 (Top),1,0,0,0,0,0,2,1,0,1,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+3,4327,Yes,None,0,0,0,3,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+3,4128,Yes,1 (Bottom),1,0,0,1,0,6,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+3,8339,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+3,3128,Yes,1 (Bottom),1,0,0,1,0,6,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,7551,Yes,None,0,0,0,1,0,0,0,2,0,1,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+4,6188,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+4,7796,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Fell Over,Small Malfunction
+4,7167,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+4,4862,Yes,None,0,0,0,5,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+4,4270,Yes,4 (Top),1,0,0,0,0,0,4,1,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+4,10527,Yes,1 (Bottom),1,0,0,6,0,0,0,0,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+5,359,Yes,4 (Top),2,0,0,3,4,2,3,0,0,0,Shallow Cage (high),Fast,Stable (all wheels on the ground at all times),Fully Functional
+5,8338,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+5,9044,Yes,None,0,0,0,0,0,3,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+5,10384,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+5,7673,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+5,2122,No,4 (Top),2,0,0,0,0,0,5,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+6,6902,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+6,2550,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+6,6390,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+6,6390,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+6,7688,Yes,None,0,0,0,1,0,4,0,2,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+6,7688,Yes,None,0,0,0,1,0,4,0,2,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+6,9719,No,None,0,0,0,1,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+6,846,No,None,0,0,0,0,0,1,3,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+6,846,No,None,0,0,0,0,0,1,3,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+7,9719,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+7,9719,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+7,9719,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+7,5461,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+7,7135,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled
+7,9649,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+7,4627,Yes,3,0,0,0,0,0,4,1,1,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+7,9649,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+7,6364,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+7,6364,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+8,1622,No,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction
+8,10426,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+8,6353,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+8,7190,No,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled
+8,7190,No,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled
+8,7190,No,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled
+8,9449,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+9,6188,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+9,4253,Yes,4 (Top),1,0,0,0,0,2,4,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+9,6188,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+9,5468,Yes,4 (Top),2,0,0,0,0,5,5,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+9,3128,Yes,None,0,0,0,0,1,5,2,2,0,2,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+9,3128,Yes,None,0,0,0,0,1,5,2,2,0,2,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+10,2438,Yes,4 (Top),1,0,0,0,0,0,3,2,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+10,10527,Yes,1 (Bottom),0,0,0,1,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+10,6036,Yes,4 (Top),3,0,0,0,5,7,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+10,10384,Yes,None,0,0,0,0,0,0,0,3,0,2,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+11,4327,Yes,None,0,0,0,0,0,1,2,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled
+11,846,No,4 (Top),1,0,0,0,0,1,4,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+11,4270,Yes,None,0,0,0,0,0,5,3,1,1,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+11,359,Yes,4 (Top),2,0,0,2,0,2,4,2,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+12,7688,Yes,None,0,1,0,0,0,2,0,1,0,0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+12,6902,Yes,None,0,0,0,2,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+12,7688,Yes,None,0,0,0,0,3,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+12,5461,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+12,5461,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+12,2122,Yes,4 (Top),2,0,0,0,0,2,5,0,0,0,Deep Cage (low),Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+12,7332,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+12,7332,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+12,7332,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+1,9649,No,None,0,0,0,1,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+13,3990,Yes,4 (Top),1,0,0,0,3,0,8,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+13,3990,Yes,4 (Top),1,0,0,0,0,0,9,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+13,3990,Yes,4 (Top),1,0,0,0,0,0,9,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+13,3990,Yes,4 (Top),1,0,0,0,0,0,11,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+13,1622,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+1,9649,No,None,0,0,0,1,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+13,9649,No,None,0,0,0,1,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+14,8503,Yes,None,0,0,0,0,0,2,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+14,9719,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+14,10427,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+14,8339,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+14,8339,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+15,6390,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+15,9044,Yes,None,0,0,0,1,1,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+15,9180,Yes,None,0,0,0,4,0,0,1,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+15,9180,Yes,None,0,0,0,4,0,0,1,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+15,9044,Yes,None,0,0,0,1,1,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+15,9641,Yes,None,0,0,0,3,1,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+15,9277,Yes,2,1,0,0,0,0,2,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+15,9277,Yes,2,1,0,0,0,0,2,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+16,7167,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+16,7190,No,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+16,9550,No,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+16,9449,Yes,None,0,0,0,1,0,0,2,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+16,4627,Yes,3,0,0,0,0,0,4,0,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+16,4627,Yes,3,0,0,0,0,0,4,0,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+17,846,Yes,None,0,0,0,0,0,1,3,1,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+17,4270,No,4 (Top),1,0,0,0,5,5,1,1,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+17,5461,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+17,4253,Yes,4 (Top),1,1,0,0,0,0,6,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+17,4270,No,4 (Top),1,0,0,0,5,5,1,1,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+17,6036,Yes,1 (Bottom),2,0,0,0,2,4,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+17,6036,Yes,1 (Bottom),2,0,0,0,2,4,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+17,6036,Yes,1 (Bottom),2,0,0,0,2,4,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+18,7332,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+18,7332,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+18,7332,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+18,1622,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+19,7796,Yes,4 (Top),0,0,0,0,0,0,0,0,0,0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction
+19,7796,Yes,4 (Top),0,0,0,0,0,0,0,0,0,0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction
+19,6902,Yes,None,0,0,0,0,1,1,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+19,7796,Yes,4 (Top),0,0,0,0,0,0,0,0,0,0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction
+1,4327,Yes,None,0,0,0,0,1,2,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+19,6903,Yes,3,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+19,6903,Yes,3,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+19,6902,Yes,3,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+19,6902,Yes,3,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+19,6902,Yes,3,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+20,6364,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+20,6364,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+20,8338,Yes,None,0,0,0,0,0,0,2,0,0,0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction
+20,6364,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction
+23,5516,Yes,4 (Top),3,0,0,0,1,6,5,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+24,4862,Yes,2,1,0,0,2,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+24,6390,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Temporarily Disabled
+24,9465,Yes,None,0,0,0,0,0,0,0,1,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+24,4862,Yes,None,0,0,0,4,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+24,4862,Yes,None,0,0,0,4,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,3128,Yes,None,0,0,0,0,0,1,2,2,0,2,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,8338,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+25,7135,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+25,2122,Yes,None,0,0,0,0,3,2,1,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+25,4270,Yes,4 (Top),1,0,0,2,0,0,6,0,1,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+25,6036,Yes,None,0,0,0,0,0,0,1,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction
+25,6036,Yes,None,0,0,0,0,0,0,1,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction
+25,5468,Yes,4 (Top),2,0,0,0,0,5,5,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+26,9550,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+26,9649,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+27,4253,Yes,None,0,0,0,1,0,0,4,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+26,4327,Yes,None,0,0,0,1,0,0,4,1,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+26,10527,Yes,None,0,0,0,4,0,0,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+26,7287,Yes,None,0,0,0,0,3,0,4,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+26,7287,Yes,None,0,0,0,0,3,0,4,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+26,10527,Yes,None,0,0,0,4,0,0,0,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+27,846,No,None,0,0,0,0,0,0,3,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+28,9044,Yes,None,0,0,0,1,2,2,1,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+27,7332,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+27,6353,No,None,0,0,0,0,3,0,0,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+27,7796,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+27,3990,No,4 (Top),1,0,0,0,0,2,5,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+27,3990,No,4 (Top),1,0,0,0,0,2,5,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+28,2438,Yes,4 (Top),1,0,0,0,0,0,4,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+28,2438,Yes,4 (Top),1,0,0,0,0,0,4,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+29,359,Yes,4 (Top),1,0,0,2,0,3,4,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+29,6903,Yes,None,0,0,0,0,1,0,0,1,0,1,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+29,9277,Yes,2,1,0,0,1,0,5,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+1,7673,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+1,7673,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+29,7551,Yes,1 (Bottom),1,0,0,0,0,0,0,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+29,7551,Yes,1 (Bottom),1,0,0,0,0,0,0,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+30,4862,Yes,None,0,0,0,3,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+30,4862,Yes,None,0,0,0,3,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+30,6364,Yes,None,0,0,0,0,0,3,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+30,9719,Yes,None,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+30,1622,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+30,9180,Yes,2,3,0,0,0,0,0,4,0,0,0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+30,3128,Yes,1 (Bottom),1,0,0,0,0,4,4,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+31,8339,No,4 (Top),0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+31,9449,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+31,6390,Yes,None,0,0,0,0,0,0,3,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+31,6390,Yes,None,0,0,0,0,0,0,3,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+31,5516,Yes,4 (Top),1,0,0,0,0,0,8,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+31,10384,Yes,None,0,0,0,0,0,0,0,2,0,0,Shallow Cage (high),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+32,8503,No,1 (Bottom),0,0,0,0,0,7,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+32,9292,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+32,5461,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+32,7167,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+33,2122,Yes,4 (Top),2,0,0,0,0,2,7,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+33,7287,Yes,1 (Bottom),0,0,0,0,0,1,4,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,9641,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,9641,Yes,None,0,0,0,1,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+32,846,No,None,0,0,0,0,0,0,1,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+32,846,No,None,0,0,0,0,0,0,1,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+33,10427,Yes,None,0,0,0,0,0,0,0,1,0,1,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction
+33,9550,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+34,3990,No,4 (Top),1,0,0,0,0,0,6,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+34,7688,Yes,None,0,0,0,0,0,2,0,1,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+34,7688,Yes,None,0,0,0,0,0,2,0,1,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+34,7190,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+34,7688,Yes,None,0,0,0,0,0,2,0,1,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+34,9277,Yes,None,0,0,0,0,1,4,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+34,7796,Yes,4 (Top),1,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+33,5468,Yes,4 (Top),1,0,0,0,0,2,3,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+33,5468,Yes,4 (Top),1,0,0,0,0,2,3,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+35,4627,No,3,1,0,0,0,0,4,1,2,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+35,8338,Yes,None,0,0,0,0,0,1,3,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+1,1,Yes,None,0,0,0,0,0,0,0,4,0,0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Fully Functional
+35,1622,Yes,None,0,0,0,0,0,0,0,2,0,2,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+35,1622,Yes,None,0,0,0,0,0,0,0,2,0,2,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+35,6902,Yes,None,0,1,0,0,0,0,0,3,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+35,10527,Yes,1 (Bottom),1,0,0,3,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+35,10527,Yes,1 (Bottom),1,0,0,3,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+35,10527,Yes,1 (Bottom),1,0,0,3,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+36,6364,No,None,0,0,0,0,0,1,2,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+36,4327,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+36,4327,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+36,4327,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round)
+36,9044,Yes,None,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+36,9044,Yes,None,0,0,0,0,0,1,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+36,8339,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+37,7673,Yes,None,0,0,0,1,1,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+37,7673,Yes,None,0,0,0,1,1,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+37,5461,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+37,7332,Yes,None,0,0,0,0,1,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+37,6353,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+37,9180,Yes,1 (Bottom),1,0,0,4,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+38,359,Yes,4 (Top),2,0,0,1,0,3,4,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+38,3128,Yes,1 (Bottom),1,0,0,1,0,4,3,0,0,0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional
+38,6390,Yes,None,0,0,0,0,0,0,2,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+38,2438,Yes,4 (Top),1,0,0,2,0,0,8,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+38,8503,No,3,1,0,0,0,2,4,0,2,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+38,8503,No,3,1,0,0,0,2,4,0,2,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+39,9449,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+39,9465,Yes,None,0,1,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+39,9649,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+39,4270,Yes,4 (Top),1,0,1,4,0,4,4,1,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+39,4270,Yes,4 (Top),1,0,1,4,0,4,4,1,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+39,9649,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+39,9292,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction
+41,2122,Yes,None,0,0,0,0,0,1,3,0,0,0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional
+41,3990,Yes,4 (Top),1,0,0,0,0,1,5,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+42,1622,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+44,9449,Yes,None,0,0,0,0,0,0,0,3,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+44,3128,Yes,None,0,0,0,0,0,4,5,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+44,9449,Yes,None,0,0,0,0,0,0,0,3,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+45,7135,Yes,None,0,0,0,0,3,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+45,9292,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+45,4253,Yes,None,0,0,0,0,0,0,5,0,0,0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional
+45,9292,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+46,4862,Yes,1 (Bottom),0,0,1,5,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+46,8338,Yes,None,0,0,0,0,0,0,1,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+47,10427,No,None,0,0,0,0,0,0,0,1,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+47,10427,No,None,0,0,0,0,0,0,0,1,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+49,9449,Yes,None,0,0,0,0,0,0,0,1,0,0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional
+51,9641,Yes,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
+51,10044,No,None,0,0,0,0,0,0,0,0,0,0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional
+53,7551,No,None,0,0,0,0,0,0,0,0,0,0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional
