@@ -357,8 +357,11 @@ elif sect == "**View Data**":
         mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
         newdata = pd.read_csv(userfile.name).to_dict()
 
-        del newdata["Unnamed: 0"]
-
+        try:
+            del newdata["Unnamed: 0"]
+        except:
+            pass
+        
         for col in newdata:
             
             coldata = []
@@ -1172,7 +1175,11 @@ if st.session_state.admin:
         with open("tempfile.csv", "w") as file:
             file.write(cloudSave.load_csv("pitdata.csv"))
         data = pd.read_csv("tempfile.csv").to_dict()
-        del data["Unnamed: 0"]
+
+        try:
+            del data["Unnamed: 0"]
+        except:
+            pass
         
         for col in data:
 
