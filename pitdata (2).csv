@@ -1,0 +1,65 @@
+Team No.,Scout name:,Auto coral best/preferred level:,Auto other information:,Can score coral in teleop:,Can score algae in processor in teleop:,Can score algae in net in teleop:,Coral intake from station:,Coral ground intake:,Algae reef cleaner:,Algae ground intake:,Climb ability:,Drive train,Can read April tags:,Notes:
+6390,Sheldon,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+359,Hawaiian Kids,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
+6036,Allen,4 (Top),4 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
+5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5516,Sheldon,4 (Top),3 L4,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5468,Allen ,4 (Top),2 L4 and can clear,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+6364,Allen,4 (Top),L4 1 coral,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+1,nan,None,nan,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
+1,nan,None,nan,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
+6902,Allen,1 (Bottom),nan,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,No,N/A
+9292,Sheldon,3,Drive,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
+10384,Alleb,None,Leave ,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
+10384,Alleb,None,Leave ,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
+9180,Sheldon,3,1 L3,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
+9180,Sheldon,3,1 L3,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
+9044,Allen,None,Leave,No,No,No,"Yes, thin intake",No,"Yes, clean only",No,None,Swerve,No,N/A
+2438,Dwane Narvaja,4 (Top),Currently one coral but implementing a 3 coral auto,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+7135,Dwane Narvaja,3,"High precision for coral, no algae",Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
+7135,Dwane Narvaja,3,"High precision for coral, no algae",Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
+9292,Dwane Narvaja,None,Drive only,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
+9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,Allen,3,nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+8339,Allen,4 (Top),1,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Deep cage,Swerve,No,N/A
+7688,Sheldon,3,11 L3,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,Deep cage,Swerve,No,N/A
+846,Vidyut,4 (Top),Prefers any but l1,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+846,Vidyut,4 (Top),Prefers any but l1,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+7332,Allen ,None,Leave,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
+7332,Allen ,None,Leave,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
+7796,Sheldon,4 (Top),Only 3-4 1 L 4,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Tank,No,N/A
+8338,Allen,4 (Top),Needs l4,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",Yes,Shallow cage,Swerve,Yes,N/A
+7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+7796,Sridhar Srinivasan,4 (Top),Just one on L4,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+6353,Aadarsh Dhanabalan,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
+10384,Sridhar Srinivasan,None,Can only move forward in auto.,No,Yes,No,No,No,"Yes, can intake",Yes,Shallow cage,Tank,No,N/A
+2122,Darren Cai,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
+6353,Aadarsh Dhanabalan,4 (Top),nan,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
+5468,Vaibhav Shyam ,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+5468,Vaibhav Shyam ,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+359,Allen,4 (Top),Score 3,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
+10527,Sheldon,1 (Bottom),3 L1,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Deep cage,Tank,No,N/A
+8339,Vidyut,4 (Top),nan,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
+8339,Vidyut,4 (Top),nan,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
+5461,Sridhar Srinivasan,None,Declined scouting due to not being done.,No,No,No,No,No,No,No,None,Other,No,N/A
+5461,Sridhar Srinivasan,None,Declined scouting due to not being done.,No,No,No,No,No,No,No,None,Other,No,N/A
+10427,Sheldon,None,Drive,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
+6902,Darren Cai,1 (Bottom),1 and 2,Yes,Yes,Yes,"Yes, thin intake",No,No,Yes,None,Swerve,Yes,N/A
+8338,Vaibhav Shyam ,None,nan,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
+8338,Vaibhav Shyam ,None,nan,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
+1622,Andre Ruzdijic,3,nan,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,Yes,N/A
+10044,Allen,None,Drive,Yes,Yes,No,"Yes, thin intake",No,No,Yes,None,Tank,No,N/A
+6390,nan,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+6390,nan,4 (Top),nan,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+9719,Sheldon,3,Drive,Yes,No,No,"Yes, wide/funnel intake",No,No,No,None,Swerve,No,N/A
+7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+10427,Vaibhav Shyam ,None,Can't do coral,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
+7332,nan,3,nan,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+4237,Edgar,None,nan,No,No,No,No,No,No,No,None,Swerve,No,N/A
+4237,Edgar,None,nan,No,No,No,No,No,No,No,None,Swerve,No,N/A

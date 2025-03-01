@@ -134,8 +134,8 @@ accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 
 pages = {
     "user": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**"],
-    "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items**", "**Edit Data**"],
-    "full": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items**", "**Edit Data**"]
+    "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items (:red[USE OFFLINE ONLY])**", "**Edit Data**"],
+    "full": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items (:red[USE OFFLINE ONLY])**", "**Edit Data**"]
 }
 
 if accesslvl == "Admin":
@@ -445,6 +445,12 @@ elif sect == "**View Data**":
     ex2.subheader("Import CSV Data")
     ex2.write("**FILE COLUMN NAMES MUST MATCH DATA COLUMN NAMES**")
     
+    datafiles = []
+
+    for file in os.listdir():
+        if '.csv' in file[-4:]:
+            datafiles.append(file)
+
     userfile = ex2.file_uploader("")
     
     if userfile != None:
@@ -635,7 +641,7 @@ elif sect == "**Visual Analysis**":
         data = st.session_state.matchdata
     
     cols = data.keys()
-    stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Notes:"]])
+    stat = opts.selectbox("Select A Data Catagory:", [i for i in cols if i not in ["Match No.", "Team No.", "Extra Notes"]])
     numofteams = opts.number_input("How many teams do you want to show?", 1, 4)
     
     teams = []
@@ -705,7 +711,7 @@ elif sect == "**Visual Analysis**":
 
             c2.pyplot(fig)
 
-elif sect == "**Edit Items**":
+elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
     qsect = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
     qedit = sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
@@ -975,6 +981,7 @@ elif sect == "**Edit Items**":
 
                 if sidebar.button("Add Item"):
                     st.session_state.pitq[qname] = {"Type": qtype}
+                    savedata()
                     savequestions()
 
             else:
