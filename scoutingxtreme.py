@@ -13,6 +13,8 @@ import streamlit as st
 import os
 import time
 
+from PIL import Image
+
 # Total rounds for the game
 totalrounds = 0
 
@@ -21,7 +23,8 @@ requiredmodules = [
     "pandas",
     "matplotlib",
     "seaborn",
-    "minio"
+    "minio",
+    "PIL"
 ]
 
 requirements = ""
@@ -65,6 +68,8 @@ if ["pitq", "matchq", "pitdata", "matchdata", "admin"] not in st.session_state:
 
     st.session_state.pitdata = src.pitdata
     st.session_state.matchdata = src.matchdata
+
+    st.session_state.robotphotos = {}
     
     st.session_state.admin = False
 
@@ -135,7 +140,7 @@ accesslvl = access.radio("**Access Level:**", ["User", "Admin"])
 pages = {
     "user": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**"],
     "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Edit Items (:red[USE OFFLINE ONLY])**", "**Edit Data**"],
-    "full": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items (:red[USE OFFLINE ONLY])**", "**Edit Data**"]
+    "full": [":blue[**Home**]", "**Add a Data Entry**", "**Robot Photos**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Edit Items (:red[USE OFFLINE ONLY])**", "**Edit Data**"]
 }
 
 if accesslvl == "Admin":
@@ -272,7 +277,30 @@ if sect == "**Add a Data Entry**":
                         savedata()
                     except:
                         savedata()            
-                
+
+elif sect == "**Robot Photos**":
+    
+    viewmode = st.radio("Do you want to add or view robot photos?", ["Add", "View"])
+
+    if viewmode == "Add":
+
+        teamno = st.number_input("**Team Number:**", 1, 10000)
+        image = st.file_uploader("**Upload the robot photo here:**")
+
+        if st.button("Save Image"):
+
+            st.session_state.robotphotos[teamno] = image
+            st.write(image)
+            st.write("**Image Saved Successfully.**")
+
+    elif len(st.session_state.robotphotos) == 0:
+        st.subheader("Please upload a photo before viewing them.")
+
+    else:
+        
+        teamno = st.selectbox("**Select a Team:**", st.session_state.robotphotos.keys())
+        st.image(st.session_state.robotphotos[teamno], teamno)
+
 elif sect == "**View Data**":
 
     viewdata = sidebar.radio("Which data would you like to view?", ["Pit Data", "Match Data"])
@@ -825,7 +853,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 else:
 
                     qname = c1.text_input("**What should this question ask?**")
-                    displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
+                    displayname = c2.text_input("**Data Column Display Name (:red[DO NOT USE EXISTING DISPLAY NAMES])**:", qname, max_chars=100)
                                                 
                     if qtype in "Text Input":
 
@@ -937,7 +965,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 else:
 
                     qname = c1.text_input("**What should this question ask?**")
-                    displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
+                    displayname = c2.text_input("**Data Column Display Name (:red[DO NOT USE EXISTING DISPLAY NAMES])**:", qname, max_chars=100)
                                                 
                     if qtype in "Text Input":
 
@@ -1042,7 +1070,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
             else:
 
                 qname = c1.text_input("**What should this question ask?**")
-                displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
+                displayname = c2.text_input("**Data Column Display Name (:red[DO NOT USE EXISTING DISPLAY NAMES])**:", qname, max_chars=100)
                                         
                 if qtype in "Text Input":
 
@@ -1120,7 +1148,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
             else:
 
                 qname = c1.text_input("**What should this question ask?**")
-                displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
+                displayname = c2.text_input("**Data Column Display Name (:red[DO NOT USE EXISTING DISPLAY NAMES])**:", qname, max_chars=100)
                                         
                 if qtype in "Text Input":
 
@@ -1262,85 +1290,6 @@ elif sect == "**Edit Data**":
 
             replaceselect = st.radio("Would you like to replace a row or a specific data entry?", ["Row", "Data Entry"])
 
-            if replaceselect == "Row":
-
-                newdata = {col: [] for col in data.keys()}
-
-                index = st.number_input("What row would you like to replace?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
-
-                st.subheader("New Data:")
-
-                c1, c2 = st.columns(2)
-
-                for col in data.keys():
-
-                    valtype = c1.radio(f"New `{col}` Value Type:", ["Text", "Integer", "Decimal"])
-
-                    if valtype == "Text":
-                        newval = c2.text_input(f"New `{col}` Value:")
-                    elif valtype == "Integer":
-                        newval = c2.number_input(f"New `{col}` Value:", step=1)
-                    else:
-                        newval = c2.number_input(f"New `{col}` Value:")
-
-                    c2.write("\n")
-                    c2.write("\n")
-
-                    newdata[col] = newval
-
-                st.subheader("Data Replacement Summary:")
-                for col in data.keys():
-                    if type(data[col][index]) == str:
-                        st.write(f"`{col}`: `\"{data[col][index]}\" --> {newdata[col]}`")
-                    else:
-                        st.write(f"`{col}`: `{data[col][index]} --> {newdata[col]}`")
-
-                if st.button("Replace Row"):
-                    
-                    for col in data:
-                        data[col][index] = newdata[col]
-
-            if replaceselect == "Data Entry":
-
-                c1, c2 = st.columns(2)
-
-                col = c1.selectbox("What column do you want to replace data from?", data.keys())
-                index = c2.number_input("What row would you like to replace?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
-                
-                valtype = st.radio("What type of value do you want to replace the current value with?", ["Text", "Integer", "Decimal"])
-
-                if valtype == "Text":
-                    newdata = st.text_input("New Value:")
-                elif valtype == "Integer":
-                    newdata = st.number_input("New Value:", step=1)
-                else:
-                    newdata = st.number_input("New Value:")
-
-                if st.button("Replace Data"):
-                    data[col][index] = newdata
-        
-        if editmode == "Remove":
-
-            removeselect = st.radio("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
-
-            if removeselect == "Row":
-
-                index = st.number_input("What row would you like to remove?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
-                
-                if st.button("Remove Row"):
-                    
-                    for col in data:
-                        data[col].pop(index)
-
-            if removeselect == "Data Entry":
-
-                c1, c2 = st.columns(2)
-
-                col = c1.selectbox("What column do you want to remove data from?", data.keys())
-                index = c2.number_input("What row would you like to remove?", min_value=0, max_value=len(data[list(data.keys())[0]])-1)
-
-                if st.button("Remove Data"):
-                    data[col][index] = "N/A"
 
 exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 
