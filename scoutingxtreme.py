@@ -293,7 +293,37 @@ elif sect == "**View Data**":
 
     selectall = ex1.checkbox("Select All", value=True)
 
-    for i in data.keys():
+
+    if type(data["Team No."]) == str:
+        teamnums = [data["Team No."]]
+    else:
+        teamnums = data["Team No."]
+
+    df = pd.DataFrame()
+    cols = []
+
+    for col in data:
+
+        if viewdata == "Pit Data":
+
+            try:
+                cols.append(st.session_state.pitq[col]["Display Name"])
+
+            except:
+                cols.append(col)
+
+        else:
+
+            try:
+                cols.append(st.session_state.matchq[col]["Display Name"])
+
+            except:
+                cols.append(col)
+
+    for key, col in zip(data.keys(), cols):
+        df[col] = data[key]
+        
+    for i in df.columns:
 
         if i == "Round No." or i == "Team No.":
             checkbox = True
@@ -305,21 +335,8 @@ elif sect == "**View Data**":
 
     if viewdata == "Match Data":
 
-        if ex1.checkbox("Points Scored (Teleop)", selectall):
-            selectedcols.append("Points Scored (Teleop)")
-
-        if ex1.checkbox("Points Scored (Auto)", selectall):
-            selectedcols.append("Points Scored (Auto)")
-
-        if ex1.checkbox("Total Points Scored (Excluding Penalties)", selectall):
-            selectedcols.append("Total Points Scored (Excluding Penalties)")
-
-    if type(data["Team No."]) == str:
-        teamnums = [data["Team No."]]
-    else:
-        teamnums = data["Team No."]
-    
-    df = pd.DataFrame().from_dict(data)
+        if ex1.checkbox("Points Scored (Excluding Penalties)", selectall):
+            selectedcols.append("Points Scored (Excluding Penalties)")
 
     numcols = []
 
@@ -352,47 +369,19 @@ elif sect == "**View Data**":
 
     if viewdata == "Match Data": 
 
-        df["Points Scored (Teleop)"] = ["N/A" for i in range(len(df))]
+        df["Points Scored (Excluding Penalties)"] = ["N/A" for i in range(len(df))]
 
         for i in range(len(df)):
-        
-            df["Points Scored (Teleop)"][i] = df["Coral Scored on Level 1 (bottom):"][i]*2 + df["Coral Scored on Level 2:"][i]*3 + df["Coral Scored on Level 3:"][i]*4 + df["Coral Scored on Level 4 (top):"][i]*5 + df["Algae Scored in The Processor:"][i]*6 + df["Algae Scored in The Net (robot):"][i]*4 + df["Algae Scored in The Net (human)"][i]*2
 
-            if df["Which cage did they climb on?"][i] == "Deep Cage (Low)":
-                df["Points Scored (Teleop)"][i] += 12
+            df["Points Scored (Excluding Penalties)"][i] = 0
 
-            elif df["Which cage did they climb on?"][i] == "Shallow Cage (High)":
-                df["Points Scored (Teleop)"][i] += 6
+            for q in st.session_state.matchq:
 
-        df["Points Scored (Auto)"] = ["N/A" for i in range(len(df))]
+                if st.session_state.matchq[q]["Type"] == "Number Input":
 
-        for i in range(len(df)):
-        
-            df["Points Scored (Auto)"][i] = df["Number of Algae Scored in Processor:"][i]*6 + df["Number of Algae Scored in The Net:"][i]*4
+                    df["Points Scored (Excluding Penalties)"][i] += float(df[q][i])*st.session_state.matchq[q]["Point Value"]
 
-            if df["Did they move off the starting line?"][i] == "Yes":
-                df["Points Scored (Auto)"][i] += 3
-
-            if df["Which cage did they climb on?"][i] == "Shallow Cage (High)":
-                df["Points Scored (Auto)"][i] += 6
-
-            if df["Highest Reef Level Scored:"][i] == 1 or df["Highest Reef Level Scored:"][i] == 2:
-                df["Points Scored (Auto)"][i] += df["Highest Reef Level Scored:"][i]+2
-
-            if df["Highest Reef Level Scored:"][i] == 3 or df["Highest Reef Level Scored:"][i] == 4:
-                df["Points Scored (Auto)"][i] += df["Highest Reef Level Scored:"][i]+3
-
-            for i in range(len(df)):
-
-                if df["Points Scored (Auto)"][i] == "N/A":
-                    df["Points Scored (Auto)"][i] = 0
-
-                if df["Points Scored (Teleop)"][i] == "N/A":
-                    df["Points Scored (Teleop)"][i] = 0
-
-            df["Total Points Scored (Excluding Penalties)"] = [df["Points Scored (Teleop)"][i]+df["Points Scored (Auto)"][i] for i in range(len(df))]
-
-    rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
+            rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
     ex2 = sidebar.expander("Sort By...")
 
@@ -410,7 +399,7 @@ elif sect == "**View Data**":
     else:
         ascending = False
 
-    df = df[selectedcols].iloc[rows]
+    df = df[selectedcols]
     
     if enablesort:
         df = df.sort_values(by=sortcols, ascending=ascending, na_position="last")
@@ -791,12 +780,12 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 c3, c4 = st.columns(2)
 
                 qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-                qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+                qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
 
 
                 if qtype == "Header":
 
-                    qname = c2.text_input("**What should the header say?**")
+                    qname = c1.text_input("**What should the header say?**")
 
                     if sidebar.button("Insert Item"):
 
@@ -809,14 +798,15 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                 else:
 
-                    qname = c2.text_input("**What should this question ask?**")
+                    qname = c1.text_input("**What should this question ask?**")
+                    displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
                                                 
                     if qtype in "Text Input":
 
                         if sidebar.button("Insert Item"):
 
                             st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
+                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200, "Display Name": displayname}))
                             st.session_state.pitq = dict(st.session_state.pitq)
 
                             st.session_state.pitdata = list(st.session_state.pitq.items())
@@ -835,7 +825,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                         if sidebar.button("Insert Item"):
 
                             st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
+                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax, "Display Name": displayname}))
                             st.session_state.pitq = dict(st.session_state.pitq)
 
                             st.session_state.pitdata = list(st.session_state.pitq.items())
@@ -859,7 +849,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                         if sidebar.button("Insert Item"):
 
                             st.session_state.pitq = list(st.session_state.pitq.items())
-                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
+                            st.session_state.pitq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex, "Display Name": displayname}))
                             st.session_state.pitq = dict(st.session_state.pitq)
 
                             st.session_state.pitdata = list(st.session_state.pitq.items())
@@ -902,14 +892,15 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                 else:
 
-                    qname = c2.text_input("**What should this question ask?**")
+                    qname = c1.text_input("**What should this question ask?**")
+                    displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
                                                 
                     if qtype in "Text Input":
 
                         if sidebar.button("Insert Item"):
 
                             st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200}))
+                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200, "Display Name": displayname}))
                             st.session_state.matchq = dict(st.session_state.matchq)
 
                             st.session_state.matchdata = list(st.session_state.pitq.items())
@@ -924,11 +915,13 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                         qmin = c1.number_input("**Minimum Value**", step=1)
                         qmax = c2.number_input("**Maximum Value**", step=1)
+                        ptval = c1.number_input("**Point Value (per objective scored - enter `0` if this is not a point-based question)**", step=1)
+                        maxpts = c2.number_input("**Maximum Scorable Points (enter `0` for no limit)**", step=1)
 
                         if sidebar.button("Insert Item"):
 
                             st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax}))
+                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax, "Point Value": ptval, "Maximum Points": maxpts, "Display Name": displayname}))
                             st.session_state.matchq = dict(st.session_state.matchq)
 
                             st.session_state.matchdata = list(st.session_state.pitq.items())
@@ -952,7 +945,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                         if sidebar.button("Insert Item"):
 
                             st.session_state.matchq = list(st.session_state.matchq.items())
-                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}))
+                            st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex, "Display Name": displayname}))
                             st.session_state.matchq = dict(st.session_state.matchq)
 
                             st.session_state.matchdata = list(st.session_state.pitq.items())
@@ -973,11 +966,11 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 st.subheader(f"No {qsect} Items Added Yet.")
 
             qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
+            qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
             
             if qtype == "Header":
 
-                qname = c2.text_input("**What should the header say?**")
+                qname = st.text_input("**What should the header say?**")
 
                 if sidebar.button("Add Item"):
                     st.session_state.pitq[qname] = {"Type": qtype}
@@ -986,12 +979,13 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
             else:
 
-                qname = c2.text_input("**What should this question ask?**")
+                qname = c1.text_input("**What should this question ask?**")
+                displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
                                         
                 if qtype in "Text Input":
 
                     if sidebar.button("Add Item"):
-                        st.session_state.pitq[qname] = {"Type": qtype, "Character Limit": 200}
+                        st.session_state.pitq[qname] = {"Type": qtype, "Character Limit": 200, "Display Name": displayname}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
                         savedata()
@@ -1003,7 +997,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                     qmax = c2.number_input("**Maximum Value**", step=1)
 
                     if sidebar.button("Add Item"):
-                        st.session_state.pitq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
+                        st.session_state.pitq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax, "Display Name": displayname}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
                         savedata()
@@ -1021,7 +1015,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                             qopts.append(st.text_input(f"Option {q+1}:"))
                 
                     if sidebar.button("Add Item"):
-                        st.session_state.pitq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+                        st.session_state.pitq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex, "Display Name": displayname}
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
                         savedata()
@@ -1033,11 +1027,11 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 st.subheader(f"No {qsect} Items Added Yet.")
 
             qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-            qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
-            
+            qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
+
             if qtype == "Header":
 
-                qname = c2.text_input("**What should the header say?**")
+                qname = st.text_input("**What should the header say?**")
 
                 if sidebar.button("Add Item"):
                     st.session_state.matchq[qname] = {"Type": qtype}
@@ -1046,11 +1040,13 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
             else:
 
-                qname = c2.text_input("**What should this question ask?**")
+                qname = c1.text_input("**What should this question ask?**")
+                displayname = c2.text_input("**Data Column Display Name**:", qname, max_chars=100)
                                         
                 if qtype in "Text Input":
+
                     if sidebar.button("Add Item"):
-                        st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200}
+                        st.session_state.matchq[qname] = {"Type": qtype, "Character Limit": 200, "Display Name": displayname}
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                         st.session_state.matchdata[qname] = newcol
                         savedata()
@@ -1060,9 +1056,11 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                     qmin = c1.number_input("**Minimum Value**", step=1)
                     qmax = c2.number_input("**Maximum Value**", step=1)
+                    ptval = c1.number_input("**Point Value (per objective scored - enter `0` if this is not a point-based question)**", step=1)
+                    maxpts = c2.number_input("**Maximum Scorable Points (enter `0` for no limit)**", step=1)
 
                     if sidebar.button("Add Item"):
-                        st.session_state.matchq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax}
+                        st.session_state.matchq[qname] = {"Type": qtype, "Minimum": qmin, "Maximum": qmax, "Point Value": ptval, "Maximum Points": maxpts, "Display Name": displayname}
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                         st.session_state.matchdata[qname] = newcol
                         savedata()
@@ -1079,7 +1077,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                         for q in range(qoptsnum):
                             qopts.append(st.text_input(f"Option {q+1}:"))
                 
-                    st.session_state.matchq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex}
+                    st.session_state.matchq[qname] = {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex, "Display Name": displayname}
 
                     if sidebar.button("Add Item"):
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]

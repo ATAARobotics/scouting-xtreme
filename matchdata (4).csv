@@ -1,0 +1,322 @@
+Round No.,Team No.,Did they move off the starting line?,Highest Reef Level Scored:,Number of Coral Scored:,Number of Algae Scored in Processor:,Number of Algae Scored in The Net:,Coral Scored on Level 1 (bottom):,Coral Scored on Level 2:,Coral Scored on Level 3:,Coral Scored on Level 4 (top):,Algae Scored in The Processor:,Algae Scored in The Net (robot):,Algae Scored in The Net (human),Which cage did they climb on?,Robot Speed:,Robot Driving Stability:,Robot Functioning Stability:,Notes:,Points Scored (Teleop),Points Scored (Auto),Total Points Scored (Excluding Penalties)
+1.0,5516,Yes,4.0,4.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,20.0,10.0,30.0
+1.0,2438,Yes,4.0,1.0,0.0,0.0,3.0,0.0,3.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,18.0,10.0,28.0
+1.0,5468,Yes,4.0,2.0,0.0,0.0,0.0,0.0,0.0,9.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,10.0,55.0
+1.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+1.0,4253,Yes,4.0,1.0,0.0,0.0,0.0,0.0,1.0,3.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,19.0,10.0,29.0
+2.0,10044,No,0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,20.0,0.0,20.0
+2.0,4421,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,25.0,10.0,35.0
+2.0,9180,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,8.0,3.0,11.0
+2.0,6036,Yes,4.0,3.0,0.0,0.0,0.0,1.0,2.0,3.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,26.0,10.0,36.0
+2.0,4421,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,25.0,10.0,35.0
+2.0,10044,No,0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,20.0,0.0,20.0
+2.0,7287,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,12.0,3.0,15.0
+3.0,9292,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+3.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,2.0,1.0,0.0,1.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,18.0,10.0,28.0
+3.0,4327,Yes,0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,3.0,9.0
+3.0,4128,Yes,1.0,1.0,0.0,0.0,1.0,0.0,6.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,26.0,6.0,32.0
+3.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,0.0,3.0,3.0
+3.0,3128,Yes,1.0,1.0,0.0,0.0,1.0,0.0,6.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,26.0,6.0,32.0
+1.0,7551,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,2.0,0.0,1.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,16.0,3.0,19.0
+4.0,6188,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,0.0,0.0
+4.0,7796,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Fell Over,Small Malfunction,N/A,0.0,3.0,3.0
+4.0,7167,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+4.0,4862,Yes,0,0.0,0.0,0.0,5.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,10.0,3.0,13.0
+4.0,4270,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,4.0,1.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,26.0,10.0,36.0
+4.0,10527,Yes,1.0,1.0,0.0,0.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,12.0,6.0,18.0
+5.0,359,Yes,4.0,2.0,0.0,0.0,3.0,4.0,2.0,3.0,0.0,0.0,0.0,Shallow Cage (high),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,41.0,10.0,51.0
+5.0,8338,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+5.0,9044,Yes,0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,12.0,3.0,15.0
+5.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+5.0,7673,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,3.0,3.0
+5.0,2122,No,4.0,2.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,25.0,7.0,32.0
+6.0,6902,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,3.0,3.0
+6.0,2550,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,0.0,3.0,3.0
+6.0,6390,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,0.0,0.0
+6.0,6390,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,0.0,0.0
+6.0,7688,Yes,0,0.0,0.0,0.0,1.0,0.0,4.0,0.0,2.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,30.0,3.0,33.0
+6.0,7688,Yes,0,0.0,0.0,0.0,1.0,0.0,4.0,0.0,2.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,30.0,3.0,33.0
+6.0,9719,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,2.0,0.0,2.0
+6.0,846,No,0,0.0,0.0,0.0,0.0,0.0,1.0,3.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,19.0,0.0,19.0
+6.0,846,No,0,0.0,0.0,0.0,0.0,0.0,1.0,3.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,19.0,0.0,19.0
+7.0,9719,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,0.0,0.0,0.0
+7.0,9719,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,0.0,0.0,0.0
+7.0,9719,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,0.0,0.0,0.0
+7.0,5461,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+7.0,7135,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled,N/A,0.0,3.0,3.0
+7.0,9649,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+7.0,4627,Yes,3.0,0.0,0.0,0.0,0.0,0.0,4.0,1.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,27.0,9.0,36.0
+7.0,9649,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+7.0,6364,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+7.0,6364,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+8.0,1622,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+8.0,10426,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,3.0,3.0
+8.0,6353,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+8.0,7190,No,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled,N/A,5.0,0.0,5.0
+8.0,7190,No,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled,N/A,5.0,0.0,5.0
+8.0,7190,No,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Temporarily Disabled,N/A,5.0,0.0,5.0
+8.0,9449,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,0.0,0.0
+9.0,6188,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+9.0,4253,Yes,4.0,1.0,0.0,0.0,0.0,0.0,2.0,4.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,28.0,10.0,38.0
+9.0,6188,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+9.0,5468,Yes,4.0,2.0,0.0,0.0,0.0,0.0,5.0,5.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,10.0,55.0
+9.0,3128,Yes,0,0.0,0.0,0.0,0.0,1.0,5.0,2.0,2.0,0.0,2.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,49.0,3.0,52.0
+9.0,3128,Yes,0,0.0,0.0,0.0,0.0,1.0,5.0,2.0,2.0,0.0,2.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,49.0,3.0,52.0
+10.0,2438,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,3.0,2.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,27.0,10.0,37.0
+10.0,10527,Yes,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,2.0,6.0,8.0
+10.0,6036,Yes,4.0,3.0,0.0,0.0,0.0,5.0,7.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,53.0,10.0,63.0
+10.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,2.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,22.0,3.0,25.0
+11.0,4327,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Temporarily Disabled,N/A,14.0,3.0,17.0
+11.0,846,No,4.0,1.0,0.0,0.0,0.0,0.0,1.0,4.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,24.0,7.0,31.0
+11.0,4270,Yes,0,0.0,0.0,0.0,0.0,0.0,5.0,3.0,1.0,1.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,3.0,48.0
+11.0,359,Yes,4.0,2.0,0.0,0.0,2.0,0.0,2.0,4.0,2.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,44.0,10.0,54.0
+12.0,7688,Yes,0,0.0,1.0,0.0,0.0,0.0,2.0,0.0,1.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,14.0,9.0,23.0
+12.0,6902,Yes,0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,3.0,7.0
+12.0,7688,Yes,0,0.0,0.0,0.0,0.0,3.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,13.0,3.0,16.0
+12.0,5461,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+12.0,5461,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+12.0,2122,Yes,4.0,2.0,0.0,0.0,0.0,0.0,2.0,5.0,0.0,0.0,0.0,Deep Cage (low),Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,33.0,10.0,43.0
+12.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+12.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+12.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+1.0,9649,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,0.0,2.0
+13.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,3.0,0.0,8.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,49.0,10.0,59.0
+13.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,9.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,10.0,55.0
+13.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,9.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,10.0,55.0
+13.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,11.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,55.0,10.0,65.0
+13.0,1622,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+1.0,9649,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,0.0,2.0
+13.0,9649,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,0.0,2.0
+14.0,8503,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,8.0,3.0,11.0
+14.0,9719,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,3.0,5.0
+14.0,10427,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,3.0,3.0
+14.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+14.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+15.0,6390,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,3.0,3.0
+15.0,9044,Yes,0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,9.0,3.0,12.0
+15.0,9180,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,13.0,3.0,16.0
+15.0,9180,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,13.0,3.0,16.0
+15.0,9044,Yes,0,0.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,9.0,3.0,12.0
+15.0,9641,Yes,0,0.0,0.0,0.0,3.0,1.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,9.0,3.0,12.0
+15.0,9277,Yes,2.0,1.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,7.0,15.0
+15.0,9277,Yes,2.0,1.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,7.0,15.0
+16.0,7167,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+16.0,7190,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,0.0,2.0
+16.0,9550,No,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,0.0,2.0
+16.0,9449,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,2.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,12.0,3.0,15.0
+16.0,4627,Yes,3.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,28.0,9.0,37.0
+16.0,4627,Yes,3.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,28.0,9.0,37.0
+17.0,846,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,3.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,25.0,3.0,28.0
+17.0,4270,No,4.0,1.0,0.0,0.0,0.0,5.0,5.0,1.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,46.0,7.0,53.0
+17.0,5461,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+17.0,4253,Yes,4.0,1.0,1.0,0.0,0.0,0.0,0.0,6.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,30.0,16.0,46.0
+17.0,4270,No,4.0,1.0,0.0,0.0,0.0,5.0,5.0,1.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,46.0,7.0,53.0
+17.0,6036,Yes,1.0,2.0,0.0,0.0,0.0,2.0,4.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,32.0,6.0,38.0
+17.0,6036,Yes,1.0,2.0,0.0,0.0,0.0,2.0,4.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,32.0,6.0,38.0
+17.0,6036,Yes,1.0,2.0,0.0,0.0,0.0,2.0,4.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,32.0,6.0,38.0
+18.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+18.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+18.0,7332,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,0.0,0.0
+18.0,1622,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,0.0,0.0
+19.0,7796,Yes,4.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,10.0,10.0
+19.0,7796,Yes,4.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,10.0,10.0
+19.0,6902,Yes,0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,7.0,3.0,10.0
+19.0,7796,Yes,4.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,10.0,10.0
+1.0,4327,Yes,0,0.0,0.0,0.0,0.0,1.0,2.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,21.0,3.0,24.0
+19.0,6903,Yes,3.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,9.0,13.0
+19.0,6903,Yes,3.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,9.0,13.0
+19.0,6902,Yes,3.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,9.0,13.0
+19.0,6902,Yes,3.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,9.0,13.0
+19.0,6902,Yes,3.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,9.0,13.0
+20.0,6364,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+20.0,6364,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+20.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,10.0,3.0,13.0
+20.0,6364,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Small Malfunction,N/A,2.0,3.0,5.0
+23.0,5516,Yes,4.0,3.0,0.0,0.0,0.0,1.0,6.0,5.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,52.0,10.0,62.0
+24.0,4862,Yes,2.0,1.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,7.0,11.0
+24.0,6390,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Temporarily Disabled,N/A,2.0,3.0,5.0
+24.0,9465,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,3.0,9.0
+24.0,4862,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,3.0,11.0
+24.0,4862,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,3.0,11.0
+1.0,3128,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,2.0,0.0,2.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,30.0,3.0,33.0
+1.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+25.0,7135,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+25.0,2122,Yes,0,0.0,0.0,0.0,0.0,3.0,2.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,22.0,3.0,25.0
+25.0,4270,Yes,4.0,1.0,0.0,0.0,2.0,0.0,0.0,6.0,0.0,1.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,38.0,10.0,48.0
+25.0,6036,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction,N/A,17.0,3.0,20.0
+25.0,6036,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Small Malfunction,N/A,17.0,3.0,20.0
+25.0,5468,Yes,4.0,2.0,0.0,0.0,0.0,0.0,5.0,5.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,45.0,10.0,55.0
+26.0,9550,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+26.0,9649,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,0.0,0.0,0.0
+27.0,4253,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,4.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,22.0,3.0,25.0
+26.0,4327,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,4.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,28.0,3.0,31.0
+26.0,10527,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,3.0,11.0
+26.0,7287,Yes,0,0.0,0.0,0.0,0.0,3.0,0.0,4.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,29.0,3.0,32.0
+26.0,7287,Yes,0,0.0,0.0,0.0,0.0,3.0,0.0,4.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,29.0,3.0,32.0
+26.0,10527,Yes,0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,3.0,11.0
+27.0,846,No,0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,15.0,0.0,15.0
+28.0,9044,Yes,0,0.0,0.0,0.0,1.0,2.0,2.0,1.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,21.0,3.0,24.0
+27.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,3.0,3.0
+27.0,6353,No,0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,9.0,0.0,9.0
+27.0,7796,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+27.0,3990,No,4.0,1.0,0.0,0.0,0.0,0.0,2.0,5.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,33.0,7.0,40.0
+27.0,3990,No,4.0,1.0,0.0,0.0,0.0,0.0,2.0,5.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,33.0,7.0,40.0
+28.0,2438,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,20.0,10.0,30.0
+28.0,2438,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,20.0,10.0,30.0
+29.0,359,Yes,4.0,1.0,0.0,0.0,2.0,0.0,3.0,4.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,36.0,10.0,46.0
+29.0,6903,Yes,0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,1.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,11.0,3.0,14.0
+29.0,9277,Yes,2.0,1.0,0.0,0.0,1.0,0.0,5.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,22.0,7.0,29.0
+1.0,7673,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+1.0,7673,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+29.0,7551,Yes,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,12.0,6.0,18.0
+29.0,7551,Yes,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,12.0,6.0,18.0
+30.0,4862,Yes,0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,3.0,9.0
+30.0,4862,Yes,0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,3.0,9.0
+30.0,6364,Yes,0,0.0,0.0,0.0,0.0,0.0,3.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,22.0,3.0,25.0
+30.0,9719,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,3.0,7.0
+30.0,1622,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,0.0,0.0
+30.0,9180,Yes,2.0,3.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,20.0,7.0,27.0
+30.0,3128,Yes,1.0,1.0,0.0,0.0,0.0,0.0,4.0,4.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,36.0,6.0,42.0
+31.0,8339,No,4.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,7.0,7.0
+31.0,9449,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,2.0,3.0,5.0
+31.0,6390,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,15.0,3.0,18.0
+31.0,6390,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,15.0,3.0,18.0
+31.0,5516,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,8.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,40.0,10.0,50.0
+31.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,Shallow Cage (high),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,12.0,3.0,15.0
+32.0,8503,No,1.0,0.0,0.0,0.0,0.0,0.0,7.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,28.0,3.0,31.0
+32.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+32.0,5461,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+32.0,7167,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,0.0,0.0
+33.0,2122,Yes,4.0,2.0,0.0,0.0,0.0,0.0,2.0,7.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,43.0,10.0,53.0
+33.0,7287,Yes,1.0,0.0,0.0,0.0,0.0,0.0,1.0,4.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,24.0,6.0,30.0
+1.0,9641,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,3.0,5.0
+1.0,9641,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,2.0,3.0,5.0
+32.0,846,No,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,0.0,5.0
+32.0,846,No,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,0.0,5.0
+33.0,10427,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,1.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Small Malfunction,N/A,8.0,3.0,11.0
+33.0,9550,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,0.0,0.0
+34.0,3990,No,4.0,1.0,0.0,0.0,0.0,0.0,0.0,6.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,30.0,7.0,37.0
+34.0,7688,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,14.0,3.0,17.0
+34.0,7688,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,14.0,3.0,17.0
+34.0,7190,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+34.0,7688,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,14.0,3.0,17.0
+34.0,9277,Yes,0,0.0,0.0,0.0,0.0,1.0,4.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,19.0,3.0,22.0
+34.0,7796,Yes,4.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,10.0,10.0
+33.0,5468,Yes,4.0,1.0,0.0,0.0,0.0,0.0,2.0,3.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,23.0,10.0,33.0
+33.0,5468,Yes,4.0,1.0,0.0,0.0,0.0,0.0,2.0,3.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,23.0,10.0,33.0
+35.0,4627,No,3.0,1.0,0.0,0.0,0.0,0.0,4.0,1.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,33.0,6.0,39.0
+35.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,3.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,19.0,3.0,22.0
+1.0,1,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,0.0,Deep Cage (low),Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,24.0,3.0,27.0
+35.0,1622,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,2.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,16.0,3.0,19.0
+35.0,1622,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,2.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,16.0,3.0,19.0
+35.0,6902,Yes,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,18.0,9.0,27.0
+35.0,10527,Yes,1.0,1.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,6.0,12.0
+35.0,10527,Yes,1.0,1.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,6.0,12.0
+35.0,10527,Yes,1.0,1.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,6.0,12.0
+36.0,6364,No,0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,14.0,0.0,14.0
+36.0,4327,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+36.0,4327,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+36.0,4327,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),N/A,0.0,0.0,0.0
+36.0,9044,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,3.0,7.0
+36.0,9044,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,4.0,3.0,7.0
+36.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+37.0,7673,Yes,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+37.0,7673,Yes,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+37.0,5461,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+37.0,7332,Yes,0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,3.0,3.0,6.0
+37.0,6353,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+37.0,9180,Yes,1.0,1.0,0.0,0.0,4.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,8.0,6.0,14.0
+38.0,359,Yes,4.0,2.0,0.0,0.0,1.0,0.0,3.0,4.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,34.0,10.0,44.0
+38.0,3128,Yes,1.0,1.0,0.0,0.0,1.0,0.0,4.0,3.0,0.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,33.0,6.0,39.0
+38.0,6390,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,10.0,3.0,13.0
+38.0,2438,Yes,4.0,1.0,0.0,0.0,2.0,0.0,0.0,8.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,44.0,10.0,54.0
+38.0,8503,No,3.0,1.0,0.0,0.0,0.0,2.0,4.0,0.0,2.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,34.0,6.0,40.0
+38.0,8503,No,3.0,1.0,0.0,0.0,0.0,2.0,4.0,0.0,2.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,34.0,6.0,40.0
+39.0,9449,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+39.0,9465,Yes,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,9.0,9.0
+39.0,9649,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,3.0,3.0
+39.0,4270,Yes,4.0,1.0,0.0,1.0,4.0,0.0,4.0,4.0,1.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,50.0,14.0,64.0
+39.0,4270,Yes,4.0,1.0,0.0,1.0,4.0,0.0,4.0,4.0,1.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,50.0,14.0,64.0
+39.0,9649,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,3.0,3.0
+39.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,N/A,0.0,3.0,3.0
+41.0,2122,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,3.0,0.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,19.0,3.0,22.0
+41.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,0.0,1.0,5.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,29.0,10.0,39.0
+42.0,1622,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+44.0,9449,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,18.0,3.0,21.0
+44.0,3128,Yes,0,0.0,0.0,0.0,0.0,0.0,4.0,5.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,41.0,3.0,44.0
+44.0,9449,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,18.0,3.0,21.0
+45.0,7135,Yes,0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,9.0,3.0,12.0
+45.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+45.0,4253,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,5.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,N/A,25.0,3.0,28.0
+45.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,0.0,3.0,3.0
+46.0,4862,Yes,1.0,0.0,0.0,1.0,5.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,10.0,10.0,20.0
+46.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,5.0,3.0,8.0
+47.0,10427,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,0.0,6.0
+47.0,10427,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,6.0,0.0,6.0
+49.0,9449,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,N/A,6.0,3.0,9.0
+51.0,9641,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,3.0,3.0
+51.0,10044,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+53.0,7551,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,N/A,0.0,0.0,0.0
+1.0,1,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,Notes saving test Notes saving test Notes saving test ,0.0,0.0,0.0
+59.0,359,Yes,4.0,1.0,0.0,0.0,0.0,4.0,4.0,3.0,2.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,Missed a coral into auto and teleop ,55.0,10.0,65.0
+59.0,7135,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),,0.0,3.0,3.0
+59.0,7135,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),"Avoid this team, didn’t move for whole match",0.0,3.0,3.0
+59.0,10527,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Low coral accuracy, seemingly only able to do l1.",2.0,3.0,5.0
+59.0,5461,Yes,0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Small Malfunction,Seemed unable to score coral properly,4.0,3.0,7.0
+59.0,3990,Yes,4.0,1.0,0.0,0.0,0.0,2.0,0.0,4.0,1.0,1.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Good team, would have climbed if not for their rookie teammate. Good candidate for alliance.",36.0,10.0,46.0
+59.0,9465,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Unreliable scoring mechanism, only able to score coral L1, cannot do defense.",2.0,3.0,5.0
+59.0,9465,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Unreliable scoring mechanism, only able to score coral L1, cannot do defense.",2.0,3.0,5.0
+60.0,4627,Yes,3.0,1.0,0.0,0.0,0.0,2.0,1.0,2.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Low coral accuracy, seemingly only able to do l1.",26.0,9.0,35.0
+60.0,2122,No,4.0,1.0,0.0,0.0,0.0,1.0,4.0,3.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,,34.0,7.0,41.0
+60.0,2122,No,4.0,1.0,0.0,0.0,0.0,1.0,4.0,3.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,"Good team, but we won’t be in a place to pick them…",34.0,7.0,41.0
+60.0,4327,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),"Auto did not work, the arm lifted and the coral shot out but the robot didn’t move",0.0,0.0,0.0
+60.0,9719,Yes,0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,"Really bad cycle times, unreliable scoring mechanism that keeps turning the wrong way or keeps slipping out. Cannot work as a defense bot due to their low speed.",8.0,3.0,11.0
+60.0,9719,Yes,0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,"Really bad cycle times, unreliable scoring mechanism that keeps turning the wrong way or keeps slipping out. Cannot work as a defense bot due to their low speed.",8.0,3.0,11.0
+60.0,2122,No,4.0,1.0,0.0,0.0,0.0,1.0,4.0,3.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,"Good team, but we won’t be in a place to pick them…",34.0,7.0,41.0
+61.0,4862,Yes,0,0.0,0.0,0.0,7.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,,14.0,3.0,17.0
+61.0,1622,Yes,0,0.0,0.0,0.0,0.0,2.0,1.0,2.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,They turned into an alfae bot after their arm got destroyed. They can't line up their algae with the processor though.,26.0,3.0,29.0
+61.0,1622,Yes,0,0.0,0.0,0.0,0.0,2.0,1.0,2.0,1.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,They turned into an alfae bot after their arm got destroyed. They can't line up their algae with the processor though.,26.0,3.0,29.0
+61.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"They work as defense bot throughout game, and they were unstable and slow, not a good defense bot.",0.0,3.0,3.0
+61.0,9292,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"They work as defense bot throughout game, and they were unstable and slow, not a good defense bot.",0.0,3.0,3.0
+61.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,Shallow Cage (high),Moderate,Stable (all wheels on the ground at all times),Fully Functional,,6.0,3.0,9.0
+61.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,Shallow Cage (high),Moderate,Stable (all wheels on the ground at all times),Fully Functional,Not as many algae as I thought they would score. 3 is their best but they are kinda mid,6.0,3.0,9.0
+61.0,10384,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,Shallow Cage (high),Moderate,Stable (all wheels on the ground at all times),Fully Functional,Not as many algae as I thought they would score. 3 is their best but they are kinda mid,6.0,3.0,9.0
+62.0,7287,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,,22.0,3.0,25.0
+62.0,7287,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,4.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,,22.0,3.0,25.0
+1.0,1,No,0,0.0,0.0,0.0,0.0,2.0,3.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"They had moderate cycle times and pretty decent coral accuracy, didnt attempt L4. They have food potential.",18.0,0.0,18.0
+63.0,5516,Yes,4.0,3.0,0.0,0.0,0.0,0.0,5.0,4.0,0.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,,40.0,10.0,50.0
+63.0,9550,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Acted as an anti defense bot the whole game, scoring nothing, protecting the scoring bots from the defense.",0.0,3.0,3.0
+63.0,9550,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Acted as an anti defense bot the whole game, scoring nothing, protecting the scoring bots from the defense.",0.0,3.0,3.0
+63.0,9180,No,0,0.0,0.0,0.0,0.0,2.0,3.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"They had moderate cycle times and pretty decent coral accuracy, didnt attempt L4. They have food potential.",18.0,0.0,18.0
+64.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),After scoring 1 coral on L4 their elevator fully fell of and the e-stopped.,5.0,3.0,8.0
+64.0,8338,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),After scoring 1 coral on L4 their elevator fully fell of and the e-stopped.,5.0,3.0,8.0
+64.0,9449,Yes,0,0.0,0.0,0.0,0.0,2.0,3.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"They were accurate in algae processing but everytime the put the algae in, the algae just went out and they never realized.",18.0,3.0,21.0
+64.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,,0.0,3.0,3.0
+64.0,7332,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Defense bot, have to look into it more",0.0,3.0,3.0
+65.0,3128,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,1.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Good bot that can do all things, pretty rounded up bot.",19.0,3.0,22.0
+65.0,3128,Yes,0,0.0,0.0,0.0,0.0,0.0,2.0,1.0,1.0,0.0,0.0,Deep Cage (low),Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Good bot that can do all things, pretty rounded up bot.",19.0,3.0,22.0
+66.0,6188,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,They didn't show up for the match.,0.0,0.0,0.0
+66.0,4627,Yes,3.0,1.0,1.0,0.0,0.0,0.0,2.0,2.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,"This bot is able to score algae and coral reliably, good bot.",30.0,15.0,45.0
+66.0,4627,Yes,3.0,1.0,1.0,0.0,0.0,0.0,2.0,2.0,2.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,"This bot is able to score algae and coral reliably, good bot.",30.0,15.0,45.0
+66.0,846,Yes,0,0.0,0.0,0.0,0.0,1.0,0.0,5.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"Sped up since last time, still not super fast, elevator is a bit wobbly so it’s hard for drivers, can do algae too",28.0,3.0,31.0
+67.0,6036,Yes,4.0,0.0,0.0,0.0,0.0,0.0,3.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),"They were disabled, not sure of the reason.",17.0,10.0,27.0
+67.0,6036,Yes,4.0,0.0,0.0,0.0,0.0,0.0,3.0,1.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Permanent Failure (out for the round),"They were disabled, not sure of the reason.",17.0,10.0,27.0
+67.0,9641,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Bot with unreliable scoring, mechanism is bad, cycle times also really bad.",2.0,3.0,5.0
+67.0,9641,Yes,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Bot with unreliable scoring, mechanism is bad, cycle times also really bad.",2.0,3.0,5.0
+67.0,4327,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,4.0,3.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,,42.0,3.0,45.0
+67.0,4327,Yes,0,0.0,0.0,0.0,0.0,0.0,1.0,4.0,3.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,"Scoring coral is a bit off at times, but algae cleaning is good",42.0,3.0,45.0
+1.0,7135,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"It acts as a defense bot but every match it consistently gets disabled, unreliable, should not pick.",0.0,0.0,0.0
+1.0,7135,No,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,"It acts as a defense bot but every match it consistently gets disabled, unreliable, should not pick.",0.0,0.0,0.0
+70.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,Really good defense bot that is able to defend aggressively ensuring that no one can get any coral.,0.0,3.0,3.0
+70.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,Really good defense bot that is able to defend aggressively ensuring that no one can get any coral.,0.0,3.0,3.0
+70.0,8338,Yes,0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,They fixed their elevator.,11.0,3.0,14.0
+70.0,8339,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Moderate,Stable (all wheels on the ground at all times),Fully Functional,Really good defense bot that is able to defend aggressively ensuring that no one can get any coral.,0.0,3.0,3.0
+71.0,7551,Yes,2.0,1.0,0.0,0.0,0.0,1.0,2.0,0.0,4.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,They are good at scoring into the processor but a little slow at aquiring ant intaking the coral,35.0,7.0,42.0
+71.0,2438,Yes,4.0,1.0,0.0,0.0,0.0,0.0,2.0,6.0,1.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,,44.0,10.0,54.0
+71.0,2438,Yes,4.0,1.0,0.0,0.0,0.0,0.0,2.0,6.0,1.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,"Really good team, didn’t have enough time for hang, can clean algae but doesn’t do it much",44.0,10.0,54.0
+71.0,4862,Yes,1.0,1.0,0.0,0.0,8.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Could function as a defense bot, really consistent with their scoring on L1,.can only.score.on L1.",16.0,6.0,22.0
+71.0,4862,Yes,1.0,1.0,0.0,0.0,8.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Fast,"Unstable (1-3 wheels off the ground, but still driving)",Fully Functional,"Could function as a defense bot, really consistent with their scoring on L1,.can only.score.on L1.",16.0,6.0,22.0
+72.0,9277,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,,0.0,3.0,3.0
+72.0,9277,Yes,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,None,Slow,Stable (all wheels on the ground at all times),Fully Functional,Not good. Looked like they had some sort of mechanical issue. Attempted hang but failed,0.0,3.0,3.0
+73.0,6036,Yes,4.0,1.0,0.0,0.0,0.0,5.0,6.0,5.0,4.0,0.0,0.0,Deep Cage (low),Fast,Stable (all wheels on the ground at all times),Fully Functional,Only missed twice,88.0,10.0,98.0
+73.0,6036,Yes,4.0,1.0,0.0,0.0,0.0,5.0,6.0,5.0,4.0,0.0,0.0,None,Fast,Stable (all wheels on the ground at all times),Fully Functional,Only missed twice,88.0,10.0,98.0

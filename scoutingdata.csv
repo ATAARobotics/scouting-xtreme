@@ -1,0 +1,65 @@
+Team No.,Auto coral best/preferred level:,Auto other information:,Can score coral in teleop:,Can score algae in processor in teleop:,Can score algae in net in teleop:,Coral intake from station:,Coral ground intake:,Algae reef cleaner:,Algae ground intake:,Climb ability:,Drive train,Can read April tags:,Notes:
+9719,3.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,No,No,None,Swerve,No,N/A
+9292,3.0,0.0,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
+9292,0.0,0.0,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Tank,No,N/A
+9277,3.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,3.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,3.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9277,3.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+9180,3.0,1.0,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
+9180,3.0,1.0,Yes,Yes,No,No,No,"Yes, clean only",No,None,Tank,No,N/A
+9044,0.0,0.0,No,No,No,"Yes, thin intake",No,"Yes, clean only",No,None,Swerve,No,N/A
+846,4.0,0.0,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+846,4.0,0.0,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+8339,4.0,,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
+8339,4.0,,Yes,Yes,No,"Yes, thin intake",No,No,Yes,Deep cage,Tank,No,N/A
+8339,4.0,1.0,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Deep cage,Swerve,No,N/A
+8338,4.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",Yes,Shallow cage,Swerve,Yes,N/A
+8338,0.0,,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
+8338,0.0,,Yes,Yes,No,"Yes, wide/funnel intake",No,No,Yes,Shallow cage,Swerve,Yes,N/A
+7796,4.0,0.0,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+7796,4.0,0.0,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+7796,4.0,0.0,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Tank,No,N/A
+7796,4.0,0.0,No,No,No,No,No,No,No,Deep cage,Tank,No,N/A
+7688,3.0,11.0,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,Deep cage,Swerve,No,N/A
+7332,3.0,,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+7332,3.0,,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+7332,0.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
+7332,0.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Other,No,N/A
+7332,3.0,,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+7332,3.0,,Yes,No,No,"Yes, thin intake",No,No,No,Deep cage,Other,No,N/A
+7135,3.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
+7135,3.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Shallow cage,Swerve,Yes,N/A
+6902,1.0,,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,No,N/A
+6902,1.0,1.0,Yes,Yes,Yes,"Yes, thin intake",No,No,Yes,None,Swerve,Yes,N/A
+6390,4.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+6390,4.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+6390,4.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,None,Swerve,Yes,N/A
+6364,4.0,0.0,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+6353,4.0,,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
+6353,4.0,,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Other,No,N/A
+6036,4.0,4.0,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
+5516,4.0,3.0,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5516,4.0,3.0,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5516,4.0,3.0,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",No,None,Swerve,Yes,N/A
+5468,4.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+5468,4.0,,Yes,No,No,"Yes, wide/funnel intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+5468,4.0,2.0,Yes,No,No,"Yes, thin intake",No,"Yes, clean only",No,Deep cage,Swerve,Yes,N/A
+5461,0.0,0.0,No,No,No,No,No,No,No,None,Other,No,N/A
+5461,0.0,0.0,No,No,No,No,No,No,No,None,Other,No,N/A
+4237,0.0,,No,No,No,No,No,No,No,None,Swerve,No,N/A
+4237,0.0,,No,No,No,No,No,No,No,None,Swerve,No,N/A
+359,4.0,,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
+359,4.0,0.0,Yes,Yes,Yes,"Yes, wide/funnel intake",Yes,"Yes, can intake",Yes,Deep cage,Swerve,Yes,N/A
+2438,4.0,0.0,Yes,Yes,No,"Yes, wide/funnel intake",No,"Yes, can intake",Yes,None,Swerve,Yes,N/A
+2122,4.0,,Yes,Yes,Yes,"Yes, wide/funnel intake",No,"Yes, can intake",No,Deep cage,Swerve,Yes,N/A
+1622,3.0,,Yes,Yes,No,"Yes, thin intake",No,"Yes, clean only",Yes,None,Swerve,Yes,N/A
+10527,1.0,3.0,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Deep cage,Tank,No,N/A
+10427,0.0,0.0,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
+10427,0.0,0.0,No,Yes,No,No,No,"Yes, can intake",No,None,Tank,No,N/A
+10384,0.0,0.0,No,Yes,No,No,No,"Yes, can intake",Yes,Shallow cage,Tank,No,N/A
+10384,0.0,0.0,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
+10384,0.0,0.0,No,Yes,Yes,No,No,"Yes, can intake",Yes,Shallow cage,Tank,Yes,N/A
+10044,0.0,0.0,Yes,Yes,No,"Yes, thin intake",No,No,Yes,None,Tank,No,N/A
+1,0.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
+1,0.0,0.0,Yes,No,No,"Yes, wide/funnel intake",No,No,No,Shallow cage,Swerve,Yes,N/A
