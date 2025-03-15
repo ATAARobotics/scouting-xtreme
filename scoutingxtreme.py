@@ -1401,8 +1401,6 @@ if st.session_state.admin:
 
             for row in data[col]:
                 st.session_state.matchdata[col].append(row)
-
-        st.write(st.session_state.matchdata)
     
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
