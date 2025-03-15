@@ -208,6 +208,9 @@ if sect == "**Add a Data Entry**":
                     elif st.session_state.pitq[q]["Type"] == "Selection Box":
                         uin = st.selectbox(f"**{q}**", st.session_state.pitq[q]["Options"], index=st.session_state.pitq[q]["DefaultIndex"])
 
+                    elif st.session_state.pitq[q]["Type"] == "Checkbox":
+                        uin = st.checkbox(f"**{q}**", str(st.session_state.pitq[q]["DefaultIndex"]))
+
                     inputs.append(uin)
             
                     st.subheader("")
@@ -248,6 +251,9 @@ if sect == "**Add a Data Entry**":
 
                         elif st.session_state.matchq[q]["Type"] == "Selection Box":
                             uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                        elif st.session_state.matchq[q]["Type"] == "Checkbox":
+                            uin = str(st.checkbox(f"**{q}**", st.session_state.matchq[q]["DefaultIndex"]))
 
                         inputs.append(uin)
                 
@@ -702,6 +708,8 @@ elif sect == "**Visual Analysis**":
 
 elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
+    qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input", "Checkbox"]
+
     qsect = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
     qedit = sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
     c1, c2 = st.columns(2)
@@ -765,23 +773,21 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                 st.write(f"**There are no existing items that can be removed in the {qsect} Data.**")
 
     elif qedit == "Insert a question into a specific position":
-
+        
+        st.subheader(":red[NOT FUNCTIONAL YET]")
         st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
 
         if qsect == "Pit":
 
             if len(st.session_state.pitq) > 2:
 
+                qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
                 pos = sidebar.number_input("What position do you want to insert this at?", step=1, min_value=3, max_value=len(st.session_state.pitq))-1
                 
                 if len(st.session_state.pitq) == 0:
                     st.subheader(f"No {qsect} Items Added Yet.")
 
                 c3, c4 = st.columns(2)
-
-                qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-                qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
-
 
                 if qtype == "Header":
 
@@ -791,6 +797,26 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                         st.session_state.pitq = list(st.session_state.pitq.items())
                         st.session_state.pitq.insert(pos, (qname, {"Type": "Header"}))
+                        st.session_state.pitq = dict(st.session_state.pitq)
+
+                        savedata()
+                        savequestions()
+
+                elif qtype == "Checkbox":
+
+                    qname = c1.text_input("**What should the checkbox say?**")
+                    defaultval = c2.radio("**Default Value:**", ["Unchecked", "Checked"])
+
+                    if sidebar.button("Insert Item"):
+
+                        if defaultval == "Checked":
+                            defaultindex = True
+
+                        else:
+                            defaultindex = False
+
+                        st.session_state.pitq = list(st.session_state.pitq.items())
+                        st.session_state.pitq.insert(pos, (qname, {"Type": "Checkbox", "DefaultIndex": defaultindex}))
                         st.session_state.pitq = dict(st.session_state.pitq)
 
                         savedata()
@@ -866,6 +892,7 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
             
             if len(st.session_state.matchq) > 3:
 
+                qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
                 pos = sidebar.number_input("What position do you want to insert this at?", step=1, min_value=4, max_value=len(st.session_state.matchq))-1
                 
                 if len(st.session_state.matchq) == 0:
@@ -873,18 +900,35 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                 c3, c4 = st.columns(2)
 
-                qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
-                qtype = c1.selectbox("**What type of element would you like to add?**", qtypes)
-
 
                 if qtype == "Header":
 
-                    qname = c2.text_input("**What should the header say?**")
+                    qname = st.text_input("**What should the header say?**")
 
                     if sidebar.button("Insert Item"):
 
                         st.session_state.matchq = list(st.session_state.matchq.items())
                         st.session_state.matchq.insert(pos, (qname, {"Type": "Header"}))
+                        st.session_state.matchq = dict(st.session_state.matchq)
+
+                        savedata()
+                        savequestions()
+
+                elif qtype == "Checkbox":
+
+                    qname = c1.text_input("**What should the checkbox say?**")
+                    defaultval = c2.radio("**Default Value:**", ["Unchecked", "Checked"])
+
+                    if sidebar.button("Insert Item"):
+
+                        if defaultval == "Checked":
+                            defaultindex = True
+
+                        else:
+                            defaultindex = False
+
+                        st.session_state.matchq = list(st.session_state.matchq.items())
+                        st.session_state.matchq.insert(pos, (qname, {"Type": "Checkbox", "DefaultIndex": defaultindex}))
                         st.session_state.matchq = dict(st.session_state.matchq)
 
                         savedata()
@@ -965,7 +1009,6 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
             if len(st.session_state.pitq) == 0:
                 st.subheader(f"No {qsect} Items Added Yet.")
 
-            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
             qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
             
             if qtype == "Header":
@@ -976,6 +1019,25 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
                     st.session_state.pitq[qname] = {"Type": qtype}
                     savedata()
                     savequestions()
+
+            elif qtype == "Checkbox":
+
+                qname = c1.text_input("**What should the checkbox say?**")
+                defaultval = c2.radio("**Default Value:**", ["Unchecked", "Checked"])
+
+                if defaultval == "Checked":
+                    defaultindex = True
+
+                else:
+                    defaultindex = False
+
+                if sidebar.button("Add Item"):
+                    st.session_state.pitq[qname] = {"Type": qtype, "DefaultIndex": defaultindex}
+                    newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
+                    st.session_state.pitdata[qname] = newcol
+                    savedata()
+                    savequestions()
+
 
             else:
 
@@ -1026,7 +1088,6 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
             if len(st.session_state.matchq) == 0:
                 st.subheader(f"No {qsect} Items Added Yet.")
 
-            qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input"]
             qtype = sidebar.selectbox("**What type of element would you like to add?**", qtypes)
 
             if qtype == "Header":
@@ -1035,6 +1096,24 @@ elif sect == "**Edit Items (:red[USE OFFLINE ONLY])**":
 
                 if sidebar.button("Add Item"):
                     st.session_state.matchq[qname] = {"Type": qtype}
+                    savedata()
+                    savequestions()
+
+            elif qtype == "Checkbox":
+
+                qname = c1.text_input("**What should the checkbox say?**")
+                defaultval = c2.radio("**Default Value:**", ["Unchecked", "Checked"])
+
+                if defaultval == "Checked":
+                    defaultindex = True
+
+                else:
+                    defaultindex = False
+
+                if sidebar.button("Add Item"):
+                    st.session_state.matchq[qname] = {"Type": qtype, "DefaultIndex": defaultindex}
+                    newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
+                    st.session_state.matchdata[qname] = newcol
                     savedata()
                     savequestions()
 
