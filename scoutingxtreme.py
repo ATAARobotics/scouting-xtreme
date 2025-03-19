@@ -12,8 +12,7 @@
 import streamlit as st
 import os
 import time
-
-from PIL import Image
+import numpy as np
 
 # Total rounds for the game
 totalrounds = 0
@@ -120,6 +119,14 @@ matchdata = {matchdata}
     except:
         print("Data could not be saved.")
 
+def isNum(string: str):
+
+    try:
+        test = float(string)
+        return True
+    except:
+        return False            
+
 @st.cache_data()
 def toCSV(data):
     return data.to_csv(index=False).encode()
@@ -220,16 +227,21 @@ if sect == "**Add a Data Entry**":
                     st.subheader("")
 
             if st.button("Submit"):
-            
-                for x, y in zip(st.session_state.pitdata.keys(), inputs):
-                    st.session_state.pitdata[x].append(y)
-                    
+
                 try:
-                    st.write("**Submission Saved Successfully.**")
-                    time.sleep(2)
-                    savedata()
+
+                    for x, y in zip(st.session_state.pitdata.keys(), inputs):
+                        st.session_state.pitdata[x].append(y)
+                        
+                    try:
+                        st.write("**Submission Saved Successfully.**")
+                        time.sleep(2)
+                        savedata()
+                    except:
+                        savedata()            
+
                 except:
-                    savedata()            
+                    st.write("**Could not save your submission. Please try again.**")
 
         else:
 
@@ -511,10 +523,25 @@ elif sect == "**View Data**":
             if mode == "Replace Data":
             
                 if dataset == "Pit Data":
-                    st.session_state.pitdata = newdata
+                    
+                    for i in st.session_state.pitdata:
+                        st.session_state.pitdata[i] = []
+                        
+                    for col in newdata:
+                        st.session_state.pitdata[col] += newdata[col]
+
+                    savedata()
 
                 if dataset == "Match Data":
-                    st.session_state.matchdata = newdata
+                    
+                    for i in st.session_state.matchdata:
+                        st.session_state.matchdata[i] = []
+
+                    for col in newdata:
+                        st.session_state.matchdata[col] += newdata[col]
+
+                    savedata()
+
 
             if mode == "Add Data":
             
@@ -536,117 +563,193 @@ elif sect == "**View Data**":
 
 elif sect == "**Data Comparison**":
         
-    viewdata = sidebar.radio("Which data would you like to analyze?", ["Pit Data", "Match Data"])
+    viewdata = sidebar.radio("**Which data would you like to analyze?**", ["Pit Data", "Match Data"])
+    compmode = sidebar.radio("**Comparison Mode:**", ["Statistics", "Table of Averages"])
     criteria = sidebar.expander("**Data Selection**")
-    selectedcols = []
 
-    criteria.write("**What data do you want to see?**")
-
-    with st.expander(f"**{viewdata}**"):
-
-        st.header(viewdata)
-
-        if viewdata == "Pit Data":
-            data = st.session_state.pitdata
-            dataq = st.session_state.pitq
-        if viewdata == "Match Data":
-            data = st.session_state.matchdata
-            dataq = st.session_state.matchq
-
-        for col in data:
-            if "Text Input" != dataq[col]["Type"] and criteria.checkbox(col, True):
-                selectedcols.append(col)
-
-        df = pd.DataFrame().from_dict(data)
-
-        st.dataframe(df[selectedcols], use_container_width=True, hide_index=True)
+    if viewdata == "Pit Data":
+        cols = [col for col in st.session_state.pitdata.keys()]
     
-    compareval = criteria.radio("**What data do you want to compare by?**", [col for col in df.columns if "Text Input" != dataq[col]["Type"]])
-    viewmode = criteria.radio("**Viewing Mode:**", ["Occurrences", "Percentages"])
-    showavg = criteria.checkbox("Show Averages For Numerical Values", True)
+    else:
+        cols = [col for col in st.session_state.matchdata.keys()]
 
-    st.subheader(f"Comparison By `{compareval}`")
+    if ( viewdata == "Pit Data" and len(st.session_state.pitdata[cols[1]]) == 0 ) or ( viewdata == "Match Data" and len(st.session_state.matchdata[cols[1]]) == 0 ):
 
-    c1, c2 = st.columns(2)
+        st.subheader("Please add data to this data set before trying to compare data (cannot compare data in an empty dataset).")
 
-    val1 = c1.selectbox(f"Value 1", df[compareval].unique())
+    else:
 
-    for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
+        if compmode == "Statistics":
 
-        write = f"`{col}`: `"
-        
-        if dataq[col]["Type"] == "Number Input" and showavg:
+            selectedcols = []
 
-            val1lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val1]
-            avg = sum(val1lst)/len(val1lst)
-            write += f"{avg} AVG."
+            criteria.write("**What data do you want to see?**")
 
-            c1.write(write+"`")
+            with st.expander(f"**{viewdata}**"):
+
+                st.header(viewdata)
+
+                if viewdata == "Pit Data":
+                    data = st.session_state.pitdata
+                    dataq = st.session_state.pitq
+                if viewdata == "Match Data":
+                    data = st.session_state.matchdata
+                    dataq = st.session_state.matchq
+
+                for col in data:
+                    if "Text Input" != dataq[col]["Type"] and criteria.checkbox(col, True):
+                        selectedcols.append(col)
+
+                df = pd.DataFrame().from_dict(data)
+
+                st.dataframe(df[selectedcols], use_container_width=True, hide_index=True)
+            
+            compareval = criteria.radio("**What data do you want to compare by?**", [col for col in df.columns if "Text Input" != dataq[col]["Type"]])
+            viewmode = criteria.radio("**Viewing Mode:**", ["Occurrences", "Percentages"])
+            showavg = criteria.checkbox("Show Averages For Numerical Values", True)
+
+            st.subheader(f"Comparison By `{compareval}` (`data: occurences/percentage`)")
+
+            c1, c2 = st.columns(2)
+
+            val1 = c1.selectbox(f"Value 1", df[compareval].unique())
+
+            for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
+
+                write = f"`{col}`: `"
+                
+                if dataq[col]["Type"] == "Number Input" and showavg:
+
+                    val1lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val1]
+                    avg = sum(val1lst)/len(val1lst)
+                    write += f"{avg} AVG."
+
+                    c1.write(write+"`")
+
+                else:
+
+                    items = {}
+
+                    for val in df[col].unique():
+                        items[val] = 0
+
+                    for item in range(len(data[col])):
+
+                        if data[compareval][item] == val1:
+                            items[data[col][item]] += 1
+                            
+                    totalvals = 0
+
+                    for val in items.values():
+                        totalvals += val
+
+                    for item, val in zip(items, items.values()):
+                        if viewmode == "Percentages":
+                            write += f"{item}: {round(val/totalvals*100, 2)}%, "
+                        else:
+                            write += f"{item}: {val}, "
+
+                    c1.write(write[:-2]+"`")
+
+
+            val2 = c2.selectbox(f"Value 2", df[compareval].unique())
+
+            for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
+
+                write = f"`{col}`: `"
+                
+                if dataq[col]["Type"] == "Number Input" and showavg:
+
+                    val2lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val2]
+                    avg = sum(val2lst)/len(val2lst)
+                    write += f"{avg} AVG."
+
+                    c2.write(write+"`")
+
+                else:
+
+                    items = {}
+
+                    for val in df[col].unique():
+                        items[val] = 0
+
+                    for item in range(len(data[col])):
+
+                        if data[compareval][item] == val2:
+                            items[data[col][item]] += 1
+                            
+                    totalvals = 0
+
+                    for val in items.values():
+                        totalvals += val
+
+                    for item, val in zip(items, items.values()):
+                        if viewmode == "Percentages":
+                            write += f"{item}: {round(val/totalvals*100, 2)}%, "
+                        else:
+                            write += f"{item}: {val}, "
+
+                    c2.write(write[:-2]+"`")
 
         else:
 
-            items = {}
+            data = {}
 
-            for val in df[col].unique():
-                items[val] = 0
+            if viewdata == "Pit Data":
 
-            for item in range(len(data[col])):
+                for col in st.session_state.pitdata:
 
-                if data[compareval][item] == val1:
-                    items[data[col][item]] += 1
+                    if isNum(str(st.session_state.pitdata[col][0])):
+                        data[col] = st.session_state.pitdata[col]
                     
-            totalvals = 0
+                    elif isNum(str(st.session_state.pitdata[col][0].split(" ")[0])):
+                        data[col] = st.session_state.pitdata[col]
 
-            for val in items.values():
-                totalvals += val
+            if viewdata == "Match Data":
 
-            for item, val in zip(items, items.values()):
-                if viewmode == "Percentages":
-                    write += f"{item}: {round(val/totalvals*100, 2)}%, "
-                else:
-                    write += f"{item}: {val}, "
-
-            c1.write(write[:-2]+"`")
-
-
-    val2 = c2.selectbox(f"Value 2", df[compareval].unique())
-
-    for col in [col for col in selectedcols if col not in (compareval, "Team No.", "Round No.")]:
-
-        write = f"`{col}`: `"
-        
-        if dataq[col]["Type"] == "Number Input" and showavg:
-
-            val2lst = [float(data[col][i]) for i in range(len(data[col])) if data[compareval][i] == val2]
-            avg = sum(val2lst)/len(val2lst)
-            write += f"{avg} AVG."
-
-            c2.write(write+"`")
-
-        else:
-
-            items = {}
-
-            for val in df[col].unique():
-                items[val] = 0
-
-            for item in range(len(data[col])):
-
-                if data[compareval][item] == val2:
-                    items[data[col][item]] += 1
+                for col in st.session_state.matchdata:
                     
-            totalvals = 0
+                    if isNum(str(st.session_state.matchdata[col][0])) and col not in ["Round No."]:
+                        data[col] = st.session_state.matchdata[col]
+                    
+                    elif isNum(str(st.session_state.matchdata[col][0].split(" ")[0])) and col not in ["Round No."]:
+                        data[col] = st.session_state.matchdata[col]
 
-            for val in items.values():
-                totalvals += val
+            selectedcols = []
+            selectall = criteria.checkbox("Select All", True)
 
-            for item, val in zip(items, items.values()):
-                if viewmode == "Percentages":
-                    write += f"{item}: {round(val/totalvals*100, 2)}%, "
-                else:
-                    write += f"{item}: {val}, "
+            for col in data:
+                if criteria.checkbox(col, selectall):
+                    selectedcols.append(col)
 
-            c2.write(write[:-2]+"`")
+            df = pd.DataFrame()
+            compdata = {}
+
+            for col in selectedcols:
+                compdata[col] = []
+
+            compdata["Team No."] = pd.Series(data["Team No."]).unique()
+
+            for team in compdata["Team No."]:
+            
+                for col in [c for c in selectedcols if c != "Team No."]:
+
+                    numlist = []
+                    
+                    for row in range(len(data[col])):
+
+                        if data["Team No."][row] == team:
+                            numlist.append(float(data[col][row]))
+
+                    avg = np.mean(numlist)
+                    compdata[col].append(avg)
+
+            for col in compdata:
+                df[col] = compdata[col]
+
+            st.dataframe(df, use_container_width=True, hide_index=True)
+
+            
 
 elif sect == "**Visual Analysis**":
 
@@ -1382,12 +1485,6 @@ Scouting XTREME Log
         for i in st.session_state.matchdata:
             st.session_state.matchdata[i] = []
 
-        write = f"""
-pitdata = {st.session_state.pitdata}
-matchdata = {st.session_state.matchdata}
-    """
+        savedata()
 
-        with open("scoutingsrc.py", "w") as file:
-            file.write(write)
-            
 print(f"Admin Mode: {st.session_state.admin}")
