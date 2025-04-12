@@ -101,11 +101,11 @@ matchq = {matchq}
     except:
         print("Questions could not be saved.")
 
-def savedata(pitdata=st.session_state.pitdata, matchdata=st.session_state.matchdata):
+def savedata(pitdata=None, matchdata=None):
 
     writedata = f"""
-pitdata = {pitdata}
-matchdata = {matchdata}
+pitdata = {pitdata if pitdata is not None else st.session_state.pitdata}
+matchdata = {matchdata if matchdata is not None else st.session_state.matchdata}
 """
     
     print(writedata)
@@ -157,7 +157,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['admin'])
+    sect = sidebar.radio("Navigation:", pages['full'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -747,9 +747,7 @@ elif sect == "**Data Comparison**":
             for col in compdata:
                 df[col] = compdata[col]
 
-            st.dataframe(df, use_container_width=True, hide_index=True)
-
-            
+            st.dataframe(df, use_container_width=True, hide_index=True)           
 
 elif sect == "**Visual Analysis**":
 
@@ -1444,14 +1442,9 @@ if st.session_state.admin:
             
             data[col] = vals
 
-        st.session_state.matchdata = {}
-
-        for col in data:
-            
-            st.session_state.matchdata[col] = []
-
-            for row in data[col]:
-                st.session_state.matchdata[col].append(row)
+        st.session_state.matchdata = data
+        
+        savedata()
     
     exminpush = sidebar.expander("**Save Data to MinIO**")
 
