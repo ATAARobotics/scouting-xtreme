@@ -1384,11 +1384,73 @@ elif sect == "**Edit Data**":
             st.header(dataselect)
             st.dataframe(data, use_container_width=True, hide_index=False)
             st.write("---")
-            editmode = sidebar.radio("**Edit Mode:**", ["Replace", "Remove"])
+            editmode = sidebar.radio("**Edit Mode:**", ["Replace", "Remove", "Clear Duplicates"])
 
         if editmode == "Replace":
 
             replaceselect = st.radio("Would you like to replace a row or a specific data entry?", ["Row", "Data Entry"])
+
+        elif editmode == "Remove":
+
+            removeselect = st.radio("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
+
+        else:
+
+            c1, c2 = st.columns(2)
+
+            numcols = c1.number_input("**How many columns would you like to clear duplicates for?**", min_value=1, max_value=len(data), step=1)
+            clearmode = c2.selectbox("Clear Mode", ["Single Row", "Mass Clearing", "Clear All Duplicates"], index=2)
+            excols = sidebar.expander("**Column Selection**")
+
+            with excols:
+                
+                cols = [col for col in data]
+                selectedcols = []
+
+                for i in range(numcols):
+                    selectedcols.append(st.selectbox(f"Column {i+1}:", [i for i in cols if i not in selectedcols]))
+
+            st.write(selectedcols)
+
+            if st.button("**Clear Duplicates**"):
+
+                row = 1
+
+                while True:
+
+                    st.write(row)
+
+                    isduplicate = False
+        
+                    for col in selectedcols:
+
+                        if data[col][row] == data[col][row-1]:
+                            isduplicate = True
+
+                        else:
+                            isduplicate = False
+                            break
+                    
+                    if isduplicate:
+                        row -= 1
+                        for col in data:
+                            st.write(row)
+                            data[col].pop(row)
+
+                    if (row + 1) == len(data["Team No."]):
+                        break
+                    else:
+                        row += 1
+
+                if dataselect == "Pit Data":
+                    st.session_state.pitdata = data
+                if dataselect == "Match Data":
+                    st.session_state.matchdata = data
+
+                savedata()
+
+
+
 
 
 exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
