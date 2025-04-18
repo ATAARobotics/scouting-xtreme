@@ -119,17 +119,17 @@ matchdata = {matchdata if matchdata is not None else st.session_state.matchdata}
     except:
         print("Data could not be saved.")
 
-def isNum(string: str):
+def isNum(item):
 
     try:
-        test = float(string)
+        test = float(item)
         return True
     except:
         return False            
 
 @st.cache_data()
 def toCSV(data):
-    return data.to_csv(index=False).encode()
+    return data.to_csv(index=False).encode("ISO-8859-1")
 
 
 if st.session_state.pitdata == {}:
@@ -366,6 +366,12 @@ elif sect == "**View Data**":
                 cols.append(col)
 
     for key, col in zip(data.keys(), cols):
+        
+        if key == "Notes":
+
+            for i in range(len(data[key])):
+                data[key][i] = str(data[key][i])
+
         df[col] = data[key]
         
     for i in df.columns:
@@ -437,7 +443,7 @@ elif sect == "**View Data**":
     numsortcols = ex2.slider("**Number of Columns to Sort By (Most to Least Priority):**", 1, 5)
 
     for i in range(numsortcols):
-        sortcols.append(ex2.selectbox(f"**Sort {i+1}:**", [i for i in selectedcols if i != "Round No." and i not in sortcols]))
+        sortcols.append(ex2.selectbox(f"**Sort {i+1}:**", [i for i in selectedcols if i not in ["Round No.", "Notes"] and i not in sortcols]))
 
     if order == "Ascending":
         ascending = True
@@ -494,7 +500,7 @@ elif sect == "**View Data**":
 
         else:
 
-            strio = StringIO(userfile.getvalue().decode("utf-8"))
+            strio = StringIO(userfile.getvalue().decode())
 
             with open(userfile.name, "w") as file:
                 file.write(strio.read())
@@ -1466,10 +1472,6 @@ elif sect == "**Edit Data**":
                     st.session_state.matchdata = data
 
                 savedata()
-
-
-
-
 
 exgitpull = sidebar.expander("**Pull From GitHub Repository**\n\n**(:red[OFFLINE ONLY])**")
 

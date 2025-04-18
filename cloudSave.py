@@ -10,7 +10,7 @@ def load_csv(filename):
 
     try:
         response = client.get_object("scouting-xtreme", filename)
-        return response.data.decode("utf-8")
+        return response.data.decode("ISO-8859-1")
     
     except:
         print("Failed to upload")
@@ -24,7 +24,7 @@ def save_csv(filename, csv_string):
         secret_key="ZGa6YUerybM1Jd0NPYugZhTnPhbtb48cZLiFuKYo",
     )
 
-    csv_bytes = csv_string.encode('utf-8')
+    csv_bytes = csv_string.encode('ISO-8859-1')
     try:
         result = client.put_object(
             "scouting-xtreme", filename, BytesIO(csv_bytes), len(csv_bytes),
