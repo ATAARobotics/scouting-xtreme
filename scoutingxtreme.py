@@ -157,7 +157,7 @@ if accesslvl == "Admin":
         st.session_state.admin = True
 
 if st.session_state.admin:
-    sect = sidebar.radio("Navigation:", pages['admin'])
+    sect = sidebar.radio("Navigation:", pages['full'])
 else:
     sect = sidebar.radio("Navigation:", pages['user'])
 
@@ -380,7 +380,7 @@ elif sect == "**View Data**":
 
     if viewdata == "Match Data":
 
-        if ex1.checkbox("Points Scored (Excluding Penalties)", selectall):
+        if "Points Scored (Excluding Penalties)" not in df.columns and ex1.checkbox("Points Scored (Excluding Penalties)", selectall):
             selectedcols.append("Points Scored (Excluding Penalties)")
 
     numcols = []
@@ -501,7 +501,7 @@ elif sect == "**View Data**":
 
         dataset = ex2.radio("**Import To:**", ["Pit Data", "Match Data"])
         mode = ex2.radio("**Do you want to add to or replace the existing data?**", ["Add Data", "Replace Data"])
-        newdata = pd.read_csv(userfile.name).to_dict()
+        newdata = pd.read_csv(userfile.name, encoding="ISO-8859-1").to_dict()
 
         try:
             del newdata["Unnamed: 0"]
@@ -523,22 +523,20 @@ elif sect == "**View Data**":
             if mode == "Replace Data":
             
                 if dataset == "Pit Data":
-                    
-                    for i in st.session_state.pitdata:
-                        st.session_state.pitdata[i] = []
                         
+                    st.session_state.pitdata = {}
+
                     for col in newdata:
-                        st.session_state.pitdata[col] += newdata[col]
+                        st.session_state.pitdata[col] = newdata[col]
 
                     savedata()
 
                 if dataset == "Match Data":
                     
-                    for i in st.session_state.matchdata:
-                        st.session_state.matchdata[i] = []
+                    st.session_state.matchdata = {}
 
                     for col in newdata:
-                        st.session_state.matchdata[col] += newdata[col]
+                        st.session_state.matchdata[col] = newdata[col]
 
                     savedata()
 
@@ -1375,7 +1373,7 @@ elif sect == "**Edit Data**":
     if dataselect == "Match Data":
         data = st.session_state.matchdata
 
-    if len(data[list(data.keys())[0]]) == 0:
+    if len(data["Team No."]) == 0:
         st.header("This dataset is empty right now.")
 
     else:
@@ -1392,7 +1390,27 @@ elif sect == "**Edit Data**":
 
         elif editmode == "Remove":
 
-            removeselect = st.radio("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
+            c1, c2 = st.columns(2)
+
+            removeselect = c1.selectbox("Would you like to remove a row or a specific data entry?", ["Row", "Data Entry"])
+            
+            if removeselect is "Row": 
+
+                if dataselect is "Pit Data":
+                    row = c2.number_input("What row would you like to remove?", min_value=0, max_value=( len(st.session_state.pitdata["Team No."]) - 1 ), step=1)
+                    if st.button(f"Remove Row {row}"):
+                        for col in st.session_state.pitdata:
+                            st.session_state.pitdata[col].pop(row)
+
+                else:
+                    row = c2.number_input("What row would you like to remove?", min_value=0, max_value=( len(st.session_state.matchdata["Team No."]) - 1 ), step=1)
+                    if st.button(f"Remove Row {row}"):
+                        for col in st.session_state.matchdata:
+                            st.session_state.matchdata[col].pop(row)
+
+                savedata()
+
+
 
         else:
 
@@ -1474,9 +1492,9 @@ if st.session_state.admin:
 
     if exminpull.button("Load From MinIO"):
 
-        with open("tempfile.csv", "w") as file:
+        with open("pitdata.csv", "w") as file:
             file.write(cloudSave.load_csv("pitdata.csv"))
-        data = pd.read_csv("tempfile.csv").to_dict()
+        data = pd.read_csv("pitdata.csv", encoding="ISO-8859-1").to_dict()
         del data["Unnamed: 0"]
         
         for col in data:
@@ -1489,12 +1507,12 @@ if st.session_state.admin:
             data[col] = vals
 
         st.session_state.pitdata = data
-        
-        with open("tempfile.csv", "w") as file:
+
+        with open("matchdata.csv", "w") as file:
             file.write(cloudSave.load_csv("matchdata.csv"))
-        data = pd.read_csv("tempfile.csv").to_dict()
+        data = pd.read_csv("matchdata.csv", encoding="ISO-8859-1").to_dict()
         del data["Unnamed: 0"]
-       
+        
         for col in data:
 
             vals = []
@@ -1505,7 +1523,7 @@ if st.session_state.admin:
             data[col] = vals
 
         st.session_state.matchdata = data
-        
+
         savedata()
     
     exminpush = sidebar.expander("**Save Data to MinIO**")
