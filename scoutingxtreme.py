@@ -122,7 +122,7 @@ matchdata = {matchdata if matchdata is not None else st.session_state.matchdata}
 def isNum(item):
 
     try:
-        test = float(item)
+        test = int(item)
         return True
     except:
         return False            
@@ -365,13 +365,7 @@ elif sect == "**View Data**":
             except:
                 cols.append(col)
 
-    for key, col in zip(data.keys(), cols):
-        
-        if key == "Notes":
-
-            for i in range(len(data[key])):
-                data[key][i] = str(data[key][i])
-
+    for key, col in zip(data, cols):
         df[col] = data[key]
         
     for i in df.columns:
@@ -395,13 +389,11 @@ elif sect == "**View Data**":
 
         for i in range(len(df[col])):
                 
-            if col != "Team No.":
+            if col != "Team No." and col != "Notes":
 
-                try:
-                    df[col][i] = float(df[col][i])
+                if isNum(df[col][i]):
                     numcols.append(col)
-                    break
-                except:
+                else:
                     pass
 
     for col in numcols:
