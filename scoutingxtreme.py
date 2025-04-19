@@ -347,17 +347,19 @@ elif sect == "**View Data**":
     df = pd.DataFrame()
     cols = []
 
-    for col in data:
+    if viewdata == "Pit Data":
 
-        if viewdata == "Pit Data":
-
+        for col in st.session_state.pitq:
+    
             try:
                 cols.append(st.session_state.pitq[col]["Display Name"])
 
             except:
                 cols.append(col)
 
-        else:
+    else:
+
+        for col in st.session_state.matchq:
 
             try:
                 cols.append(st.session_state.matchq[col]["Display Name"])
