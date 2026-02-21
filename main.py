@@ -31,9 +31,9 @@ from io import StringIO
 
 # Program Start
 
-import cloudSave
+# import cloudSave
 
-st.set_page_config("Scouting XTREME", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
+st.set_page_config("Forge Scouting", layout="wide", page_icon="icon.png", initial_sidebar_state="expanded")
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 warnings.filterwarnings("ignore")
 
@@ -45,6 +45,10 @@ primaryColor="#ff3636"
 backgroundColor="#0e0e0e"
 secondaryBackgroundColor="#1e2029"
 """
+
+def addLineGap(numoflines: int):
+    for i in range(numoflines):
+        st.write("")
 
 @st.cache_data
 def isNum(item):
@@ -97,7 +101,7 @@ def gitpush(savemsg: str ="Remote Update"):
     os.system("git push")
     os.system("git pull")
 
-def savequestions(pitq=st.session_state.pitq, matchq=st.session_state.matchq):
+def savequestions(pitq, matchq):
     
     writequestions = f"""
 pitq = {pitq}
@@ -164,7 +168,7 @@ accesslvl = access.radio("**Access Level:**", ["Member", "Admin"])
 pages = {
     "user": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**"],
     "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Question Editor (:red[OFFLINE ONLY])**"],
-    "dev": [":blue[**Home**]", "**Add a Data Entry**", "**Robot Photos**", "**View Data**", "**Data Comparison**", "**Visual Analysis**", "**Data Editor**", "**Question Editor (:red[OFFLINE ONLY])**"]
+    "dev": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Robot Photos**", "**Data Comparison**", "**Visual Analysis**", "**Data Editor**", "**Question Editor (:red[OFFLINE ONLY])**"]
 }
 
 if accesslvl == "Admin":
@@ -195,9 +199,9 @@ if sidebar.button("**Refresh Page**"):
 
 if selectedpage == ":blue[**Home**]":
     
-    st.title(":blue[Scouting]:red[XTREME]")
+    st.title(":red[Forge] :blue[Scouting]")
     st.subheader("**Use the sidebar on the left to navigate the site.**")
-    st.write("---")    
+    st.write("---")
 
 else:
 
@@ -231,6 +235,9 @@ else:
                             st.write("---")
                             st.header(q)
                             st.write("---")
+
+                            addLineGap(2)
+
                             c1, c2 = st.columns(2)
                             stcol = c1
                             stcolnum = 1
@@ -255,9 +262,15 @@ else:
                         inputs.append(uin)
 
                         if stcolnum == 1:
+
                             stcolnum = 2
                             stcol = c2
+                            addLineGap(2)
+
                         else:
+
+                            c1, c2 = st.columns(2)
+                            stcol = c1
                             stcolnum = 1
                             stcol = c1
                 
@@ -323,29 +336,6 @@ else:
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
                         except:
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-
-    elif selectedpage == "**Robot Photos**":
-        
-        viewmode = st.radio("Do you want to add or view robot photos?", ["Add", "View"])
-
-        if viewmode == "Add":
-
-            teamno = st.number_input("**Team Number:**", 1, 10000)
-            image = st.file_uploader("**Upload the robot photo here:**", type=["jpg", "jpeg", "png", "webp"])
-
-            if st.button("Save Image"):
-
-                st.session_state.robotphotos[teamno] = image
-                st.write(image)
-                st.success("**Image Saved Successfully.**")
-
-        elif len(st.session_state.robotphotos) == 0:
-            st.subheader("Please upload a photo before viewing them.")
-
-        else:
-            
-            teamno = st.selectbox("**Select a Team:**", st.session_state.robotphotos.keys())
-            st.image(st.session_state.robotphotos[teamno], teamno)
 
     elif selectedpage == "**View Data**":
 
@@ -590,6 +580,29 @@ else:
 
         if downloadcsv:
             c1.success(f"Successfully downloaded data as {filename}.txt")
+
+    elif selectedpage == "**Robot Photos**":
+        
+        viewmode = st.radio("Do you want to add or view robot photos?", ["Add", "View"])
+
+        if viewmode == "Add":
+
+            teamno = st.number_input("**Team Number:**", 1, 10000)
+            image = st.file_uploader("**Upload the robot photo here:**", type=["jpg", "jpeg", "png", "webp"])
+
+            if st.button("Save Image"):
+
+                st.session_state.robotphotos[teamno] = image
+                st.write(image)
+                st.success("**Image Saved Successfully.**")
+
+        elif len(st.session_state.robotphotos) == 0:
+            st.subheader("Please upload a photo before viewing them.")
+
+        else:
+            
+            teamno = st.selectbox("**Select a Team:**", st.session_state.robotphotos.keys())
+            st.image(st.session_state.robotphotos[teamno], teamno)
 
     elif selectedpage == "**Data Comparison**":
             
@@ -1588,7 +1601,7 @@ if st.session_state.admin:
         os.system("clear")
         print("""\033[1m
 -------------------
-Scouting XTREME Log
+Forge Scouting Log
 -------------------
         \033[0m""")
 

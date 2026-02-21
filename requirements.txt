@@ -1,5 +1,8 @@
+streamlit
+minio
+supabase
 scikit-learn
 seaborn
 matplotlib
 pandas
-minio
+numpy
