@@ -166,9 +166,9 @@ access = sidebar.expander("**:red[Login as Admin...]**")
 accesslvl = access.radio("**Access Level:**", ["Member", "Admin"])
 
 pages = {
-    "user": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**"],
-    "admin": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Question Editor (:red[OFFLINE ONLY])**"],
-    "dev": [":blue[**Home**]", "**Add a Data Entry**", "**View Data**", "**Robot Photos**", "**Data Comparison**", "**Visual Analysis**", "**Data Editor**", "**Question Editor (:red[OFFLINE ONLY])**"]
+    "user": [":blue[**Home**]", "**Add an Entry**", "**View Data**"],
+    "admin": [":blue[**Home**]", "**Add an Entry**", "**View Data**", "**Question Editor (:red[OFFLINE ONLY])**"],
+    "dev": [":blue[**Home**]", "**Add an Entry**", "**View Data**", "**Robot Photos**", "**Data Comparison**", "**Visual Analysis**", "**Data Editor**", "**Question Editor (:red[OFFLINE ONLY])**"]
 }
 
 if accesslvl == "Admin":
@@ -208,7 +208,7 @@ else:
     st.title(selectedpage)
     st.write("---")
 
-    if selectedpage == "**Add a Data Entry**":
+    if selectedpage == "**Add an Entry**":
 
         datasect = st.radio("**Selected Dataset:**", ["Pit Data", "Match Data"])
         inputs = []
@@ -274,7 +274,7 @@ else:
                             stcolnum = 1
                             stcol = c1
                 
-                if st.button("**Submit Data**", use_container_width=True):
+                if not resetinputs and st.button("**Submit Data**", use_container_width=True):
 
                     try:
 
@@ -286,56 +286,85 @@ else:
                         st.session_state.pitdata = pd.read_csv("pitdata.csv")
                         st.session_state.matchdata = pd.read_csv("matchdata.csv")
 
-                        st.success("**Submission Saved Successfully.**")
+                        st.success("**Submission saved successfully.**")
                         
                     except:
                         st.error("**Could not save your submission. Please try again.**")
 
             else:
 
+                totalpts = 0
+
                 for q in st.session_state.matchq:
 
-                        if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
+                    if st.session_state.matchq[q]["Type"] in ["Header", "Columns Separator", "Columns Item"]:
 
-                            if st.session_state.matchq[q]["Type"] == "Header":
-                                st.write("---")
-                                st.header(q)
-                                st.write("---")
+                        if st.session_state.matchq[q]["Type"] == "Header":
+                            
+                            st.write("---")
+                            st.header(q)
+                            st.write("---")
+
+                            addLineGap(2)
+
+                            c1, c2 = st.columns(2)
+                            stcol = c1
+                            stcolnum = 1
+
+                    else:
+
+                        if st.session_state.matchq[q]["Type"] == "Number Input":
+                            
+                            uin = str(stcol.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
+
+                            totalpts += int(uin)*st.session_state.matchq[q]["Point Value"]
+
+                        elif st.session_state.matchq[q]["Type"] == "Text Input":
+                            uin = stcol.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
+
+                        elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
+                            uin = stcol.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                        elif st.session_state.matchq[q]["Type"] == "Selection Box":
+                            uin = stcol.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+
+                        elif st.session_state.matchq[q]["Type"] == "Checkbox":
+                            uin = stcol.checkbox(f"**{q}**", str(st.session_state.matchq[q]["DefaultIndex"]))
+
+                        inputs.append(uin)
+
+                        if stcolnum == 1:
+
+                            stcolnum = 2
+                            stcol = c2
+                            addLineGap(2)
 
                         else:
 
-                            if st.session_state.matchq[q]["Type"] == "Number Input":
-                                uin = str(st.number_input(f"**{q}**", st.session_state.matchq[q]["Minimum"], st.session_state.matchq[q]["Maximum"], step=1))
+                            c1, c2 = st.columns(2)
+                            stcol = c1
+                            stcolnum = 1
+                            stcol = c1
 
-                            elif st.session_state.matchq[q]["Type"] == "Text Input":
-                                uin = st.text_input(f"**{q}**", max_chars=st.session_state.matchq[q]["Character Limit"])
+                inputs.append(totalpts)
 
-                            elif st.session_state.matchq[q]["Type"] == "Multiple Choice":
-                                uin = st.radio(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+                if not resetinputs and st.button("**Submit Data**", use_container_width=True):
 
-                            elif st.session_state.matchq[q]["Type"] == "Selection Box":
-                                uin = st.selectbox(f"**{q}**", st.session_state.matchq[q]["Options"], index=st.session_state.matchq[q]["DefaultIndex"])
+                    try:
 
-                            elif st.session_state.matchq[q]["Type"] == "Checkbox":
-                                uin = str(st.checkbox(f"**{q}**", st.session_state.matchq[q]["DefaultIndex"]))
-
-                            inputs.append(uin)
-                    
-                            st.subheader("")
-
-                if not resetinputs:
-
-                    if st.button("Submit"):
-                    
-                        for x, y in zip(st.session_state.matchdata.keys(), inputs):            
+                        for x, y in zip(st.session_state.matchdata.keys(), inputs):
                             st.session_state.matchdata[x].append(y)
 
-                        try:
-                            st.success("**Submission Saved Successfully.**")
-                            time.sleep(2)
-                            savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        except:
-                            savedata(st.session_state.pitdata, st.session_state.matchdata)
+                        st.write(st.session_state.matchdata)
+                            
+                        savedata(st.session_state.pitdata, st.session_state.matchdata)
+
+                        st.session_state.matchdata = pd.read_csv("matchdata.csv")
+
+                        st.success("**Submission saved successfully.**")
+                        
+                    except:
+                        st.error("**Could not save your submission. Please try again.**")
 
     elif selectedpage == "**View Data**":
 
@@ -405,18 +434,13 @@ else:
             if selectcol:
                 selectedcols.append(i)
 
-        if viewdata == "Match Data":
-
-            if "Points Scored (Excluding Penalties)" not in df.columns and ex1.checkbox("Points Scored (Excluding Penalties)", selectall):
-                selectedcols.append("Points Scored (Excluding Penalties)")
-
         numcols = []
 
         for col in df.columns:
 
             for i in range(len(df[col])):
                     
-                if col != "Team No." and col != "Notes":
+                if col != "Team No.":
 
                     if isNum(df[col][i]):
                         numcols.append(col)
@@ -437,20 +461,6 @@ else:
                     except:
                         df[col][i] = 0
 
-        if viewdata == "Match Data": 
-
-            df["Points Scored (Excluding Penalties)"] = ["N/A" for i in range(len(df))]
-
-            for i in range(len(df)):
-
-                df["Points Scored (Excluding Penalties)"][i] = 0
-
-                for q in st.session_state.matchq:
-
-                    if st.session_state.matchq[q]["Type"] == "Number Input":
-
-                        df["Points Scored (Excluding Penalties)"][i] += float(df[q][i])*st.session_state.matchq[q]["Point Value"]
-
                 rows = [i for i in range(len(df[selectedcols])) if df["Team No."][i] == team or team == "All"]
 
         ex2 = sidebar.expander("**Sort By...**")
@@ -462,7 +472,7 @@ else:
         numsortcols = ex2.slider("**Number of Columns to Sort By (Most to Least Priority):**", 1, 5)
 
         for i in range(numsortcols):
-            sortcols.append(ex2.selectbox(f"**Sort {i+1}:**", [i for i in selectedcols if i not in ["Round No.", "Notes"] and i not in sortcols]))
+            sortcols.append(ex2.selectbox(f"**Sort {i+1}:**", [i for i in selectedcols if i not in ["Round No.", "Notes", "Notes:"] and i not in sortcols]))
 
         if order == "Ascending":
             ascending = True
@@ -915,18 +925,61 @@ else:
                 if removeselect == "Row": 
 
                     if dataselect == "Pit Data":
+
                         row = c2.number_input("What row would you like to remove?", min_value=0, max_value=( len(st.session_state.pitdata["Team No."]) - 1 ), step=1)
                         if st.button(f"Remove Row {row}"):
                             for col in st.session_state.pitdata:
                                 st.session_state.pitdata[col].pop(row)
 
                     else:
+
                         row = c2.number_input("What row would you like to remove?", min_value=0, max_value=( len(st.session_state.matchdata["Team No."]) - 1 ), step=1)
                         if st.button(f"Remove Row {row}"):
                             for col in st.session_state.matchdata:
                                 st.session_state.matchdata[col].pop(row)
 
                     savedata(st.session_state.pitdata, st.session_state.matchdata)
+
+                else:
+
+                    if dataselect == "Pit Data":
+
+                        row = c2.number_input("Row Number:", min_value=0, max_value=( len(st.session_state.pitdata["Team No."]) - 1 ), step=1)
+                        question = st.selectbox("What answer would you like to remove?", [q for q in st.session_state.pitq.keys() if st.session_state.pitq[q]["Type"] != "Header"])
+                        
+                        if st.button(f"**:red[Remove] Answer**"):
+                            
+                            if "Display Name" in st.session_state.pitq[question]:
+                                col = st.session_state.pitq[question]["Display Name"]
+                            else:
+                                col = question
+
+                            if st.session_state.pitq[question]["Type"] == "Number Input":
+                                st.session_state.pitdata[col][row] = 0
+                            else:
+                                st.session_state.pitdata[col][row] = "N/A"
+
+                            savedata(st.session_state.pitdata, st.session_state.matchdata)
+
+                    else:
+                        
+                        row = c2.number_input("What answer would you like to remove?", min_value=0, max_value=( len(st.session_state.matchdata["Team No."]) - 1 ), step=1)
+                        question = st.selectbox("What answer would you like to remove?", [q for q in st.session_state.matchq.keys() if st.session_state.matchq[q]["Type"] != "Header"])
+                        
+                        if st.button(f"**:red[Remove] Answer**"):
+                            
+                            if "Display Name" in st.session_state.matchq[question]:
+                                col = st.session_state.matchq[question]["Display Name"]
+                            else:
+                                col = question
+
+                            if st.session_state.matchq[question]["Type"] == "Number Input":
+                                st.session_state.matchdata[col][row] = 0
+                            else:
+                                st.session_state.matchdata[col][row] = "N/A"
+
+                            savedata(st.session_state.pitdata, st.session_state.matchdata)
+
 
 
 
@@ -946,15 +999,11 @@ else:
                     for i in range(numcols):
                         selectedcols.append(st.selectbox(f"Column {i+1}:", [i for i in cols if i not in selectedcols]))
 
-                st.write(selectedcols)
-
                 if st.button("**Clear Duplicates**"):
 
                     row = 1
 
                     while True:
-
-                        st.write(row)
 
                         isduplicate = False
             
@@ -970,7 +1019,6 @@ else:
                         if isduplicate:
                             row -= 1
                             for col in data:
-                                st.write(row)
                                 data[col].pop(row)
 
                         if (row + 1) == len(data["Team No."]):
@@ -1536,7 +1584,7 @@ if st.session_state.admin:
         except:
             st.error("**Could not retrieve data from GitHub.**")
 
-    savemsg = exgit.text_input("**Commit Message:**", "Update GitHub", max_chars=100)
+    savemsg = exgit.text_input("**Commit Message:**", "Update GitHub", max_chars=200)
 
     if exgit.button("**Push Data (:red[OFFLINE ONLY])**", use_container_width=True):
         savedata(st.session_state.pitdata, st.session_state.matchdata)
