@@ -1,10 +1,13 @@
-# To Do:
+# Current Tasks:
 #
 # Finish Data Editor
-# Finish Question Editor
 # Implement SupaBase compatibility
-# Add data comparison and visual representation functionality
-# Add columns separator, column items and expanders to the Question Editor (columns)
+# Replace Visual Analysis with a Data Analysis page, that has both visual analysis and data prediction functionalities
+# Implement Data Comparison functionality
+#
+# Backlog:
+#
+# Implement a columns separator, column items and expanders to the Question Editor
 
 ############################################################################################################################################################################################################################################################################################
 
@@ -354,8 +357,6 @@ else:
 
                         for x, y in zip(st.session_state.matchdata.keys(), inputs):
                             st.session_state.matchdata[x].append(y)
-
-                        st.write(st.session_state.matchdata)
                             
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
 
@@ -1573,7 +1574,7 @@ if st.session_state.admin:
 
     exgit.header("**:blue[GitHub] Actions:**")
 
-    if exgit.button("**Pull Data**", use_container_width=True):
+    if exgit.button("**Pull From :blue[GitHub]**", use_container_width=True):
             
         try:
             savedata(st.session_state.pitdata, st.session_state.matchdata)
@@ -1586,7 +1587,7 @@ if st.session_state.admin:
 
     savemsg = exgit.text_input("**Commit Message:**", "Update GitHub", max_chars=200)
 
-    if exgit.button("**Push Data (:red[OFFLINE ONLY])**", use_container_width=True):
+    if exgit.button("**Push to :blue[GitHub] (:red[OFFLINE ONLY])**", use_container_width=True):
         savedata(st.session_state.pitdata, st.session_state.matchdata)
         gitpush(savemsg)
 
@@ -1653,14 +1654,22 @@ Forge Scouting Log
 -------------------
         \033[0m""")
 
-    if ex2.button("**:red[Reset] Data**"):
+    if ex2.button("**:red[Clear] Pit Data**"):
 
         for i in st.session_state.pitdata:
             st.session_state.pitdata[i] = []
+
+        savedata(st.session_state.pitdata, st.session_state.matchdata)
+
+        st.success("**Pit data cleared sucecssfully.**")
+
+    if ex2.button("**:red[Clear] Match Data**"):
 
         for i in st.session_state.matchdata:
             st.session_state.matchdata[i] = []
 
         savedata(st.session_state.pitdata, st.session_state.matchdata)
+
+        st.success("**Match data cleared sucecssfully.**")
 
 print(f"Admin Mode: {st.session_state.admin}")
