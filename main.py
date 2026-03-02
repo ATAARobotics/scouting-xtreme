@@ -21,7 +21,7 @@ import os
 import time
 import warnings
 
-import numpy
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
@@ -80,6 +80,7 @@ def toDict(df: pd.DataFrame):
 
     return data
 
+@st.cache_data()
 def cleanData(data: dict):
 
     newdata = {}
@@ -1044,10 +1045,10 @@ else:
 
 
         qset = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
-        editchoice = sidebar.radio("**What would you like to do?**", ["Add a question", "Remove a question", "Insert a question into a specific position"])
+        editchoice = sidebar.radio("**What would you like to do?**", ["Add a Question", "Remove a Question", "Insert a Question Into a Specific Position"])
         c1, c2 = st.columns(2)
 
-        if editchoice == "Remove a question":
+        if editchoice == "Remove a Question":
             
             if qset == "Pit":
             
@@ -1073,7 +1074,7 @@ else:
                                 del st.session_state.pitq[items[itemnum]]
 
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
                             
                             sidebar.success("Item Removed Successfully.")
 
@@ -1098,16 +1099,15 @@ else:
                             del st.session_state.matchq[items[itemnum]]
                         
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        savequestions()
+                        savequestions(st.session_state.pitq, st.session_state.matchq)
                         
                         sidebar.success("Item Removed Successfully.")
 
                 except:
                     st.write(f"**There are no existing items that can be removed in the {qset} Data.**")
 
-        elif editchoice == "Insert a question into a specific position":
+        elif editchoice == "Insert a Question Into a Specific Position":
             
-            st.subheader(":red[NOT FUNCTIONAL YET]")
             st.write("**Note: Inserting a question in a certain position will cause the question in its spot (as well as those after it) to be pushed one position forward (towards the end).**")
 
             if qset == "Pit":
@@ -1133,7 +1133,7 @@ else:
                             st.session_state.pitq = dict(st.session_state.pitq)
 
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     elif qtype == "Checkbox":
 
@@ -1153,7 +1153,7 @@ else:
                             st.session_state.pitq = dict(st.session_state.pitq)
 
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     else:
 
@@ -1173,7 +1173,7 @@ else:
                                 st.session_state.pitdata = dict(st.session_state.pitdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
 
                         elif qtype in "Number Input":
@@ -1192,7 +1192,7 @@ else:
                                 st.session_state.pitdata = dict(st.session_state.pitdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
                         else:
 
@@ -1216,7 +1216,7 @@ else:
                                 st.session_state.pitdata = dict(st.session_state.pitdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
                 else:
                     st.write("**You need to add a question before you can insert questions.**")
@@ -1245,7 +1245,7 @@ else:
                             st.session_state.matchq = dict(st.session_state.matchq)
 
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     elif qtype == "Checkbox":
 
@@ -1265,7 +1265,7 @@ else:
                             st.session_state.matchq = dict(st.session_state.matchq)
 
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     else:
 
@@ -1285,7 +1285,7 @@ else:
                                 st.session_state.matchdata = dict(st.session_state.matchdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
 
                         elif qtype in "Number Input":
@@ -1306,7 +1306,7 @@ else:
                                 st.session_state.matchdata = dict(st.session_state.matchdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
                         else:
 
@@ -1330,7 +1330,7 @@ else:
                                 st.session_state.matchdata = dict(st.session_state.matchdata)
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
-                                savequestions()
+                                savequestions(st.session_state.pitq, st.session_state.matchq)
 
                 else:
                     st.write("**You need to add a question before you can insert questions.**")
@@ -1351,7 +1351,7 @@ else:
                     if sidebar.button("Add Item"):
                         st.session_state.pitq[qname] = {"Type": qtype}
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        savequestions()
+                        savequestions(st.session_state.pitq, st.session_state.matchq)
 
                 elif qtype == "Checkbox":
 
@@ -1369,7 +1369,7 @@ else:
                         newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                         st.session_state.pitdata[qname] = newcol
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        savequestions()
+                        savequestions(st.session_state.pitq, st.session_state.matchq)
 
 
                 else:
@@ -1384,7 +1384,7 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                             st.session_state.pitdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     elif qtype in "Number Input":
 
@@ -1396,7 +1396,7 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                             st.session_state.pitdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     else:
 
@@ -1414,7 +1414,7 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.pitdata['Team No.']))]
                             st.session_state.pitdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
             if qset == "Match":
 
@@ -1430,7 +1430,7 @@ else:
                     if sidebar.button("Add Item"):
                         st.session_state.matchq[qname] = {"Type": qtype}
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        savequestions()
+                        savequestions(st.session_state.pitq, st.session_state.matchq)
 
                 elif qtype == "Checkbox":
 
@@ -1448,7 +1448,7 @@ else:
                         newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                         st.session_state.matchdata[qname] = newcol
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
-                        savequestions()
+                        savequestions(st.session_state.pitq, st.session_state.matchq)
 
                 else:
 
@@ -1462,7 +1462,7 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                             st.session_state.matchdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     elif qtype in "Number Input":
 
@@ -1476,7 +1476,7 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                             st.session_state.matchdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
 
                     else:
 
@@ -1495,13 +1495,13 @@ else:
                             newcol = ["N/A" for i in range(len(st.session_state.matchdata['Team No.']))]
                             st.session_state.matchdata[qname] = newcol
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
-                            savequestions()
+                            savequestions(st.session_state.pitq, st.session_state.matchq)
         
         st.write("---")
 
         c1, c2 = st.columns(2)
 
-        ex1 = c1.expander("Current Pit Items")
+        ex1 = c1.expander("**Current Pit Items**", True)
 
         if len(st.session_state.pitq) == 0:
             ex1.header("No Pit Items Added Yet.")
@@ -1535,7 +1535,7 @@ else:
                     elif st.session_state.pitq[m]["Type"] != "Header":
                         ex1.write(f" - **{x}**: {y}")
 
-        ex2 = c2.expander("Current Match Items")
+        ex2 = c2.expander("**Current Match Items**", True)
         
         if len(st.session_state.matchq) == 0:
             ex2.header("No Match Items Added Yet.")
