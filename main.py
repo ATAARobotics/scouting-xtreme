@@ -181,6 +181,9 @@ if accesslvl == "Admin":
     if password == st.secrets.adminpassword:
         st.session_state.admin = True
 
+    elif password != "":
+        access.error("Incorrect admin password.")
+
 if st.session_state.admin:
     if access.checkbox("Developer Mode"):
         selectedpage = sidebar.radio("Navigation:", pages['dev'])
