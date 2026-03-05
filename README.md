@@ -1,5 +1,6 @@
-# ScoutingXTREME
+# Forge Scouting
 
 Scouting app for Forge Robotics, since 2025.
 
-Link: https://scouting-xtreme.streamlit.app
+Link: https://forge-scouting.streamlit.app
+
