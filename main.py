@@ -1,5 +1,8 @@
 # Current Tasks:
 #
+# Add duplicate entry replacement (Pit - if Team No. are the same, Match - if Round No. & Team No. are the same)
+# Fix issue with question insertion
+# Fix premature question additions in the question editor
 # Finish Data Editor
 # Implement SupaBase compatibility
 # Replace Visual Analysis with a Data Analysis page, that has both visual analysis and data prediction functionalities
@@ -216,7 +219,7 @@ else:
     st.write("---")
 
     if selectedpage == "**Add an Entry**":
-
+        
         datasect = st.radio("**Selected Dataset:**", ["Pit Data", "Match Data"])
         inputs = []
 
@@ -287,7 +290,7 @@ else:
 
                         for x, y in zip(st.session_state.pitdata.keys(), inputs):
                             st.session_state.pitdata[x].append(y)
-                            
+
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
 
                         st.session_state.pitdata = pd.read_csv("pitdata.csv")
@@ -353,8 +356,6 @@ else:
                             stcolnum = 1
                             stcol = c1
 
-                inputs.append(totalpts)
-
                 if not resetinputs and st.button("**Submit Data**", use_container_width=True):
 
                     try:
@@ -387,7 +388,6 @@ else:
         else:
             teamnums = data["Team No."]
 
-
         team = st.selectbox("Select a Team To View", pd.Series(["All"]+teamnums).unique())
         ex1 = sidebar.expander("**Selected Columns:**")
 
@@ -410,24 +410,29 @@ else:
 
             for col in st.session_state.pitq:
         
-                try:
-                    cols.append(st.session_state.pitq[col]["Display Name"])
+                if st.session_state.matchq[col]["Type"] != "Header":
 
-                except:
-                    cols.append(col)
+                    try:
+                        cols.append(st.session_state.pitq[col]["Display Name"])
+
+                    except:
+                        cols.append(col)
 
         else:
 
             for col in st.session_state.matchq:
+                    
+                if st.session_state.matchq[col]["Type"] != "Header":
 
-                try:
-                    cols.append(st.session_state.matchq[col]["Display Name"])
+                    try:
+                        cols.append(st.session_state.matchq[col]["Display Name"])
 
-                except:
-                    cols.append(col)
+                    except:
+                        cols.append(col)
 
         for key, col in zip(data, cols):
             df[col] = data[key]
+
             
         for i in df.columns:
 
@@ -497,9 +502,19 @@ else:
 
         c1, c2, c3, c4 = st.columns(4)
 
-        c1.write(f"**Teams Scouted:** {len(df['Team No.'].unique())}")
+        scoutedrounds = 0
+
+        if len(st.session_state.matchdata["Team No."]) > 0:
+            scoutedrounds = len(pd.Series(st.session_state.matchdata['Round No.']).unique())            
+
+        scoutedteams = 0
+
+        if len(df) > 0:
+            scoutedteams = len(df['Team No.'].unique())            
+
+        c1.write(f"**Teams Scouted:** {scoutedteams}")
         c2.write(f"**Total Entries:** {len(df)}")
-        c3.write(f"**Rounds Scouted:** {len(pd.Series(st.session_state.matchdata['Round No.']).unique())}")
+        c3.write(f"**Rounds Scouted:** {scoutedrounds}")
         c4.write(f"**Total Rounds:** {totalrounds}")
 
         c1, c2 = st.columns(2)
@@ -1040,9 +1055,11 @@ else:
 
     elif selectedpage == "**Question Editor (:red[OFFLINE ONLY])**":
 
+        import questions
+        st.session_state.pitq = questions.pitq
+        st.session_state.matchq = questions.matchq
+
         qtypes = ["Header", "Selection Box", "Multiple Choice", "Number Input", "Text Input", "Checkbox"]
-
-
 
         qset = sidebar.radio("**Which set of questions would you like to edit?**", ["Pit", "Match"])
         editchoice = sidebar.radio("**What would you like to do?**", ["Add a Question", "Remove a Question", "Insert a Question Into a Specific Position"])
