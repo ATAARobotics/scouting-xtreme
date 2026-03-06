@@ -43,6 +43,7 @@ st.set_page_config("Forge Scouting", layout="wide", page_icon="icon.png", initia
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 warnings.filterwarnings("ignore")
 
+adminpassword = "44212025"
 sidebar = st.sidebar
 theme = """
 [theme]
@@ -182,7 +183,7 @@ if accesslvl == "Admin":
 
     password = access.text_input("**Enter Admin Password:**", placeholder="Enter Password")
 
-    if password == st.secrets.adminpassword:
+    if password == adminpassword:
         st.session_state.admin = True
 
     elif password != "":
