@@ -1,7 +1,7 @@
 # Current Tasks:
 #
 # Add duplicate entry replacement (Pit - if Team No. are the same, Match - if Round No. & Team No. are the same)
-# Fix issue with question insertion
+# Fix issue with pit data question insertion
 # Fix premature question additions in the question editor
 # Finish Data Editor
 # Implement SupaBase compatibility
@@ -216,6 +216,8 @@ if selectedpage == ":blue[**Home**]":
 
 else:
 
+
+
     st.title(selectedpage)
     st.write("---")
 
@@ -364,6 +366,9 @@ else:
                         for x, y in zip(st.session_state.matchdata.keys(), inputs):
                             st.session_state.matchdata[x].append(y)
                             
+                        inputs
+                        st.session_state.matchdata
+
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
 
                         st.session_state.matchdata = pd.read_csv("matchdata.csv")
@@ -1282,6 +1287,22 @@ else:
                             st.session_state.matchq.insert(pos, (qname, {"Type": "Checkbox", "DefaultIndex": defaultindex}))
                             st.session_state.matchq = dict(st.session_state.matchq)
 
+                            newdata = {}
+                            matchcols = list(st.session_state.matchdata.keys())
+
+                            for i in range(len(st.session_state.matchdata.keys())):
+                                
+                                if i == pos:
+                                        
+                                    try:
+                                        newdata[displayname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+                                    except:
+                                        newdata[qname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+
+                                newdata[matchcols[i]] = st.session_state.matchdata[matchcols[i]]
+
+                            st.session_state.matchdata = newdata
+
                             savedata(st.session_state.pitdata, st.session_state.matchdata)
                             savequestions(st.session_state.pitq, st.session_state.matchq)
 
@@ -1298,9 +1319,21 @@ else:
                                 st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Character Limit": 200, "Display Name": displayname}))
                                 st.session_state.matchq = dict(st.session_state.matchq)
 
-                                st.session_state.matchdata = list(st.session_state.pitq.items())
-                                st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
-                                st.session_state.matchdata = dict(st.session_state.matchdata)
+                                newdata = {}
+                                matchcols = list(st.session_state.matchdata.keys())
+
+                                for i in range(len(st.session_state.matchdata.keys())):
+                                    
+                                    if i == pos:
+                                            
+                                        try:
+                                            newdata[displayname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+                                        except:
+                                            newdata[qname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+
+                                    newdata[matchcols[i]] = st.session_state.matchdata[matchcols[i]]
+
+                                st.session_state.matchdata = newdata
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
                                 savequestions(st.session_state.pitq, st.session_state.matchq)
@@ -1319,9 +1352,21 @@ else:
                                 st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Minimum": qmin, "Maximum": qmax, "Point Value": ptval, "Maximum Points": maxpts, "Display Name": displayname}))
                                 st.session_state.matchq = dict(st.session_state.matchq)
 
-                                st.session_state.matchdata = list(st.session_state.pitq.items())
-                                st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
-                                st.session_state.matchdata = dict(st.session_state.matchdata)
+                                newdata = {}
+                                matchcols = list(st.session_state.matchdata.keys())
+
+                                for i in range(len(st.session_state.matchdata.keys())):
+                                    
+                                    if i == pos:
+                                            
+                                        try:
+                                            newdata[displayname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+                                        except:
+                                            newdata[qname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+
+                                    newdata[matchcols[i]] = st.session_state.matchdata[matchcols[i]]
+
+                                st.session_state.matchdata = newdata
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
                                 savequestions(st.session_state.pitq, st.session_state.matchq)
@@ -1343,9 +1388,21 @@ else:
                                 st.session_state.matchq.insert(pos, (qname, {"Type": qtype, "Options": qopts, "DefaultIndex": qdefindex, "Display Name": displayname}))
                                 st.session_state.matchq = dict(st.session_state.matchq)
 
-                                st.session_state.matchdata = list(st.session_state.pitq.items())
-                                st.session_state.matchdata.insert(pos, (qname, ["N/A" for i in range(len(st.session_state.matchdata))]))
-                                st.session_state.matchdata = dict(st.session_state.matchdata)
+                                newdata = {}
+                                matchcols = list(st.session_state.matchdata.keys())
+
+                                for i in range(len(st.session_state.matchdata.keys())):
+                                    
+                                    if i == pos:
+                                            
+                                        try:
+                                            newdata[displayname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+                                        except:
+                                            newdata[qname] = ["N/A" for i in range(len(st.session_state.matchdata["Team No."]))]
+
+                                    newdata[matchcols[i]] = st.session_state.matchdata[matchcols[i]]
+
+                                st.session_state.matchdata = newdata
 
                                 savedata(st.session_state.pitdata, st.session_state.matchdata)
                                 savequestions(st.session_state.pitq, st.session_state.matchq)
