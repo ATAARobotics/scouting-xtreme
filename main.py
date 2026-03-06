@@ -366,9 +366,6 @@ else:
                         for x, y in zip(st.session_state.matchdata.keys(), inputs):
                             st.session_state.matchdata[x].append(y)
                             
-                        inputs
-                        st.session_state.matchdata
-
                         savedata(st.session_state.pitdata, st.session_state.matchdata)
 
                         st.session_state.matchdata = pd.read_csv("matchdata.csv")
